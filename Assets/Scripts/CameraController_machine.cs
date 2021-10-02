@@ -6,14 +6,14 @@ using System;
 public class CameraController_machine : MonoBehaviour
 {
     #region public variables
-    public float LengthFromTarget;
-    public float HeightFromTarget;
-
-    public float SideCameraLateralDistance;
-    public float SideCameraForwardDistance;
-    public float SideCameraHeight;
     public GameObject TargetObject;
-    public float CameraSpeed;
+    public float LengthFromTarget = 10f;
+    public float HeightFromTarget = 3f;
+
+    public float SideCameraLateralDistance = 6f;
+    public float SideCameraForwardDistance = 6f;
+    public float SideCameraHeight = 1f;
+    public float CameraSpeed = 6f;
     #endregion
 
     private Vector3 behind_camera_position;
