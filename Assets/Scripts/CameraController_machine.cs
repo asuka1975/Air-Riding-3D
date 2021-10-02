@@ -11,7 +11,7 @@ public class CameraController_machine : MonoBehaviour
     public float CameraSpeed;
     #endregion
 
-    private Vector3 camera_target_position;
+    private Vector3 behind_camera_position;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,10 +21,10 @@ public class CameraController_machine : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        camera_target_position = TargetObject.transform.position
+        behind_camera_position = TargetObject.transform.position
                                  - (TargetObject.transform.forward * LengthFromTarget)
                                  + (TargetObject.transform.up * HeightFromTarget);
-        this.transform.position = Vector3.Lerp(this.transform.position, camera_target_position, CameraSpeed * Time.deltaTime );
+        this.transform.position = Vector3.Lerp(this.transform.position, behind_camera_position, CameraSpeed * Time.deltaTime );
         this.transform.LookAt(TargetObject.transform);
     }
 }
