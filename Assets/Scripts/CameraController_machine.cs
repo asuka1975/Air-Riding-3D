@@ -28,8 +28,7 @@ public class CameraController_machine : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    void Update() 
     {
         //現在のTargetObjectの位置からカメラの目標位置を取得
         behind_camera_position = TargetObject.transform.position
@@ -44,12 +43,29 @@ public class CameraController_machine : MonoBehaviour
                                  - (TargetObject.transform.right * SideCameraLateralDistance)
                                  + (TargetObject.transform.up * SideCameraHeight);
 
-        //カメラ位置ベクトルをターゲットオブジェクト座標系に変換した際のx方向の値で、カメラが右にあるか左にあるかがわかる
+        //カメラ位置ベクトルをターゲットオブジェクト座標系に変換したベクトルにより, カメラのTargetObjectに対する位置がわかる
         Vector3 camera_position_vec = (this.transform.position - TargetObject.transform.position).normalized;
-        if(TargetObject.transform.InverseTransformVector(camera_position_vec).x > 0f) { is_camera_located_right_side = true; }
-        else { is_camera_located_right_side = false; }
-        if(Math.Abs(TargetObject.transform.InverseTransformVector(camera_position_vec).x) < 0.2f){is_camera_located_behind = true;}
-        else{is_camera_located_behind = false;}
+        if(TargetObject.transform.InverseTransformVector(camera_position_vec).x > 0f) 
+        {
+            is_camera_located_right_side = true; 
+        }
+        else 
+        {
+            is_camera_located_right_side = false; 
+        }
+        if(Math.Abs(TargetObject.transform.InverseTransformVector(camera_position_vec).x) < 0.2f)
+        {
+            is_camera_located_behind = true;
+        }
+        else
+        {
+            is_camera_located_behind = false;
+        }
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
 
         //Vector3.Lerpを用いてカメラをなめらかに移動させる
         if(Input.GetKey("a") ) //カメラを右に向ける
