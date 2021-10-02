@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class CameraController_machine : MonoBehaviour
 {
+    #region public variables
     public float LengthFromTarget;
     public float HeightFromTarget;
     public GameObject TargetObject;
     public float CameraSpeed;
+    #endregion
 
     private Vector3 camera_target_position;
     // Start is called before the first frame update
