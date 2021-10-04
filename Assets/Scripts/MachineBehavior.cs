@@ -7,6 +7,7 @@ public class MachineBehavior : MonoBehaviour
     public float Forward;
     public float Back;
     public float Rotation;
+    public float floating;
     public float minVel;
     public float maxVel;
     public float minAngVel;
@@ -24,11 +25,17 @@ public class MachineBehavior : MonoBehaviour
     void Update()
     {
         var direction = transform.forward * Forward;
-        //float y = GetComponent<Rigidbody>().velocity.y;
-        //GetComponent<Rigidbody>().velocity = new Vector3(direction.x, y, direction.z);
         rigidbody = this.GetComponent<Rigidbody>();
+
         rigidbody.AddForce(direction);
 
+        var position = rigidbody.position;
+        rigidbody.position = new Vector3(position.x, floating, position.z);
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            rigidbody.position = new Vector3(position.x, 0.1f, position.z);
+        }
         if (Input.GetKey(KeyCode.DownArrow))
         {
 

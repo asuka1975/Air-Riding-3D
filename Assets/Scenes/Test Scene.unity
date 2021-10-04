@@ -416,7 +416,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 877432093}
   serializedVersion: 2
-  m_Mass: 0.5
+  m_Mass: 0.1
   m_Drag: 0.1
   m_AngularDrag: 0.01
   m_UseGravity: 1
@@ -436,12 +436,20 @@ PrefabInstance:
       value: EmptyMachine
       objectReference: {fileID: 0}
     - target: {fileID: 3047386903030457991, guid: a713093a5ec9f98db8f1c43f95a57d48, type: 3}
+      propertyPath: maxVel
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3047386903030457991, guid: a713093a5ec9f98db8f1c43f95a57d48, type: 3}
       propertyPath: Forward
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3047386903030457991, guid: a713093a5ec9f98db8f1c43f95a57d48, type: 3}
       propertyPath: Rotation
-      value: 0.03
+      value: 0.011
+      objectReference: {fileID: 0}
+    - target: {fileID: 3047386903030457991, guid: a713093a5ec9f98db8f1c43f95a57d48, type: 3}
+      propertyPath: floating
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3047386903030457991, guid: a713093a5ec9f98db8f1c43f95a57d48, type: 3}
       propertyPath: maxAngVel
@@ -461,7 +469,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5215188169332762469, guid: a713093a5ec9f98db8f1c43f95a57d48, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5215188169332762469, guid: a713093a5ec9f98db8f1c43f95a57d48, type: 3}
       propertyPath: m_LocalPosition.z
