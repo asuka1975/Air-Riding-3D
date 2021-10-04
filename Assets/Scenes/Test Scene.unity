@@ -288,6 +288,7 @@ GameObject:
   - component: {fileID: 645634801}
   - component: {fileID: 645634800}
   - component: {fileID: 645634799}
+  - component: {fileID: 645634802}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -360,6 +361,25 @@ Transform:
   m_Father: {fileID: 877432098}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &645634802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645634798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29bffafa124ec924a8ead0a773452b05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetObject: {fileID: 877432093}
+  LengthFromTarget: 10
+  HeightFromTarget: 3
+  SideCameraLateralDistance: 6
+  SideCameraForwardDistance: 6
+  SideCameraHeight: 1
+  CameraSpeed: 6
 --- !u!1 &877432093 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2805079637915772865, guid: a713093a5ec9f98db8f1c43f95a57d48, type: 3}
@@ -421,7 +441,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3047386903030457991, guid: a713093a5ec9f98db8f1c43f95a57d48, type: 3}
       propertyPath: Rotation
-      value: 0.1
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 3047386903030457991, guid: a713093a5ec9f98db8f1c43f95a57d48, type: 3}
+      propertyPath: maxAngVel
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3434985204514035498, guid: a713093a5ec9f98db8f1c43f95a57d48, type: 3}
       propertyPath: m_Material

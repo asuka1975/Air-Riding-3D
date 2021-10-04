@@ -18,3 +18,23 @@ C# parse time         : 139ms
 candidates check time : 22ms
 console write time    : 0ms
 
+[api-updater (non-obsolete-error-filter)] 2021/10/04 20:32:38 : Starting C:/Users/simab/Desktop/2020.3.19f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 66.8152ms
+moved types parse time: 43ms
+candidates parse time : 9ms
+C# parse time         : 166ms
+candidates check time : 22ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 2021/10/04 20:41:34 : Starting C:/Users/simab/Desktop/2020.3.19f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 60.8365ms
+moved types parse time: 43ms
+candidates parse time : 8ms
+C# parse time         : 123ms
+candidates check time : 22ms
+console write time    : 0ms
+
