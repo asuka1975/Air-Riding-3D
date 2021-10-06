@@ -13,7 +13,7 @@ public class MachineBehavior : MonoBehaviour
     public float minAngVel;
     public float maxAngVel;
 
-    Rigidbody rigidbody;
+    new Rigidbody rigidbody;
 
     // Start is called before the first frame update
     void Start()
@@ -30,25 +30,28 @@ public class MachineBehavior : MonoBehaviour
         rigidbody.AddForce(direction);
 
         var position = rigidbody.position;
-        rigidbody.position = new Vector3(position.x, floating, position.z);
 
         if (Input.GetKey(KeyCode.Space))
         {
-            rigidbody.position = new Vector3(position.x, 0.1f, position.z);
+            rigidbody.AddForce(new Vector3(0, -30, 0));
+
+        } else
+        {
+            rigidbody.position = new Vector3(position.x, floating, position.z);
         }
+
         if (Input.GetKey(KeyCode.DownArrow))
         {
-
+           
         }
+
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            rigidbody = this.GetComponent<Rigidbody>();
             rigidbody.AddTorque(new Vector3(0, -Rotation, 0));
         }
+
         if (Input.GetKey(KeyCode.RightArrow))
         {
-
-            rigidbody = this.GetComponent<Rigidbody>();
             rigidbody.AddTorque(new Vector3(0, Rotation, 0));
         }
 
