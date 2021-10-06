@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class MachineBehavior : MonoBehaviour
 {
-    public float Forward;
+    public float Forward = 30;
     public float Back;
-    public float Rotation;
-    public float floating;
+
+    public float Rotation = 0.2f;
+    public float floating = 0.5f;
     public float minVel;
     public float maxVel;
     public float minAngVel;
@@ -24,16 +25,15 @@ public class MachineBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var direction = transform.forward * Forward;
         rigidbody = this.GetComponent<Rigidbody>();
+        var position = rigidbody.position;
+        var direction = transform.forward * Forward;
 
         rigidbody.AddForce(direction);
 
-        var position = rigidbody.position;
-
         if (Input.GetKey(KeyCode.Space))
         {
-            rigidbody.AddForce(new Vector3(0, -30, 0));
+            rigidbody.AddForce(new Vector3(0, -20, 0));
 
         } else
         {
