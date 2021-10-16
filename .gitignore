@@ -5,7 +5,6 @@
 /[Bb]uilds/
 /Assets/AssetStoreTools*
 /Assets/Scenes/TestScene*
-/Logs/
 
 # Visual Studio cache directory
 .vs/
