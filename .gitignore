@@ -6,6 +6,7 @@
 /Assets/AssetStoreTools*
 /Assets/Scenes/TestScene*
 /Assets/Scenes/Test Scene*
+Logs/
 
 # Visual Studio cache directory
 .vs/
