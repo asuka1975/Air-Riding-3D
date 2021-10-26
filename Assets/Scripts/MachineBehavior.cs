@@ -32,7 +32,6 @@ public class MachineBehavior : MonoBehaviour
         var position = rigidbody.position;
         var direction = transform.forward * forward;
 
-
         if (Input.GetKey(KeyCode.Space)) //スペースキーが押されたとき
         {
 
