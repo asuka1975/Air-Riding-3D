@@ -13,6 +13,9 @@ public class MachineBehavior : MonoBehaviour
     public float maxVel = 10;
     public float minAngVel = 0;
     public float maxAngVel = 1;
+    public float chargeRate = 80f; //rate of increase per second
+
+    float charge = 0f; //percent
 
     new Rigidbody rigidbody;
 
@@ -28,19 +31,26 @@ public class MachineBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(charge);
         rigidbody = this.GetComponent<Rigidbody>();
         var position = rigidbody.position;
         var direction = transform.forward * forward;
 
         if (Input.GetKey(KeyCode.Space)) //スペースキーが押されたとき
         {
-
+            if(charge <= 100)
+            {
+                charge += chargeRate * Time.deltaTime; //
+                Debug.Log(charge);
+            }
         }
         else
         {
             //スペースキーが押されていない時，マシンが浮き，前進方向に力を受ける
             rigidbody.position = new Vector3(position.x, floating, position.z);
             rigidbody.AddForce(direction);
+
+            charge = 0; //reset
         }
 
         if (Input.GetKey(KeyCode.DownArrow)) //↓キーが押されたとき
