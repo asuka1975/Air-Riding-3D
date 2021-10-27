@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +13,7 @@ public class MachineBehavior : MonoBehaviour
     public float maxVel = 10;
     public float minAngVel = 0;
     public float maxAngVel = 1;
-    public float chargeRate = 80f; //rate of increase per second
+    public float chargeRate = 50f; //rate of increase per second
 
     float charge = 0f; //percent
 
@@ -36,47 +36,48 @@ public class MachineBehavior : MonoBehaviour
         var position = rigidbody.position;
         var direction = transform.forward * forward;
 
-        if (Input.GetKey(KeyCode.Space)) //ƒXƒy[ƒXƒL[‚ª‰Ÿ‚³‚ê‚½‚Æ‚«
+        if (Input.GetKey(KeyCode.Space)) //ã‚¹ãƒšãƒ¼ã‚¹ã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã¨ã
         {
             if(charge <= 100)
             {
-                charge += chargeRate * Time.deltaTime; //
+                charge += chargeRate * Time.deltaTime; //æ™‚é–“ã«å¿œã˜ã¦ãƒãƒ£ãƒ¼ã‚¸
                 Debug.Log(charge);
             }
         }
         else
         {
-            //ƒXƒy[ƒXƒL[‚ª‰Ÿ‚³‚ê‚Ä‚¢‚È‚¢Cƒ}ƒVƒ“‚ª•‚‚«C‘Oi•ûŒü‚É—Í‚ğó‚¯‚é
+            //ã‚¹ãƒšãƒ¼ã‚¹ã‚­ãƒ¼ãŒæŠ¼ã•ã‚Œã¦ã„ãªã„æ™‚ï¼Œãƒã‚·ãƒ³ãŒæµ®ãï¼Œå‰é€²æ–¹å‘ã«åŠ›ã‚’å—ã‘ã‚‹
             rigidbody.position = new Vector3(position.x, floating, position.z);
             rigidbody.AddForce(direction);
 
+            rigidbody.AddForce(direction*charge); //ãƒãƒ£ãƒ¼ã‚¸ã«å¿œã˜ã¦ãƒ€ãƒƒã‚·ãƒ¥
             charge = 0; //reset
         }
 
-        if (Input.GetKey(KeyCode.DownArrow)) //«ƒL[‚ª‰Ÿ‚³‚ê‚½‚Æ‚«
+        if (Input.GetKey(KeyCode.DownArrow)) //â†“ã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã¨ã
         {
 
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            rigidbody.AddTorque(new Vector3(0, -rotation, 0)); //©ƒL[‚ª‰Ÿ‚³‚ê‚½‚Æ‚«Cƒ}ƒVƒ“‚ÍŒv‰ñ‚è‚Ìƒgƒ‹ƒN‚ğó‚¯‚é
+            rigidbody.AddTorque(new Vector3(0, -rotation, 0)); //â†ã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã¨ãï¼Œãƒã‚·ãƒ³ã¯æ™‚è¨ˆå›ã‚Šã®ãƒˆãƒ«ã‚¯ã‚’å—ã‘ã‚‹
         }
         if (Input.GetKeyUp(KeyCode.LeftArrow))
         {
-            rigidbody.angularVelocity = new Vector3();@//©ƒL[‚ª‰Ÿ‚³‚ê‚Ä‚¢‚È‚¢Cƒ}ƒVƒ“‚ÌŠp‘¬“x‚ğ0‚É‚·‚é
+            rigidbody.angularVelocity = new Vector3(); //â†ã‚­ãƒ¼ãŒæŠ¼ã•ã‚Œã¦ã„ãªã„æ™‚ï¼Œãƒã‚·ãƒ³ã®è§’é€Ÿåº¦ã‚’0ã«ã™ã‚‹
         }
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            rigidbody.AddTorque(new Vector3(0, rotation, 0)); //¨ƒL[‚ª‰Ÿ‚³‚ê‚½‚Æ‚«Cƒ}ƒVƒ“‚Í”½Œv‰ñ‚è‚Ìƒgƒ‹ƒN‚ğó‚¯‚é
+            rigidbody.AddTorque(new Vector3(0, rotation, 0)); //â†’ã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã¨ãï¼Œãƒã‚·ãƒ³ã¯åæ™‚è¨ˆå›ã‚Šã®ãƒˆãƒ«ã‚¯ã‚’å—ã‘ã‚‹
         }
         if (Input.GetKeyUp(KeyCode.RightArrow))
         {
-            rigidbody.angularVelocity = new Vector3();@//¨ƒL[‚ª‰Ÿ‚³‚ê‚Ä‚¢‚È‚¢Cƒ}ƒVƒ“‚ÌŠp‘¬“x‚ğ0‚É‚·‚é
+            rigidbody.angularVelocity = new Vector3(); //â†’ã‚­ãƒ¼ãŒæŠ¼ã•ã‚Œã¦ã„ãªã„æ™‚ï¼Œãƒã‚·ãƒ³ã®è§’é€Ÿåº¦ã‚’0ã«ã™ã‚‹
         }
 
-        //Å‘å‘¬“xCÅ‘åŠp‘¬“x‚ÅƒNƒŠƒbƒsƒ“ƒO
+        //æœ€å¤§é€Ÿåº¦ï¼Œæœ€å¤§è§’é€Ÿåº¦ã§ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°
         var Vel = Mathf.Clamp(rigidbody.velocity.magnitude, minVel, maxVel);
         rigidbody.velocity = Vel * rigidbody.velocity.normalized;
         var angVel = Mathf.Clamp(rigidbody.angularVelocity.magnitude, minAngVel, maxAngVel);
