@@ -36,19 +36,21 @@ public class MachineBehavior : MonoBehaviour
         var position = rigidbody.position;
         var direction = transform.forward * forward;
 
+        rigidbody.AddForce(direction);
+
         if (Input.GetKey(KeyCode.Space)) //スペースキーが押されたとき
         {
-            if(charge <= 100)
+            if (charge <= 100)
             {
                 charge += chargeRate * Time.deltaTime; //時間に応じてチャージ
                 Debug.Log(charge);
             }
+            rigidbody.AddForce(-direction * charge/100);
         }
         else
         {
             //スペースキーが押されていない時，マシンが浮き，前進方向に力を受ける
             rigidbody.position = new Vector3(position.x, floating, position.z);
-            rigidbody.AddForce(direction);
 
             rigidbody.AddForce(direction*charge); //チャージに応じてダッシュ
             charge = 0; //reset
