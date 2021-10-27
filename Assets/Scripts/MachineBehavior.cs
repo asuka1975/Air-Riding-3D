@@ -14,6 +14,7 @@ public class MachineBehavior : MonoBehaviour
     public float minAngVel = 0;
     public float maxAngVel = 1;
     public float chargeRate = 50f; //rate of increase per second
+    public float dash = 5; //ダッシュ時の倍率
 
     float charge = 0f; //percent
 
@@ -52,7 +53,7 @@ public class MachineBehavior : MonoBehaviour
             //スペースキーが押されていない時，マシンが浮く
             rigidbody.position = new Vector3(position.x, floating, position.z);
 
-            rigidbody.AddForce(direction*charge); //チャージに応じてダッシュ
+            rigidbody.AddForce(direction*charge*dash); //チャージに応じてダッシュ
             charge = 0; //reset
         }
 
