@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,7 +19,7 @@ public class CharacterBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // TODO: ˆÚ“®‚Ìd•û‚ªŒ´ì‚ÆˆÙ‚È‚é‚Ì‚ÅC¡Œã‰ü‘P‚·‚éD
+        // TODO: ç§»å‹•ã®ä»•æ–¹ãŒåŸä½œã¨ç•°ãªã‚‹ã®ã§ï¼Œä»Šå¾Œæ”¹å–„ã™ã‚‹ï¼
         if(Input.GetKey(KeyCode.UpArrow))
         {
             rigidbody.velocity = transform.forward * Forward;
