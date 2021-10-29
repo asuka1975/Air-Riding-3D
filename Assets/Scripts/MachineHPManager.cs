@@ -17,6 +17,7 @@ public class MachineHPManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        this.HP -= 0.01f;
         if(HP <= 0.0f)
         {
             MachineDestroyedEvent();
