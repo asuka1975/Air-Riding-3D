@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +14,8 @@ public class MachineBehavior : MonoBehaviour
     public float minAngVel = 0;
     public float maxAngVel = 1;
     public float chargeRate = 50f; //rate of increase per second
+    public bool isMachineDestroyed = false;
+    public float HP = 100f;
 
     float charge = 0f; //percent
 
@@ -82,5 +84,18 @@ public class MachineBehavior : MonoBehaviour
         rigidbody.velocity = Vel * rigidbody.velocity.normalized;
         var angVel = Mathf.Clamp(rigidbody.angularVelocity.magnitude, minAngVel, maxAngVel);
         rigidbody.angularVelocity = angVel * rigidbody.angularVelocity.normalized;
+
+        //マシンのhpが0以下になった際の処理(ゲームオーバー、爆発など) 1度だけ実行される
+        if(HP <= 0.0f && !isMachineDestroyed)
+        {
+             MachineDestroyedEvent();
+        }
+    }
+
+    void MachineDestroyedEvent()
+    {
+        this.isMachineDestroyed = true;
+        Debug.Log("マシン" + this.gameObject.name + "は破壊されました.");
+        Destroy(this.gameObject); //一応追加
     }
 }
