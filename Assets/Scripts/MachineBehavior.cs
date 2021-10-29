@@ -16,6 +16,7 @@ public class MachineBehavior : MonoBehaviour
     public float chargeRate = 50f; //rate of increase per second
     public bool isMachineDestroyed = false;
     public float HP = 100f;
+    public float dash = 5; //ダッシュ時の倍率
 
     float charge = 0f; //percent
 
@@ -27,32 +28,34 @@ public class MachineBehavior : MonoBehaviour
         rigidbody = this.GetComponent<Rigidbody>();
 
         rigidbody.position = new Vector3(rigidbody.position.x, floating, rigidbody.position.z);
-        rigidbody.mass = 5;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(charge);
         rigidbody = this.GetComponent<Rigidbody>();
         var position = rigidbody.position;
         var direction = transform.forward * forward;
 
+        Debug.Log(charge);
+
+        rigidbody.AddForce(direction); //常に前進方向に力を加える
+
         if (Input.GetKey(KeyCode.Space)) //スペースキーが押されたとき
         {
-            if(charge <= 100)
+            if (charge <= 100)
             {
                 charge += chargeRate * Time.deltaTime; //時間に応じてチャージ
                 Debug.Log(charge);
             }
+            rigidbody.AddForce(-direction * charge/100); //徐々にブレーキ
         }
         else
         {
-            //スペースキーが押されていない時，マシンが浮き，前進方向に力を受ける
+            //スペースキーが押されていない時，マシンが浮く
             rigidbody.position = new Vector3(position.x, floating, position.z);
-            rigidbody.AddForce(direction);
 
-            rigidbody.AddForce(direction*charge); //チャージに応じてダッシュ
+            rigidbody.AddForce(direction*charge*dash); //チャージに応じてダッシュ
             charge = 0; //reset
         }
 
@@ -79,9 +82,7 @@ public class MachineBehavior : MonoBehaviour
             rigidbody.angularVelocity = new Vector3(); //→キーが押されていない時，マシンの角速度を0にする
         }
 
-        //最大速度，最大角速度でクリッピング
-        var Vel = Mathf.Clamp(rigidbody.velocity.magnitude, minVel, maxVel);
-        rigidbody.velocity = Vel * rigidbody.velocity.normalized;
+        //最大角速度でクリッピング
         var angVel = Mathf.Clamp(rigidbody.angularVelocity.magnitude, minAngVel, maxAngVel);
         rigidbody.angularVelocity = angVel * rigidbody.angularVelocity.normalized;
 
