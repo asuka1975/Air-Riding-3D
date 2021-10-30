@@ -16,7 +16,31 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 61792484897fb4e0a958cbd32045d535
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 693132f6ff2bf48ac9c358cb88e0f062
+    m_Address: Assets/Prefabs/BombItem.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fcf652d39da47e48f916f11040f92e65
+    m_Address: Assets/Prefabs/BombItemEquipped.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2841ccdf5d37f4be3af12784b3df4e3f
+    m_Address: Assets/Prefabs/CannonItem.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3bc0561f1ff0738eb86aab34da591851
+    m_Address: Assets/Prefabs/CannonItemEquipped.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f86a3cb15772246289fb98e826d89cf2
+    m_Address: Assets/Prefabs/RecoverItem.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9ad4d060bd02344a39b3156467edb4ec
+    m_Address: Assets/Prefabs/RecoverItemEquipped.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 76fdcae5f47a56c038b13938d9296310, type: 2}
   m_SchemaSet:
