@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1397549841452943403}
   - component: {fileID: 3434985204514035498}
   - component: {fileID: 4986486581460474308}
+  - component: {fileID: -6487367480654371850}
   m_Layer: 0
   m_Name: EmptyMachine
   m_TagString: Untagged
@@ -112,3 +113,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-6487367480654371850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2805079637915772865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea140a368a303a186af5583dfaea0baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forward: 50
+  back: 0
+  rotation: 10
+  floating: 0.5
+  minVel: 0
+  maxVel: 10
+  minAngVel: 0
+  maxAngVel: 1
+  chargeRate: 50
+  isMachineDestroyed: 0
+  HP: 100
+  dash: 5
