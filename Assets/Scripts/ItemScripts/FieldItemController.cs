@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,5 +21,10 @@ public class FieldItemController : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    private void FixedUpdate()
+    {
+        transform.Rotate(new Vector3(0, 1.0f, 0), Space.World);
     }
 }
