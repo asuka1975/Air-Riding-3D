@@ -10,6 +10,10 @@ public class ItemAcquisition : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            foreach (Transform n in other.gameObject.transform)
+            {
+                Destroy(n.gameObject);
+            }
             Addressables.InstantiateAsync(string.Format("Assets/Prefabs/{0}Equipped.prefab",
                 name.Replace("(Clone)", "")), other.transform);
             Destroy(gameObject);
