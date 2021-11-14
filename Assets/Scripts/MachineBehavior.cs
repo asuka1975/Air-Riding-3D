@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MachineBehavior : MonoBehaviour
 {
+    public GameObject EquippedItem;
     public float forward = 30;
     public float back;
 
@@ -91,6 +92,9 @@ public class MachineBehavior : MonoBehaviour
         {
              MachineDestroyedEvent();
         }
+
+        //TODO: 毎フレーム実行するのは効率悪い
+        this.EquippedItem = transform.GetChild(0).gameObject;
     }
 
     void MachineDestroyedEvent()
@@ -99,4 +103,5 @@ public class MachineBehavior : MonoBehaviour
         Debug.Log("マシン" + this.gameObject.name + "は破壊されました.");
         Destroy(this.gameObject); //一応追加
     }
+
 }
