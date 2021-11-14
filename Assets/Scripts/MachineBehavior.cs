@@ -18,7 +18,7 @@ public class MachineBehavior : MonoBehaviour
     public float HP = 100f;
     public float dash = 5; //ダッシュ時の倍率
 
-    float charge = 0f; //percent
+    public float charge = 0f; //percent
 
     new Rigidbody rigidbody;
 
