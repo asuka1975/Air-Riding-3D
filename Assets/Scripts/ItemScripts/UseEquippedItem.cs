@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 public class UseEquippedItem : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class UseEquippedItem : MonoBehaviour
     void UseCannonItem()
     {
         Debug.Log("***CannonItemを使用***");
+        Addressables.InstantiateAsync("Assets/Prefabs/Bullet.prefab", 
+            this.transform.position,
+            this.transform.rotation);
     }
     void UseBombItem()
     {
