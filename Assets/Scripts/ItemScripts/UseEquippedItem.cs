@@ -31,6 +31,9 @@ public class UseEquippedItem : MonoBehaviour
     void UseBombItem()
     {
         Debug.Log("*** BombItemを使用 ***");
+        Addressables.InstantiateAsync("Assets/Prefabs/Bomb.prefab", 
+            this.transform.position,
+            this.transform.rotation);
     }
     void UseRecoverItem()
     {
