@@ -4,29 +4,32 @@ using UnityEngine;
 
 public class UseEquippedItem : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Use()
     {
-        Debug.Log("***" + this.gameObject.name + "がUseされる***");
-        if(this.gameObject.name == "CannonItemEquipped")
+        if(this.gameObject.name == "CannonItemEquipped(Clone)")
         {
             UseCannonItem();
+        }
+        if(this.gameObject.name == "BombItemEquipped(Clone)")
+        {
+            UseBombItem();
+        }
+        if(this.gameObject.name == "RecoverItemEquipped(Clone)")
+        {
+            UseRecoverItem();
         }
     }
 
     void UseCannonItem()
     {
-        Debug.Log("CannonItemを使用");
+        Debug.Log("***CannonItemを使用***");
+    }
+    void UseBombItem()
+    {
+        Debug.Log("*** BombItemを使用 ***");
+    }
+    void UseRecoverItem()
+    {
+        Debug.Log("*** RecoverItemを使用 ***");
     }
 }
