@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3231819727024897732}
   - component: {fileID: 3231819727024897735}
   - component: {fileID: 3231819727024897739}
-  - component: {fileID: 4233493685617450303}
+  - component: {fileID: 8686159075307933040}
   m_Layer: 0
   m_Name: BombItem
   m_TagString: Untagged
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   survivalTimeCount: 100
---- !u!114 &4233493685617450303
+--- !u!114 &8686159075307933040
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
