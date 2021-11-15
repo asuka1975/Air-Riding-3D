@@ -17,6 +17,15 @@ public class BulletManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // TODO: 自分にもヒットするので直す
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<MachineBehavior>().HP -= 10f; 
+        }
+
     }
 }
