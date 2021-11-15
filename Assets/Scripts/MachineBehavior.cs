@@ -96,7 +96,7 @@ public class MachineBehavior : MonoBehaviour
         //TODO: 毎フレーム実行するのは効率悪い
         this.EquippedItem = transform.GetChild(0).gameObject;
 
-        if(Input.GetKey(KeyCode.U))
+        if(Input.GetKeyUp(KeyCode.U))
         {
             this.EquippedItem.GetComponent<UseEquippedItem>().Use();
         }
