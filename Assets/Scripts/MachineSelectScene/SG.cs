@@ -4,14 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Start : MonoBehaviour
+public class SG : MonoBehaviour
 {
-    public void OnClick()
+    void Start()
     {
         Button btn = GetComponent<Button>();
-        btn.interactable = true;
+        btn.interactable = false;
+    }
+    public void OnClick()
+    {
         var machine = new Machine();
-
+        var str = "Selected machine ID is " + machine.id.ToString();
+        Debug.Log(str);
         StartCoroutine(SceneTransitioner.Transition("CityTrial", machine));
     }
 }
