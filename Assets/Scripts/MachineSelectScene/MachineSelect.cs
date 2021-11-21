@@ -10,14 +10,11 @@ public class MachineSelect : MonoBehaviour
 
     public void OnClick()
     {
-        var machine = new Machine();
-        machine.id = id;
-        var str = "Selected machine ID is " + machine.id.ToString();
+
+        var machine = GameObject.Find("MachineSelectManager");
+        machine.GetComponent<MachineSelectManager>().id = id;
+        var str = "Selected machine ID is " + machine.GetComponent<MachineSelectManager>().id;
         Debug.Log(str);
         ButtonManager.SetInteractive("Button_StartGame", true);
     }
-}
-public class Machine
-{
-    public int id;
 }

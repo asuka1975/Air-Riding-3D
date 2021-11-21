@@ -13,9 +13,10 @@ public class SG : MonoBehaviour
     }
     public void OnClick()
     {
-        var machine = new Machine();
-        var str = "Selected machine ID is " + machine.id.ToString();
+        var machine = GameObject.Find("MachineSelectManager");
+        var id = machine.GetComponent<MachineSelectManager>().id;
+        var str = "Slelected machine ID is " + id.ToString();
         Debug.Log(str);
-        StartCoroutine(SceneTransitioner.Transition("CityTrial", machine));
+        StartCoroutine(SceneTransitioner.Transition("CityTrial", id));
     }
 }
