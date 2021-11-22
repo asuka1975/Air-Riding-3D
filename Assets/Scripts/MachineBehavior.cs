@@ -94,7 +94,13 @@ public class MachineBehavior : MonoBehaviour
         }
 
         //TODO: 毎フレーム実行するのは効率悪い
-        this.EquippedItem = transform.GetChild(0).gameObject;
+        foreach (Transform n in this.gameObject.transform)
+        {
+            if (n.name.Contains("Equipped"))
+            {
+                this.EquippedItem = n.gameObject;
+            }
+        } 
 
         if(Input.GetKeyUp(KeyCode.U))
         {
