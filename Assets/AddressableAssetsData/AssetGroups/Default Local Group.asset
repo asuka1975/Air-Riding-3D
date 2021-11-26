@@ -45,6 +45,10 @@ MonoBehaviour:
     m_Address: Assets/Prefabs/Bullet.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 1fc3729265849a5409c00b46b1c6afdf
+    m_Address: Assets/Prefabs/Bomb.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 76fdcae5f47a56c038b13938d9296310, type: 2}
   m_SchemaSet:

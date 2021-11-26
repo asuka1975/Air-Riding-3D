@@ -93,11 +93,11 @@ public class MachineBehavior : MonoBehaviour
              MachineDestroyedEvent();
         }
 
-        //TODO: 毎フレーム実行するのは効率悪い
-        this.EquippedItem = transform.GetChild(0).gameObject;
 
-        if(Input.GetKeyUp(KeyCode.U))
+        if(Input.GetKeyUp(KeyCode.U) && transform.childCount > 1)
         {
+            //TODO: 毎フレーム実行するのは効率悪い
+            this.EquippedItem = transform.GetChild(1).gameObject;
             this.EquippedItem.GetComponent<UseEquippedItem>().Use();
         }
     }
