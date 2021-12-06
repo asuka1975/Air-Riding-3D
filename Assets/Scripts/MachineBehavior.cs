@@ -104,7 +104,14 @@ public class MachineBehavior : MonoBehaviour
 
         if(Input.GetKeyUp(KeyCode.U))
         {
-            this.EquippedItem.GetComponent<UseEquippedItem>().Use();
+            try
+            {
+                this.EquippedItem.GetComponent<UseEquippedItem>().Use();
+            }
+            catch(UnassignedReferenceException)
+            {
+                Debug.Log("*** アイテムが装備されていません");
+            }
         }
     }
 
