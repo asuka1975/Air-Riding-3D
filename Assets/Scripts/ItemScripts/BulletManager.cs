@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 public class BulletManager : MonoBehaviour
 {
@@ -24,7 +26,22 @@ public class BulletManager : MonoBehaviour
         // TODO: 自分にもヒットするので直す
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<MachineBehavior>().HP -= 10f; 
+            //TODO
+            //他の(自機以外)プレイヤーにHITしたら爆発
+            //オンライン対応時に実装
+        }
+        else
+        {
+            Addressables.InstantiateAsync(
+                "Assets/JMO Assets/WarFX/_Effects (Mobile)/Explosions/WFXMR_ExplosiveSmokeGround Big.prefab",
+                this.transform.position, this.transform.rotation
+                );
+            Addressables.InstantiateAsync(
+                "Assets/Prefabs/ExplosionFieldLarge.prefab",
+                this.transform.position, this.transform.rotation
+                );
+            Destroy(this.gameObject);
+            
         }
 
     }
