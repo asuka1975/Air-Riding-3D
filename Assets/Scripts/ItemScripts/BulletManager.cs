@@ -34,7 +34,12 @@ public class BulletManager : MonoBehaviour
         {
             Addressables.InstantiateAsync(
                 "Assets/JMO Assets/WarFX/_Effects (Mobile)/Explosions/WFXMR_ExplosiveSmokeGround Big.prefab",
-                this.transform.position, this.transform.rotation);
+                this.transform.position, this.transform.rotation
+                );
+            Addressables.InstantiateAsync(
+                "Assets/Prefabs/ExplosionFieldLarge.prefab",
+                this.transform.position, this.transform.rotation
+                );
             Destroy(this.gameObject);
             
         }
