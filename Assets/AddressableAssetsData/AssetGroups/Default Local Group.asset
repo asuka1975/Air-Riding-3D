@@ -54,6 +54,10 @@ MonoBehaviour:
       Big.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: ded75c4d5ad70fd4391d248d78498cc6
+    m_Address: Assets/Prefabs/ExplosionFieldLarge.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 76fdcae5f47a56c038b13938d9296310, type: 2}
   m_SchemaSet:
