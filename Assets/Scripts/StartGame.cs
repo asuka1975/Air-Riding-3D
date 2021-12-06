@@ -7,6 +7,6 @@ public class StartGame : MonoBehaviour
 {
     public void OnClick()
     {
-        StartCoroutine(SceneTransitioner.Transition("CityTrial", ""));
+        StartCoroutine(SceneTransitioner.Transition("MachineSelectScene", ""));
     }
 }

@@ -93,17 +93,16 @@ public class MachineBehavior : MonoBehaviour
              MachineDestroyedEvent();
         }
 
-        //TODO: 毎フレーム実行するのは効率悪い
-        foreach (Transform n in this.gameObject.transform)
-        {
-            if (n.name.Contains("Equipped"))
-            {
-                this.EquippedItem = n.gameObject;
-            }
-        } 
-
         if(Input.GetKeyUp(KeyCode.U))
         {
+            foreach (Transform n in this.gameObject.transform)
+            {
+               if (n.name.Contains("Equipped"))
+               {
+                   this.EquippedItem = n.gameObject;
+               }
+            } 
+
             try
             {
                 this.EquippedItem.GetComponent<UseEquippedItem>().Use();
@@ -112,6 +111,8 @@ public class MachineBehavior : MonoBehaviour
             {
                 Debug.Log("*** アイテムが装備されていません");
             }
+
+
         }
     }
 
