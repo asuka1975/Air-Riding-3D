@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 public class BulletManager : MonoBehaviour
 {
@@ -25,6 +26,14 @@ public class BulletManager : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             other.GetComponent<MachineBehavior>().HP -= 10f; 
+        }
+        else
+        {
+            Addressables.InstantiateAsync(
+                "Assets/JMO Assets/WarFX/_Effects (Mobile)/Explosions/WFXMR_ExplosiveSmokeGround Big.prefab",
+                this.transform.position, this.transform.rotation);
+            Destroy(this.gameObject);
+            
         }
 
     }
