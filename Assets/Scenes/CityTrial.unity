@@ -407,7 +407,7 @@ GameObject:
   - component: {fileID: 105205853}
   - component: {fileID: 105205856}
   - component: {fileID: 105205857}
-  - component: {fileID: 105205858}
+  - component: {fileID: 105205859}
   m_Layer: 0
   m_Name: RotatingWall
   m_TagString: Untagged
@@ -522,7 +522,7 @@ FixedJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &105205858
+--- !u!114 &105205859
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -531,10 +531,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 105205851}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d72c3ab5857cd7904a0b240a684717b1, type: 3}
+  m_Script: {fileID: 11500000, guid: 9009a8591a5e27b47bd329374a0bb26c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reflection: 200
+  Damage: 0.1
 --- !u!1 &188825344
 GameObject:
   m_ObjectHideFlags: 0
@@ -2022,9 +2022,10 @@ GameObject:
   - component: {fileID: 1232120796}
   - component: {fileID: 1232120795}
   - component: {fileID: 1232120794}
-  - component: {fileID: 1232120797}
   - component: {fileID: 1232120798}
   - component: {fileID: 1232120799}
+  - component: {fileID: 1232120797}
+  - component: {fileID: 1232120800}
   m_Layer: 0
   m_Name: CenterPole
   m_TagString: Untagged
@@ -2153,6 +2154,18 @@ FixedJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1232120800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232120792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e295737025ab82e5aa643e138570e771, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1374365539
 PrefabInstance:
   m_ObjectHideFlags: 0

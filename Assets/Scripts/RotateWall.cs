@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstacleBehaviour : MonoBehaviour
+public class RotateWall : MonoBehaviour
 {
     // Update is called once per frame
     void Update()
