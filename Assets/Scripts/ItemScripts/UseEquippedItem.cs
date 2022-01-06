@@ -15,6 +15,10 @@ public class UseEquippedItem : MonoBehaviour
         {
             UseBombItem();
         }
+    }
+
+    public void AutoItem()
+    {
         if(this.gameObject.name == "RecoverItemEquipped(Clone)")
         {
             UseRecoverItem();

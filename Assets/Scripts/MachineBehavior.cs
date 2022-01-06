@@ -93,16 +93,20 @@ public class MachineBehavior : MonoBehaviour
              MachineDestroyedEvent();
         }
 
+        foreach (Transform n in this.gameObject.transform)
+        {
+            if (n.name.Contains("Equipped"))
+            {
+                this.EquippedItem = n.gameObject;
+            }
+        }
+        try
+        {
+            this.EquippedItem.GetComponent<UseEquippedItem>().AutoItem();
+        }
+        catch(UnassignedReferenceException) {}
         if(Input.GetKeyUp(KeyCode.U))
         {
-            foreach (Transform n in this.gameObject.transform)
-            {
-               if (n.name.Contains("Equipped"))
-               {
-                   this.EquippedItem = n.gameObject;
-               }
-            } 
-
             try
             {
                 this.EquippedItem.GetComponent<UseEquippedItem>().Use();
@@ -111,8 +115,6 @@ public class MachineBehavior : MonoBehaviour
             {
                 Debug.Log("*** アイテムが装備されていません");
             }
-
-
         }
     }
 
