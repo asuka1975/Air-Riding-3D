@@ -48,6 +48,7 @@ public class UseEquippedItem : MonoBehaviour
         GameObject myPlayer = GameObject.FindGameObjectWithTag("Player");
         myPlayer.GetComponent<MachineBehavior>().HP += 10f;
 
+        // TODO: 一度Destroyするとめっちゃエラー出るから修正する
         Destroy(GameObject.Find("RecoverItemEquipped(Clone)"));
     }
 }
