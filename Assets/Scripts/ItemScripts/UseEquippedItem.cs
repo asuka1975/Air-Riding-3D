@@ -45,5 +45,9 @@ public class UseEquippedItem : MonoBehaviour
     void UseRecoverItem()
     {
         Debug.Log("*** RecoverItemを使用 ***");
+        GameObject myPlayer = GameObject.FindGameObjectWithTag("Player");
+        myPlayer.GetComponent<MachineBehavior>().HP += 10f;
+
+        Destroy(GameObject.Find("RecoverItemEquipped(Clone)"));
     }
 }
