@@ -31,15 +31,20 @@ public class UseEquippedItem : MonoBehaviour
     void UseBombItem()
     {
         Debug.Log("*** BombItemを使用 ***");
-        for (int n = 0; n < 12; n++)
-        {
-            Addressables.InstantiateAsync("Assets/Prefabs/Bomb.prefab", 
-                this.transform.position,
-                this.transform.rotation);
-        }
+        float start_time = Time.time;
+        StartCoroutine("ThroughBomb");
     }
     void UseRecoverItem()
     {
         Debug.Log("*** RecoverItemを使用 ***");
+    }
+    IEnumerator ThroughBomb()
+    {
+        for (int n = 0; n < 5; n++) {
+            Addressables.InstantiateAsync("Assets/Prefabs/Bomb.prefab", 
+                this.transform.position, this.transform.rotation
+            );
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 }
