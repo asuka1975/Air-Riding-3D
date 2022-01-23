@@ -57,6 +57,11 @@ MonoBehaviour:
     m_Address: Assets/Prefabs/ExplosionFieldSmall.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: fafeb973cad62304ba2abdc5dfafbf8f
+    m_Address: Assets/JMO Assets/WarFX/_Effects (Mobile)/Explosions/WFXMR_ExplosiveSmokeGround
+      Big.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 76fdcae5f47a56c038b13938d9296310, type: 2}
   m_SchemaSet:
