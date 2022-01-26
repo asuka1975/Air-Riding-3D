@@ -6,30 +6,39 @@ using UnityEngine.UI;
 public class ButtonManager : MonoBehaviour
 {
     static Canvas _canvas;
+    string[] machine_names = new string[] {"MachineA", "MachineB", "MachineC"};
+    GameObject[] machines = new GameObject[3];
     void Start()
     {
-        // CanvasƒRƒ“ƒ|[ƒlƒ“ƒg‚ğ•Û
+        // Canvasã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’ä¿æŒ
         _canvas = GetComponent<Canvas>();
+        // GameObject machineã‚’ä¿æŒ
+        for (int i = 0; i < 3; i++) {
+            machines[i] = GameObject.Find(machine_names[i]);
+        }
     }
 
-    /// ƒ{ƒ^ƒ“‚Ì—LŒøE–³Œø‚ğİ’è‚·‚é
+    // ãƒœã‚¿ãƒ³ã®æœ‰åŠ¹ãƒ»ç„¡åŠ¹ã‚’è¨­å®šã™ã‚‹
     public static void SetInteractive(string name, bool b)
     {
         foreach (Transform child in _canvas.transform)
         {
-            // q‚Ì—v‘f‚ğ‚½‚Ç‚é
+            // å­ã®è¦ç´ ã‚’ãŸã©ã‚‹
             if (child.name == name)
             {
-                // w’è‚µ‚½–¼‘O‚Æˆê’v
-                // ButtonƒRƒ“ƒ|[ƒlƒ“ƒg‚ğæ“¾‚·‚é
-                Button btn = child.GetComponent<Button>();
-                // —LŒøE–³Œøƒtƒ‰ƒO‚ğİ’è
-                btn.interactable = b;
-                // ‚¨‚µ‚Ü‚¢
-                return;
+                // æŒ‡å®šã—ãŸåå‰ã¨ä¸€è‡´
+                Button btn = child.GetComponent<Button>(); // Buttonã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’å–å¾—ã™ã‚‹
+                btn.interactable = b; // æœ‰åŠ¹ãƒ»ç„¡åŠ¹ãƒ•ãƒ©ã‚°ã‚’è¨­å®š
+                return; // ãŠã—ã¾ã„
             }
         }
-        // w’è‚µ‚½ƒIƒuƒWƒFƒNƒg–¼‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½
+        // æŒ‡å®šã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸ
         Debug.LogWarning("Not found objname:" + name);
+    }
+    private void FixedUpdate()
+    {
+        for (int i = 0; i < 3; i++) {
+            machines[i].transform.Rotate(new Vector3(0, 1.0f, 0), Space.World);
+        }
     }
 }
