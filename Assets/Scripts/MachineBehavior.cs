@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 public class MachineBehavior : MonoBehaviour
 {
@@ -22,13 +23,32 @@ public class MachineBehavior : MonoBehaviour
     public float charge = 0f; //percent
 
     new Rigidbody rigidbody;
+    new GameObject machine;
+
+    public struct MachineData
+    {
+        public string path;
+        public Vector3 scale;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         rigidbody = this.GetComponent<Rigidbody>();
-
         rigidbody.position = new Vector3(rigidbody.position.x, floating, rigidbody.position.z);
+        // 引き継いだデータを取得
+        var id = GameObject.FindWithTag("SharedParams").GetComponent<SharedParams>().Get<MachineSelectData>().id;
+        // Debug.Log(id);
+        // マシンを生成
+        var machineDatas = new Dictionary<int, MachineData>()
+        {
+            {0, new MachineData(){ path = "Assets/Aircrafts/Prefabs/Aircraft 1.prefab", scale = new Vector3(0.02f, 0.02f, 0.02f) }},
+            {1, new MachineData(){ path = "Assets/Aircrafts/Prefabs/Aircraft 21.prefab", scale = new Vector3(0.02f, 0.02f, 0.02f) }},
+            {2, new MachineData(){ path = "Assets/Aircrafts/Prefabs/Aircraft 22.prefab", scale = new Vector3(0.02f, 0.02f, 0.02f) }}
+        };
+        var op = Addressables.InstantiateAsync(machineDatas[id].path, this.transform.position, this.transform.rotation, this.transform);
+        machine = op.WaitForCompletion();
+        machine.transform.localScale = machineDatas[id].scale;
     }
 
     // Update is called once per frame
@@ -38,7 +58,7 @@ public class MachineBehavior : MonoBehaviour
         var position = rigidbody.position;
         var direction = transform.forward * forward;
 
-        Debug.Log(charge);
+        // Debug.Log(charge);
 
         rigidbody.AddForce(direction); //常に前進方向に力を加える
 
@@ -47,7 +67,6 @@ public class MachineBehavior : MonoBehaviour
             if (charge <= 100)
             {
                 charge += chargeRate * Time.deltaTime; //時間に応じてチャージ
-                Debug.Log(charge);
             }
             rigidbody.AddForce(-direction * charge/100); //徐々にブレーキ
         }
