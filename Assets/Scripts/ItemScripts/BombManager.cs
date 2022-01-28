@@ -28,6 +28,10 @@ public class BombManager : MonoBehaviour
         if (survivalTime <= 0)
         {
             Addressables.InstantiateAsync(
+                "Assets/JMO Assets/WarFX/_Effects (Mobile)/Explosions/WFXMR_ExplosiveSmokeGround Small.prefab",
+                this.transform.position, this.transform.rotation
+            );
+            Addressables.InstantiateAsync(
                 "Assets/Prefabs/ExplosionFieldSmall.prefab",
                 this.transform.position, this.transform.rotation
             );
