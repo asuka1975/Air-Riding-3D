@@ -6,7 +6,7 @@ using UnityEngine.AddressableAssets;
 
 public struct ItemData{
     public int forward;
-    public int right;
+    public int up;
     public Vector3 rotation;
     public Vector3 scale;
 }
@@ -18,17 +18,17 @@ public class ItemAcquisition : MonoBehaviour
         itemDatas = new Dictionary<string, ItemData>()
         {
             {"CannonItem(Clone)", new ItemData(){
-                forward = 10, right = 0, 
-                rotation = new Vector3(0, 0, 0), 
-                scale =  new Vector3(0.1f, 0.1f, 0.1f)
+                forward = 5, up = 1, 
+                rotation = new Vector3(0, 90, 0), 
+                scale =  new Vector3(0.05f, 0.05f, 0.05f)
             }},
             {"BombItem(Clone)", new ItemData(){
-                forward = -5, right = 0, 
+                forward = -5, up = 0, 
                 rotation = new Vector3(0, 0, 0), 
                 scale =  new Vector3(1, 1, 1)
             }},
             {"RecoverItem(Clone)", new ItemData(){
-                forward = 0, right = 0, 
+                forward = 0, up = 0, 
                 rotation = new Vector3(0, 0, 0), 
                 scale =  new Vector3(1, 1, 1)
             }}
@@ -48,7 +48,7 @@ public class ItemAcquisition : MonoBehaviour
 
             var op = Addressables.InstantiateAsync(
                 string.Format("Assets/Prefabs/{0}Equipped.prefab",name.Replace("(Clone)", "")), 
-                other.transform.position + other.transform.forward * itemDatas[name].forward + other.transform.right * itemDatas[name].right,
+                other.transform.position + other.transform.forward * itemDatas[name].forward + other.transform.up * itemDatas[name].up,
                 other.transform.rotation,
                 other.transform
             );
