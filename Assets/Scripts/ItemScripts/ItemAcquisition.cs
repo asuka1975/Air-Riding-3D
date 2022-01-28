@@ -28,7 +28,7 @@ public class ItemAcquisition : MonoBehaviour
                 scale =  new Vector3(1, 1, 1)
             }},
             {"RecoverItem(Clone)", new ItemData(){
-                forward = 0, up = 0, 
+                forward = 0, up = 2, 
                 rotation = new Vector3(0, 0, 0), 
                 scale =  new Vector3(1, 1, 1)
             }}
