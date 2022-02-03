@@ -125,5 +125,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c28b73c70af0ce4390291032ace77c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  machine: {fileID: 2805079637915772865, guid: a713093a5ec9f98db8f1c43f95a57d48, type: 3}
   survivalTime: 0.5

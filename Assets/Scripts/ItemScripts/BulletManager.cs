@@ -14,6 +14,7 @@ public class BulletManager : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         force_vector = transform.forward * 100f + transform.up * 2f;
         rb.AddForce(force_vector, ForceMode.Impulse);
+        transform.Rotate(90, 0, 0);
     }
 
     // Update is called once per frame
