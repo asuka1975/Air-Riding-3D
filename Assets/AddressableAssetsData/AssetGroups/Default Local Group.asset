@@ -62,6 +62,16 @@ MonoBehaviour:
       Big.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: ba720ace4b76245af9cf2d7e2b5509c5
+    m_Address: Assets/Aircrafts/Prefabs/Aircraft 21.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5c8b6c939c4a945839e2ea78f846512a
+    m_Address: Assets/Aircrafts/Prefabs/Aircraft 22.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6c51ea9e80aba4b75a593b6b6535b005
+    m_Address: Assets/Aircrafts/Prefabs/Aircraft 1.prefab
   - m_GUID: a2b9ce854d0a5004cba27ab45cbfe205
     m_Address: Assets/JMO Assets/WarFX/_Effects (Mobile)/Explosions/WFXMR_ExplosiveSmokeGround
       Small.prefab

@@ -50,7 +50,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2805079637915772865}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea140a368a303a186af5583dfaea0baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EquippedItem: {fileID: 0}
   forward: 50
   back: 0
   rotation: 10
@@ -137,3 +138,4 @@ MonoBehaviour:
   isMachineDestroyed: 0
   HP: 100
   dash: 5
+  charge: 0

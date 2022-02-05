@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+class MachineSelectData {
+    public int id;
+}
 public class SG : MonoBehaviour
 {
     void Start()
@@ -17,6 +20,7 @@ public class SG : MonoBehaviour
         var id = machine.GetComponent<MachineSelectManager>().id;
         var str = "Slelected machine ID is " + id.ToString();
         Debug.Log(str);
-        StartCoroutine(SceneTransitioner.Transition("CityTrial", id));
+        MachineSelectData data = new MachineSelectData(){ id = id };
+        StartCoroutine(SceneTransitioner.Transition("CityTrial", data));
     }
 }
