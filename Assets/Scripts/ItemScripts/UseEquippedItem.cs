@@ -41,6 +41,9 @@ public class UseEquippedItem : MonoBehaviour
     void UseRecoverItem()
     {
         Debug.Log("*** RecoverItemを使用 ***");
+        GameObject machineObj = this.gameObject.transform.parent.gameObject;
+        machineObj.GetComponent<MachineBehavior>().HP += 15f;
+        Destroy(this.gameObject);
     }
     IEnumerator ThroughBomb()
     {
