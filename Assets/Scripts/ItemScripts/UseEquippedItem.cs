@@ -23,16 +23,20 @@ public class UseEquippedItem : MonoBehaviour
 
     void UseCannonItem()
     {
-        Debug.Log("***CannonItemを使用***");
-        Addressables.InstantiateAsync("Assets/Prefabs/Bullet.prefab", 
-            this.transform.position,
-            this.transform.rotation);
+        if(Input.GetKeyUp(KeyCode.U)) {
+            Debug.Log("***CannonItemを使用***");
+             Addressables.InstantiateAsync("Assets/Prefabs/Bullet.prefab", 
+                this.transform.position,
+                this.transform.rotation);
+        }
     }
     void UseBombItem()
     {
-        Debug.Log("*** BombItemを使用 ***");
-        float start_time = Time.time;
-        StartCoroutine("ThroughBomb");
+        if(Input.GetKeyUp(KeyCode.U)) {
+            Debug.Log("*** BombItemを使用 ***");
+            float start_time = Time.time;
+            StartCoroutine("ThroughBomb");
+        }
     }
     void UseRecoverItem()
     {
