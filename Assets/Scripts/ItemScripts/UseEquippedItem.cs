@@ -5,6 +5,10 @@ using UnityEngine.AddressableAssets;
 
 public class UseEquippedItem : MonoBehaviour
 {
+    public int maxBulletUse = 5;
+    public int maxBombUse = 5;
+    public int currentUse = 0;
+
     public void Use()
     {
         if(this.gameObject.name == "CannonItemEquipped(Clone)")
@@ -28,6 +32,9 @@ public class UseEquippedItem : MonoBehaviour
              Addressables.InstantiateAsync("Assets/Prefabs/Bullet.prefab", 
                 this.transform.position,
                 this.transform.rotation);
+
+            currentUse += 1;
+            Debug.Log(currentUse);
         }
     }
     void UseBombItem()
@@ -36,6 +43,9 @@ public class UseEquippedItem : MonoBehaviour
             Debug.Log("*** BombItemを使用 ***");
             float start_time = Time.time;
             StartCoroutine("ThroughBomb");
+
+            currentUse += 1;
+            Debug.Log(currentUse);
         }
     }
     void UseRecoverItem()
@@ -44,6 +54,9 @@ public class UseEquippedItem : MonoBehaviour
         GameObject machineObj = this.gameObject.transform.parent.gameObject;
         machineObj.GetComponent<MachineBehavior>().HP += 15f;
         Destroy(this.gameObject);
+
+        currentUse += 1;
+        Debug.Log(currentUse);
     }
     IEnumerator ThroughBomb()
     {
