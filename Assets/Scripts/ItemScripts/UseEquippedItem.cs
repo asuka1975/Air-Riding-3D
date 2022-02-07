@@ -5,7 +5,7 @@ using UnityEngine.AddressableAssets;
 
 public class UseEquippedItem : MonoBehaviour
 {
-    public int maxBulletUse = 5;
+    public int maxCannonUse = 5;
     public int maxBombUse = 5;
     public int currentUse = 0;
 
@@ -36,6 +36,11 @@ public class UseEquippedItem : MonoBehaviour
             currentUse += 1;
             Debug.Log(currentUse);
         }
+
+        if(currentUse >= maxCannonUse) {
+            Debug.Log("使用回数に達しました");
+            Destroy(this.gameObject);
+        }
     }
     void UseBombItem()
     {
@@ -46,6 +51,11 @@ public class UseEquippedItem : MonoBehaviour
 
             currentUse += 1;
             Debug.Log(currentUse);
+        }
+
+        if(currentUse >= maxBombUse) {
+            Debug.Log("使用回数に達しました");
+            Destroy(this.gameObject);
         }
     }
     void UseRecoverItem()
