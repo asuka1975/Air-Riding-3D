@@ -4,4 +4,19 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MachineSelectScene.unity
+    guid: 53c787e44934709479c387c576943773
+  - enabled: 1
+    path: Assets/Scenes/CityTrial.unity
+    guid: b6c3dd44bd96f801baaf71644c08c637
+  - enabled: 1
+    path: Assets/Scenes/Result Scene.unity
+    guid: 4353adcd0a288430981f5706f29d6a61
+  - enabled: 1
+    path: Assets/Scenes/Title Scene.unity
+    guid: cc35be141a26ba83988411c496f5a9de
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: b5d8c2bddc22ef366be94a3b77e401d8,
+      type: 2}
