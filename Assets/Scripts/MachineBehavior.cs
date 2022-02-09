@@ -6,7 +6,7 @@ using UnityEngine.AddressableAssets;
 public class MachineBehavior : MonoBehaviour
 {
     public GameObject EquippedItem;
-    public float forward = 30;
+    public float forward = 80;
     public float back;
 
     public float rotation = 10;
@@ -51,6 +51,16 @@ public class MachineBehavior : MonoBehaviour
         machine.transform.localScale = machineDatas[id].scale;
     }
 
+    void FixedUpdate()
+    {
+        rigidbody = this.GetComponent<Rigidbody>();
+        var position = rigidbody.position;
+        var direction = transform.forward * forward;
+
+        rigidbody.AddForce(direction, ForceMode.Acceleration); //常に前進方向に力を加える
+    }
+
+
     // Update is called once per frame
     void Update()
     {
@@ -59,8 +69,6 @@ public class MachineBehavior : MonoBehaviour
         var direction = transform.forward * forward;
 
         // Debug.Log(charge);
-
-        rigidbody.AddForce(direction); //常に前進方向に力を加える
 
         if (Input.GetKey(KeyCode.Space)) //スペースキーが押されたとき
         {
