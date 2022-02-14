@@ -12,6 +12,7 @@ public class BulletManager : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        transform.Rotate(0, -90, 0);
         force_vector = transform.forward * 100f + transform.up * 2f;
         rb.AddForce(force_vector, ForceMode.Impulse);
         transform.Rotate(90, 0, 0);
