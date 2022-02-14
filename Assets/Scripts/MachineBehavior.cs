@@ -112,26 +112,25 @@ public class MachineBehavior : MonoBehaviour
              MachineDestroyedEvent();
         }
 
-        if(Input.GetKeyUp(KeyCode.U))
+        foreach (Transform n in this.gameObject.transform)
         {
-            foreach (Transform n in this.gameObject.transform)
+            if (n.name.Contains("Equipped"))
             {
-               if (n.name.Contains("Equipped"))
-               {
-                   this.EquippedItem = n.gameObject;
-               }
-            } 
-
-            try
-            {
-                this.EquippedItem.GetComponent<UseEquippedItem>().Use();
+                this.EquippedItem = n.gameObject;
             }
-            catch(UnassignedReferenceException)
-            {
-                Debug.Log("*** アイテムが装備されていません");
-            }
+        } 
 
-
+        try
+        {
+            this.EquippedItem.GetComponent<UseEquippedItem>().Use();
+        }
+        catch(UnassignedReferenceException)
+        {
+            Debug.Log("*** アイテムが装備されていません");
+        }
+        catch(MissingReferenceException)
+        {
+            Debug.Log("*** アイテムがすでに削除されています");
         }
     }
 
