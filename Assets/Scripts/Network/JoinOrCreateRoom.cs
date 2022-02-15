@@ -12,9 +12,14 @@ public class JoinOrCreateRoom : MonoBehaviourPunCallbacks
 
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
-        Debug.Log("部屋を作成する");
+        Debug.Log("*** Create new room. ***");
         var roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = 2;
         PhotonNetwork.CreateRoom(null, roomOptions);
+    }
+
+    public override void OnJoinedRoom()
+    {
+        Debug.Log("ルームは行ってます22!!!!!");
     }
 }
