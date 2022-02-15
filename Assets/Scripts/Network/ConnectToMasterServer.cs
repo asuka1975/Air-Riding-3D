@@ -2,9 +2,7 @@ using UnityEngine;
 using Photon.Pun;
 
 /*
-ボタンをクリックすると適当なマスターサーバに接続する
-TitleSceneのCanvas/Buttonにアタッチする
-アタッチ後OnClick()に登録する
+ゲームを開始すると適当なマスターサーバに接続する
 */
 
 public class ConnectToMasterServer : MonoBehaviourPunCallbacks
