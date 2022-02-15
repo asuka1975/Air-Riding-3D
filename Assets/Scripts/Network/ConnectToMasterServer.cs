@@ -9,7 +9,7 @@ TitleSceneのCanvas/Buttonにアタッチする
 
 public class ConnectToMasterServer : MonoBehaviourPunCallbacks
 {
-    public void OnClick()
+    public void Start()
     {
         Debug.Log("*** try to connect master server.");
         PhotonNetwork.ConnectUsingSettings();
