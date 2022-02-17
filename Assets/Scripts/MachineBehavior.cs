@@ -7,12 +7,9 @@ public class MachineBehavior : MonoBehaviour
 {
     public GameObject EquippedItem;
     public float forward = 30;
-    public float back;
 
     public float rotation = 10;
     public float floating = 0.5f;
-    public float minVel = 0;
-    public float maxVel = 10;
     public float minAngVel = 0;
     public float maxAngVel = 1;
     public float chargeRate = 50f; //rate of increase per second
