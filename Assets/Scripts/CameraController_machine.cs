@@ -68,7 +68,7 @@ public class CameraController_machine : MonoBehaviour
     {
 
         //Vector3.Lerpを用いてカメラをなめらかに移動させる
-        if(Input.GetKey("a") ) //カメラを右に向ける
+        if(Input.GetKey(KeyCode.D)) //カメラを右に向ける
         {
             if(is_camera_located_behind || !is_camera_located_right_side)
             {
@@ -79,7 +79,7 @@ public class CameraController_machine : MonoBehaviour
                 this.transform.position = Vector3.Lerp(this.transform.position, behind_camera_position, CameraSpeed * 3f * Time.deltaTime );
             }
         }
-        else if (Input.GetKey("f") ) //カメラを左に向ける
+        else if (Input.GetKey(KeyCode.A)) //カメラを左に向ける
         {
             if(is_camera_located_behind || is_camera_located_right_side)
             {
