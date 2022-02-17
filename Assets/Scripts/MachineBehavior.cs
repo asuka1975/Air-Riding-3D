@@ -51,8 +51,8 @@ public class MachineBehavior : MonoBehaviour
             }},
             {1, new MachineData(){
                 path = "Assets/Aircrafts/Prefabs/Aircraft 21.prefab",
-                scale = new Vector3(0.02f, 0.02f, 0.02f),
-                forward = 100,
+                scale = new Vector3(0.015f, 0.016f, 0.015f),
+                forward = 80,
                 chargeRate = 100,
                 rotation = 20,
                 hp = 50
