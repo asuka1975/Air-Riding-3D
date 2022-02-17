@@ -7,7 +7,6 @@ public class MachineBehavior : MonoBehaviour
 {
     public GameObject EquippedItem;
     public float forward;
-
     public float rotation;
     public float floating = 0.5f;
     public float minAngVel = 0;
@@ -16,7 +15,6 @@ public class MachineBehavior : MonoBehaviour
     public bool isMachineDestroyed = false;
     public float HP ;
     public float dash = 5; //ダッシュ時の倍率
-
     public float charge = 0f; //percent
 
     new Rigidbody rigidbody;
@@ -43,13 +41,37 @@ public class MachineBehavior : MonoBehaviour
         // マシンを生成
         var machineDatas = new Dictionary<int, MachineData>()
         {
-            {0, new MachineData(){ path = "Assets/Aircrafts/Prefabs/Aircraft 1.prefab", scale = new Vector3(0.02f, 0.02f, 0.02f) }},
-            {1, new MachineData(){ path = "Assets/Aircrafts/Prefabs/Aircraft 21.prefab", scale = new Vector3(0.02f, 0.02f, 0.02f) }},
-            {2, new MachineData(){ path = "Assets/Aircrafts/Prefabs/Aircraft 22.prefab", scale = new Vector3(0.02f, 0.02f, 0.02f) }}
+            {0, new MachineData(){
+                path = "Assets/Aircrafts/Prefabs/Aircraft 1.prefab",
+                scale = new Vector3(0.02f, 0.02f, 0.02f),
+                forward = 50,
+                chargeRate = 50,
+                rotation = 10,
+                hp = 100
+            }},
+            {1, new MachineData(){
+                path = "Assets/Aircrafts/Prefabs/Aircraft 21.prefab",
+                scale = new Vector3(0.02f, 0.02f, 0.02f),
+                forward = 100,
+                chargeRate = 100,
+                rotation = 20,
+                hp = 50
+            }},
+            {2, new MachineData(){
+                path = "Assets/Aircrafts/Prefabs/Aircraft 22.prefab",
+                scale = new Vector3(0.02f, 0.02f, 0.02f),
+                forward = 25,
+                chargeRate = 25,
+                rotation = 5,
+                hp = 200
+            }}
         };
         var op = Addressables.InstantiateAsync(machineDatas[id].path, this.transform.position, this.transform.rotation, this.transform);
         machine = op.WaitForCompletion();
         machine.transform.localScale = machineDatas[id].scale;
+
+        // マシンのパラメータをセット
+        SetMachineParams(machineDatas[id]);
     }
 
     // Update is called once per frame
@@ -145,4 +167,11 @@ public class MachineBehavior : MonoBehaviour
         StartCoroutine(SceneTransitioner.Transition("Result Scene", data));
     }
 
+    void SetMachineParams(MachineData m)
+    {
+        forward = m.forward;
+        chargeRate = m.chargeRate;
+        rotation = m.rotation;
+        HP = m.hp;
+    }
 }
