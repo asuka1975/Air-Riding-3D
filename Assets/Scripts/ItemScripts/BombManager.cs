@@ -18,7 +18,7 @@ public class BombManager : MonoBehaviour
         float side_rand = Random.Range(-5f, 5f);
         force_vector = side_rand * transform.right - force_rand * transform.forward;
         rb.AddForce(force_vector, ForceMode.Impulse);
-        transform.Rotate(0, 0, 90);
+        transform.Rotate(0, 0, -90);
     }
 
     // Update is called once per frame
