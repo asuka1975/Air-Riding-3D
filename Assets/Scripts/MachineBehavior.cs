@@ -62,7 +62,7 @@ public class MachineBehavior : MonoBehaviour
 
         rigidbody.AddForce(direction); //常に前進方向に力を加える
 
-        if (Input.GetKey(KeyCode.Space)) //スペースキーが押されたとき
+        if (Input.GetKey(KeyCode.Space) ^ Input.GetKey(KeyCode.UpArrow) ^ Input.GetKey(KeyCode.DownArrow)) //スペースキーが押されたとき
         {
             if (charge <= 100)
             {
@@ -77,11 +77,6 @@ public class MachineBehavior : MonoBehaviour
 
             rigidbody.AddForce(direction*charge*dash); //チャージに応じてダッシュ
             charge = 0; //reset
-        }
-
-        if (Input.GetKey(KeyCode.DownArrow)) //↓キーが押されたとき
-        {
-
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
