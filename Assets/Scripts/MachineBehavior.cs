@@ -6,15 +6,15 @@ using UnityEngine.AddressableAssets;
 public class MachineBehavior : MonoBehaviour
 {
     public GameObject EquippedItem;
-    public float forward = 30;
+    public float forward;
 
-    public float rotation = 10;
+    public float rotation;
     public float floating = 0.5f;
     public float minAngVel = 0;
     public float maxAngVel = 1;
-    public float chargeRate = 50f; //rate of increase per second
+    public float chargeRate; //rate of increase per second
     public bool isMachineDestroyed = false;
-    public float HP = 100f;
+    public float HP ;
     public float dash = 5; //ダッシュ時の倍率
 
     public float charge = 0f; //percent
@@ -26,6 +26,10 @@ public class MachineBehavior : MonoBehaviour
     {
         public string path;
         public Vector3 scale;
+        public float forward;
+        public float chargeRate;
+        public float rotation;
+        public float hp;
     }
 
     // Start is called before the first frame update
