@@ -14,17 +14,17 @@ public class ItemManager : MonoBehaviour
 
         for (int i = 0; i < bombItemNum; i++) {
             Addressables.InstantiateAsync("Assets/Prefabs/BombItem.prefab", 
-                new Vector3(Random.value * 250, 0.5f, Random.value * 250), 
+                new Vector3(Random.value * 250, 1.0f, Random.value * 250), 
                 this.transform.rotation);
         }
         for (int i = 0; i < cannonItemNum; i++) {
             Addressables.InstantiateAsync("Assets/Prefabs/CannonItem.prefab", 
-                new Vector3(Random.value * 250, 0.5f, Random.value * 250), 
+                new Vector3(Random.value * 250, 1.0f, Random.value * 250), 
                 this.transform.rotation);
         }
         for (int i = 0; i < recoverItemNum; i++) {
             Addressables.InstantiateAsync("Assets/Prefabs/RecoverItem.prefab", 
-                new Vector3(Random.value * 250, 0.5f, Random.value * 250), 
+                new Vector3(Random.value * 250, 1.0f, Random.value * 250), 
                 this.transform.rotation);
         }           
     }
