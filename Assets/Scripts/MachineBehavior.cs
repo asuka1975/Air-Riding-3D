@@ -52,8 +52,8 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
         machine = op.WaitForCompletion();
         machine.transform.localScale = machineDatas[id].scale;
 
-
         maincamera = Camera.main;
+        //メインカメラを自機の子要素にする
         if(photonView.IsMine)
         {
             maincamera.transform.parent = this.gameObject.transform;
