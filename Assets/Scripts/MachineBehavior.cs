@@ -1,10 +1,12 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-public class MachineBehavior : MonoBehaviour
+public class MachineBehavior : MonoBehaviourPunCallbacks
 {
+    Camera maincamera;
     public GameObject EquippedItem;
     public float forward = 30;
     public float back;
@@ -49,6 +51,14 @@ public class MachineBehavior : MonoBehaviour
         var op = Addressables.InstantiateAsync(machineDatas[id].path, this.transform.position, this.transform.rotation, this.transform);
         machine = op.WaitForCompletion();
         machine.transform.localScale = machineDatas[id].scale;
+
+
+        maincamera = Camera.main;
+        if(photonView.IsMine)
+        {
+            maincamera.transform.parent = this.gameObject.transform;
+            maincamera.transform.position = this.gameObject.transform.position;
+        }
     }
 
     // Update is called once per frame
@@ -62,49 +72,54 @@ public class MachineBehavior : MonoBehaviour
 
         rigidbody.AddForce(direction); //常に前進方向に力を加える
 
-        if (Input.GetKey(KeyCode.Space)) //スペースキーが押されたとき
+
+        if(photonView.IsMine)
         {
-            if (charge <= 100)
+            if (Input.GetKey(KeyCode.Space)) //スペースキーが押されたとき
             {
-                charge += chargeRate * Time.deltaTime; //時間に応じてチャージ
+                if (charge <= 100)
+                {
+                    charge += chargeRate * Time.deltaTime; //時間に応じてチャージ
+                }
+                rigidbody.AddForce(-direction * charge/100); //徐々にブレーキ
             }
-            rigidbody.AddForce(-direction * charge/100); //徐々にブレーキ
-        }
-        else
-        {
-            //スペースキーが押されていない時，マシンが浮く
-            rigidbody.position = new Vector3(position.x, floating, position.z);
+            else
+            {
+                //スペースキーが押されていない時，マシンが浮く
+                rigidbody.position = new Vector3(position.x, floating, position.z);
 
-            rigidbody.AddForce(direction*charge*dash); //チャージに応じてダッシュ
-            charge = 0; //reset
-        }
+                rigidbody.AddForce(direction*charge*dash); //チャージに応じてダッシュ
+                charge = 0; //reset
+            }
 
-        if (Input.GetKey(KeyCode.DownArrow)) //↓キーが押されたとき
-        {
+            if (Input.GetKey(KeyCode.DownArrow)) //↓キーが押されたとき
+            {
+
+            }
+
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                rigidbody.AddTorque(new Vector3(0, -rotation, 0)); //←キーが押されたとき，マシンは時計回りのトルクを受ける
+            }
+            if (Input.GetKeyUp(KeyCode.LeftArrow))
+            {
+                rigidbody.angularVelocity = new Vector3(); //←キーが押されていない時，マシンの角速度を0にする
+            }
+
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                rigidbody.AddTorque(new Vector3(0, rotation, 0)); //→キーが押されたとき，マシンは反時計回りのトルクを受ける
+            }
+            if (Input.GetKeyUp(KeyCode.RightArrow))
+            {
+                rigidbody.angularVelocity = new Vector3(); //→キーが押されていない時，マシンの角速度を0にする
+            }
+
+            //最大角速度でクリッピング
+            var angVel = Mathf.Clamp(rigidbody.angularVelocity.magnitude, minAngVel, maxAngVel);
+            rigidbody.angularVelocity = angVel * rigidbody.angularVelocity.normalized;
 
         }
-
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            rigidbody.AddTorque(new Vector3(0, -rotation, 0)); //←キーが押されたとき，マシンは時計回りのトルクを受ける
-        }
-        if (Input.GetKeyUp(KeyCode.LeftArrow))
-        {
-            rigidbody.angularVelocity = new Vector3(); //←キーが押されていない時，マシンの角速度を0にする
-        }
-
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            rigidbody.AddTorque(new Vector3(0, rotation, 0)); //→キーが押されたとき，マシンは反時計回りのトルクを受ける
-        }
-        if (Input.GetKeyUp(KeyCode.RightArrow))
-        {
-            rigidbody.angularVelocity = new Vector3(); //→キーが押されていない時，マシンの角速度を0にする
-        }
-
-        //最大角速度でクリッピング
-        var angVel = Mathf.Clamp(rigidbody.angularVelocity.magnitude, minAngVel, maxAngVel);
-        rigidbody.angularVelocity = angVel * rigidbody.angularVelocity.normalized;
 
         //マシンのhpが0以下になった際の処理(ゲームオーバー、爆発など) 1度だけ実行される
         if(HP <= 0.0f && !isMachineDestroyed)
