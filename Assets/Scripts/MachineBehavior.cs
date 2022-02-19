@@ -8,7 +8,7 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
 {
     Camera maincamera;
     public GameObject EquippedItem;
-    public float forward = 30;
+    public float forward = 80;
     public float back;
 
     public float rotation = 10;
@@ -59,6 +59,16 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
             maincamera.GetComponent<CameraController_machine>().TargetObject = this.gameObject;
         }
     }
+
+    void FixedUpdate()
+    {
+        rigidbody = this.GetComponent<Rigidbody>();
+        var position = rigidbody.position;
+        var direction = transform.forward * forward;
+
+        rigidbody.AddForce(direction, ForceMode.Acceleration); //常に前進方向に力を加える
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -126,26 +136,25 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
              MachineDestroyedEvent();
         }
 
-        if(Input.GetKeyUp(KeyCode.U))
+        foreach (Transform n in this.gameObject.transform)
         {
-            foreach (Transform n in this.gameObject.transform)
+            if (n.name.Contains("Equipped"))
             {
-               if (n.name.Contains("Equipped"))
-               {
-                   this.EquippedItem = n.gameObject;
-               }
-            } 
-
-            try
-            {
-                this.EquippedItem.GetComponent<UseEquippedItem>().Use();
+                this.EquippedItem = n.gameObject;
             }
-            catch(UnassignedReferenceException)
-            {
-                Debug.Log("*** アイテムが装備されていません");
-            }
+        } 
 
-
+        try
+        {
+            this.EquippedItem.GetComponent<UseEquippedItem>().Use();
+        }
+        catch(UnassignedReferenceException)
+        {
+            Debug.Log("*** アイテムが装備されていません");
+        }
+        catch(MissingReferenceException)
+        {
+            Debug.Log("*** アイテムがすでに削除されています");
         }
     }
 
@@ -153,7 +162,10 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     {
         this.isMachineDestroyed = true;
         Debug.Log("マシン" + this.gameObject.name + "は破壊されました.");
-        Destroy(this.gameObject); //一応追加
+        // Destroy(this.gameObject); //一応追加
+        // ResultSceneへ（破壊されたので負け）
+        FinishedGameData data = new FinishedGameData(){ is_win = false };
+        StartCoroutine(SceneTransitioner.Transition("Result Scene", data));
     }
 
 }
