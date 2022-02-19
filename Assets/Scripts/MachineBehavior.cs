@@ -18,6 +18,7 @@ public class MachineBehavior : MonoBehaviour
     public float chargeRate = 50f; //rate of increase per second
     public bool isMachineDestroyed = false;
     public float HP = 100f;
+    public float maxHP;
     public float dash = 5; //ダッシュ時の倍率
 
     public float charge = 0f; //percent
@@ -49,6 +50,9 @@ public class MachineBehavior : MonoBehaviour
         var op = Addressables.InstantiateAsync(machineDatas[id].path, this.transform.position, this.transform.rotation, this.transform);
         machine = op.WaitForCompletion();
         machine.transform.localScale = machineDatas[id].scale;
+
+        // HPの最大値を覚えておく
+        maxHP = HP;
     }
 
     void FixedUpdate()
@@ -113,6 +117,9 @@ public class MachineBehavior : MonoBehaviour
         //最大角速度でクリッピング
         var angVel = Mathf.Clamp(rigidbody.angularVelocity.magnitude, minAngVel, maxAngVel);
         rigidbody.angularVelocity = angVel * rigidbody.angularVelocity.normalized;
+
+        // 最大HPでクリッピング
+        HP = Mathf.Clamp(HP, 0, maxHP);
 
         //マシンのhpが0以下になった際の処理(ゲームオーバー、爆発など) 1度だけ実行される
         if(HP <= 0.0f && !isMachineDestroyed)
