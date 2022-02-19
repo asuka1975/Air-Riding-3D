@@ -62,71 +62,76 @@ public class MachineBehavior : MonoBehaviour
 
         rigidbody.AddForce(direction); //常に前進方向に力を加える
 
-        if (Input.GetKey(KeyCode.Space) ^ Input.GetKey(KeyCode.UpArrow) ^ Input.GetKey(KeyCode.DownArrow)) //スペースキーが押されたとき
+        if(photonView.isMine())
         {
-            if (charge <= 100)
+            if (Input.GetKey(KeyCode.Space) ^ Input.GetKey(KeyCode.UpArrow) ^ Input.GetKey(KeyCode.DownArrow)) //スペースキーが押されたとき
             {
-                charge += chargeRate * Time.deltaTime; //時間に応じてチャージ
+                if (charge <= 100)
+                {
+                    charge += chargeRate * Time.deltaTime; //時間に応じてチャージ
+                }
+                rigidbody.AddForce(-direction * charge/100); //徐々にブレーキ
             }
-            rigidbody.AddForce(-direction * charge/100); //徐々にブレーキ
-        }
-        else
-        {
-            //スペースキーが押されていない時，マシンが浮く
-            rigidbody.position = new Vector3(position.x, floating, position.z);
-
-            rigidbody.AddForce(direction*charge*dash); //チャージに応じてダッシュ
-            charge = 0; //reset
-        }
-
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            rigidbody.AddTorque(new Vector3(0, -rotation, 0)); //←キーが押されたとき，マシンは時計回りのトルクを受ける
-        }
-        if (Input.GetKeyUp(KeyCode.LeftArrow))
-        {
-            rigidbody.angularVelocity = new Vector3(); //←キーが押されていない時，マシンの角速度を0にする
-        }
-
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            rigidbody.AddTorque(new Vector3(0, rotation, 0)); //→キーが押されたとき，マシンは反時計回りのトルクを受ける
-        }
-        if (Input.GetKeyUp(KeyCode.RightArrow))
-        {
-            rigidbody.angularVelocity = new Vector3(); //→キーが押されていない時，マシンの角速度を0にする
-        }
-
-        //最大角速度でクリッピング
-        var angVel = Mathf.Clamp(rigidbody.angularVelocity.magnitude, minAngVel, maxAngVel);
-        rigidbody.angularVelocity = angVel * rigidbody.angularVelocity.normalized;
-
-        //マシンのhpが0以下になった際の処理(ゲームオーバー、爆発など) 1度だけ実行される
-        if(HP <= 0.0f && !isMachineDestroyed)
-        {
-             MachineDestroyedEvent();
-        }
-
-        foreach (Transform n in this.gameObject.transform)
-        {
-            if (n.name.Contains("Equipped"))
+            else
             {
-                this.EquippedItem = n.gameObject;
-            }
-        } 
+                //スペースキーが押されていない時，マシンが浮く
+                rigidbody.position = new Vector3(position.x, floating, position.z);
 
-        try
-        {
-            this.EquippedItem.GetComponent<UseEquippedItem>().Use();
-        }
-        catch(UnassignedReferenceException)
-        {
-            Debug.Log("*** アイテムが装備されていません");
-        }
-        catch(MissingReferenceException)
-        {
-            Debug.Log("*** アイテムがすでに削除されています");
-        }
+                rigidbody.AddForce(direction*charge*dash); //チャージに応じてダッシュ
+                charge = 0; //reset
+            }
+
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                rigidbody.AddTorque(new Vector3(0, -rotation, 0)); //←キーが押されたとき，マシンは時計回りのトルクを受ける
+            }
+            if (Input.GetKeyUp(KeyCode.LeftArrow))
+            {
+                rigidbody.angularVelocity = new Vector3(); //←キーが押されていない時，マシンの角速度を0にする
+            }
+
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                rigidbody.AddTorque(new Vector3(0, rotation, 0)); //→キーが押されたとき，マシンは反時計回りのトルクを受ける
+            }
+            if (Input.GetKeyUp(KeyCode.RightArrow))
+            {
+                rigidbody.angularVelocity = new Vector3(); //→キーが押されていない時，マシンの角速度を0にする
+            }
+
+            //最大角速度でクリッピング
+            var angVel = Mathf.Clamp(rigidbody.angularVelocity.magnitude, minAngVel, maxAngVel);
+            rigidbody.angularVelocity = angVel * rigidbody.angularVelocity.normalized;
+
+            //マシンのhpが0以下になった際の処理(ゲームオーバー、爆発など) 1度だけ実行される
+            if(HP <= 0.0f && !isMachineDestroyed)
+            {
+                MachineDestroyedEvent();
+            }
+
+            foreach (Transform n in this.gameObject.transform)
+            {
+                if (n.name.Contains("Equipped"))
+                {
+                    this.EquippedItem = n.gameObject;
+                }
+            } 
+
+            try
+            {
+                this.EquippedItem.GetComponent<UseEquippedItem>().Use();
+            }
+            catch(UnassignedReferenceException)
+            {
+                Debug.Log("*** アイテムが装備されていません");
+            }
+            catch(MissingReferenceException)
+            {
+                Debug.Log("*** アイテムがすでに削除されています");
+            }
+
+            }
+
     }
 
     void MachineDestroyedEvent()
