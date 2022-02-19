@@ -56,8 +56,9 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
         //メインカメラを自機の子要素にする
         if(photonView.IsMine)
         {
-            maincamera.transform.parent = this.gameObject.transform;
-            maincamera.transform.position = this.gameObject.transform.position;
+            //maincamera.transform.parent = this.gameObject.transform;
+            //maincamera.transform.position = this.gameObject.transform.position;
+            maincamera.GetComponent<CameraController_machine>().TargetObject = this.gameObject;
         }
     }
 
