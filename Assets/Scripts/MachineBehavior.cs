@@ -53,11 +53,9 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
         machine.transform.localScale = machineDatas[id].scale;
 
         maincamera = Camera.main;
-        //メインカメラを自機の子要素にする
+        //メインカメラのTargetObjectに自機を指定する
         if(photonView.IsMine)
         {
-            //maincamera.transform.parent = this.gameObject.transform;
-            //maincamera.transform.position = this.gameObject.transform.position;
             maincamera.GetComponent<CameraController_machine>().TargetObject = this.gameObject;
         }
     }
