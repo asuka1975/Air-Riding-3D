@@ -10,15 +10,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Debug.Log("*** try to join or create room. *** ");
         PhotonNetwork.JoinRandomRoom();
     }
-    void Update()
-    {
-        var players = PhotonNetwork.PlayerList;
-        Debug.Log("***" + players.Length);
-        foreach(var photonView in PhotonNetwork.PhotonViewCollection){
-            Debug.Log(photonView.gameObject.name + ":" + photonView.IsMine);
-        }
-        Debug.Log("=====");
-    }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
@@ -32,7 +23,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        Debug.Log("ルームは行ってます!!");
         PhotonNetwork.Instantiate("EmptyMachine", new Vector3(100, 10, 100), Quaternion.identity);
     }
 
