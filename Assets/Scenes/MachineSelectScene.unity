@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.24647538, g: 0.28234535, b: 0.3457032, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1567,7 +1567,6 @@ GameObject:
   - component: {fileID: 1417822603}
   - component: {fileID: 1417822602}
   - component: {fileID: 1417822601}
-  - component: {fileID: 1417822605}
   m_Layer: 5
   m_Name: Button_StartGame
   m_TagString: Untagged
@@ -1663,7 +1662,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1417822605}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: JoinOrCreateRoom, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
@@ -1713,18 +1712,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1417822599}
   m_CullTransparentMesh: 1
---- !u!114 &1417822605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1417822599}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf2ffa4bf115f134db9534f1ea4551d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1465271867
 GameObject:
   m_ObjectHideFlags: 0
