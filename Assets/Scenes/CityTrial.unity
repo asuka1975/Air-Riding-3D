@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 26928850}
   - component: {fileID: 26928849}
   - component: {fileID: 26928848}
+  - component: {fileID: 26928851}
   m_Layer: 0
   m_Name: LowWall1
   m_TagString: Untagged
@@ -219,6 +220,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 26928846}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &26928851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26928846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e295737025ab82e5aa643e138570e771, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &69142502
 GameObject:
   m_ObjectHideFlags: 0
@@ -1689,6 +1702,7 @@ GameObject:
   - component: {fileID: 1077903442}
   - component: {fileID: 1077903441}
   - component: {fileID: 1077903440}
+  - component: {fileID: 1077903443}
   m_Layer: 0
   m_Name: LowWall2
   m_TagString: Untagged
@@ -1772,6 +1786,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1077903438}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1077903443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077903438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e295737025ab82e5aa643e138570e771, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1082872371
 GameObject:
   m_ObjectHideFlags: 0
@@ -2681,6 +2707,7 @@ GameObject:
   - component: {fileID: 1574804962}
   - component: {fileID: 1574804961}
   - component: {fileID: 1574804960}
+  - component: {fileID: 1574804963}
   m_Layer: 0
   m_Name: LowWall1 (1)
   m_TagString: Untagged
@@ -2764,6 +2791,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1574804958}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1574804963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574804958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e295737025ab82e5aa643e138570e771, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1633077222
 GameObject:
   m_ObjectHideFlags: 0
@@ -2958,6 +2997,7 @@ GameObject:
   - component: {fileID: 1812557189}
   - component: {fileID: 1812557188}
   - component: {fileID: 1812557187}
+  - component: {fileID: 1812557190}
   m_Layer: 0
   m_Name: LowWall2 (1)
   m_TagString: Untagged
@@ -3041,6 +3081,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1812557185}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1812557190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812557185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e295737025ab82e5aa643e138570e771, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1872748631
 GameObject:
   m_ObjectHideFlags: 0
@@ -3298,6 +3350,7 @@ GameObject:
   - component: {fileID: 2061818008}
   - component: {fileID: 2061818007}
   - component: {fileID: 2061818006}
+  - component: {fileID: 2061818009}
   m_Layer: 0
   m_Name: LowWall1 (2)
   m_TagString: Untagged
@@ -3381,6 +3434,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2061818004}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2061818009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061818004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e295737025ab82e5aa643e138570e771, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2103707893
 GameObject:
   m_ObjectHideFlags: 0
