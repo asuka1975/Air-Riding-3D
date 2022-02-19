@@ -3,10 +3,10 @@ using Photon.Pun;
 
 /*
 ゲームを開始すると適当なマスターサーバに接続する
-TitleSceneのNetworkManagerにアタッチする
+TitleSceneのConnectionManagerにアタッチする
 */
 
-public class ConnectToMasterServer : MonoBehaviourPunCallbacks
+public class ConnectionManager : MonoBehaviourPunCallbacks
 {
     public void Start()
     {

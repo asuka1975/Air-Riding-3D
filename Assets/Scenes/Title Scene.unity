@@ -821,7 +821,7 @@ GameObject:
   - component: {fileID: 1892321148}
   - component: {fileID: 1892321147}
   m_Layer: 0
-  m_Name: NetworkManager
+  m_Name: ConnectionManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
