@@ -34,7 +34,7 @@ public class UseEquippedItem : MonoBehaviour
     void UseCannonItem()
     {
         if(currentUse < maxCannonUse) {
-            if(Input.GetKeyUp(KeyCode.U)) {
+            if(Input.GetKeyUp(KeyCode.W) ^ Input.GetKeyUp(KeyCode.S)) {
                 Debug.Log("***CannonItemを使用***");
                 Addressables.InstantiateAsync("Assets/Prefabs/Bullet.prefab", 
                     this.transform.position,
@@ -50,7 +50,7 @@ public class UseEquippedItem : MonoBehaviour
     void UseBombItem()
     {
         if(currentUse < maxBombUse) {
-            if(Input.GetKeyUp(KeyCode.U)) {
+            if(Input.GetKeyUp(KeyCode.W) ^ Input.GetKeyUp(KeyCode.S)) {
                 Debug.Log("*** BombItemを使用 ***");
                 float start_time = Time.time;
                 StartCoroutine("ThroughBomb");

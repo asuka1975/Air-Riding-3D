@@ -81,10 +81,10 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
 
         rigidbody.AddForce(direction); //常に前進方向に力を加える
 
-
-        if(photonView.IsMine)
+        if(photonView.isMine())
         {
-            if (Input.GetKey(KeyCode.Space)) //スペースキーが押されたとき
+            if (Input.GetKey(KeyCode.Space) ^ Input.GetKey(KeyCode.UpArrow) ^ Input.GetKey(KeyCode.DownArrow)) //スペースキーが押されたとき
+
             {
                 if (charge <= 100)
                 {
@@ -99,11 +99,6 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
 
                 rigidbody.AddForce(direction*charge*dash); //チャージに応じてダッシュ
                 charge = 0; //reset
-            }
-
-            if (Input.GetKey(KeyCode.DownArrow)) //↓キーが押されたとき
-            {
-
             }
 
             if (Input.GetKey(KeyCode.LeftArrow))
@@ -128,34 +123,36 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
             var angVel = Mathf.Clamp(rigidbody.angularVelocity.magnitude, minAngVel, maxAngVel);
             rigidbody.angularVelocity = angVel * rigidbody.angularVelocity.normalized;
 
-        }
-
-        //マシンのhpが0以下になった際の処理(ゲームオーバー、爆発など) 1度だけ実行される
-        if(HP <= 0.0f && !isMachineDestroyed)
-        {
-             MachineDestroyedEvent();
-        }
-
-        foreach (Transform n in this.gameObject.transform)
-        {
-            if (n.name.Contains("Equipped"))
+            //マシンのhpが0以下になった際の処理(ゲームオーバー、爆発など) 1度だけ実行される
+            if(HP <= 0.0f && !isMachineDestroyed)
             {
-                this.EquippedItem = n.gameObject;
+                MachineDestroyedEvent();
             }
-        } 
 
-        try
-        {
-            this.EquippedItem.GetComponent<UseEquippedItem>().Use();
-        }
-        catch(UnassignedReferenceException)
-        {
-            Debug.Log("*** アイテムが装備されていません");
-        }
-        catch(MissingReferenceException)
-        {
-            Debug.Log("*** アイテムがすでに削除されています");
-        }
+
+            foreach (Transform n in this.gameObject.transform)
+            {
+                if (n.name.Contains("Equipped"))
+                {
+                    this.EquippedItem = n.gameObject;
+                }
+            } 
+
+            try
+            {
+                this.EquippedItem.GetComponent<UseEquippedItem>().Use();
+            }
+            catch(UnassignedReferenceException)
+            {
+                Debug.Log("*** アイテムが装備されていません");
+            }
+            catch(MissingReferenceException)
+            {
+                Debug.Log("*** アイテムがすでに削除されています");
+            }
+
+            }
+
     }
 
     void MachineDestroyedEvent()
