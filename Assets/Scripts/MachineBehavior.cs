@@ -81,7 +81,7 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
 
         rigidbody.AddForce(direction); //常に前進方向に力を加える
 
-        if(photonView.isMine())
+        if(photonView.IsMine)
         {
             if (Input.GetKey(KeyCode.Space) ^ Input.GetKey(KeyCode.UpArrow) ^ Input.GetKey(KeyCode.DownArrow)) //スペースキーが押されたとき
 
