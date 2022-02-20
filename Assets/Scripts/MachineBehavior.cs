@@ -1,12 +1,14 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-public class MachineBehavior : MonoBehaviour
+public class MachineBehavior : MonoBehaviourPunCallbacks
 {
+    Camera maincamera;
     public GameObject EquippedItem;
-    public float forward = 30;
+    public float forward = 80;
     public float back;
 
     public float rotation = 10;
@@ -49,7 +51,24 @@ public class MachineBehavior : MonoBehaviour
         var op = Addressables.InstantiateAsync(machineDatas[id].path, this.transform.position, this.transform.rotation, this.transform);
         machine = op.WaitForCompletion();
         machine.transform.localScale = machineDatas[id].scale;
+
+        maincamera = Camera.main;
+        //メインカメラのTargetObjectに自機を指定する
+        if(photonView.IsMine)
+        {
+            maincamera.GetComponent<CameraController_machine>().TargetObject = this.gameObject;
+        }
     }
+
+    void FixedUpdate()
+    {
+        rigidbody = this.GetComponent<Rigidbody>();
+        var position = rigidbody.position;
+        var direction = transform.forward * forward;
+
+        rigidbody.AddForce(direction, ForceMode.Acceleration); //常に前進方向に力を加える
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -65,6 +84,7 @@ public class MachineBehavior : MonoBehaviour
         if(photonView.isMine())
         {
             if (Input.GetKey(KeyCode.Space) ^ Input.GetKey(KeyCode.UpArrow) ^ Input.GetKey(KeyCode.DownArrow)) //スペースキーが押されたとき
+
             {
                 if (charge <= 100)
                 {
@@ -108,6 +128,7 @@ public class MachineBehavior : MonoBehaviour
             {
                 MachineDestroyedEvent();
             }
+
 
             foreach (Transform n in this.gameObject.transform)
             {
