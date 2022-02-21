@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,11 +23,13 @@ public class ChargeMeter : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(0.2f);
-            var player = GameObject.FindWithTag("Player");
-            if (player != null)
+            var players = GameObject.FindGameObjectsWithTag("Player");
+            foreach (var player in players)
             {
-                _machineBehavior = player.GetComponent<MachineBehavior>();
-                break;
+                if (player.GetComponent<PhotonView>().IsMine)
+                {
+                    _machineBehavior = player.GetComponent<MachineBehavior>();
+                }
             }
         }
     }
