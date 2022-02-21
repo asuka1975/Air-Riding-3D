@@ -13,7 +13,7 @@ public class VelocityView : MonoBehaviour
     void Start()
     {
         _velocityLabel = GetComponent<Text>();
-        StartCoroutine("FindMachine");
+        StartCoroutine(FindMachine());
     }
     
     // TODO commonalize among UI scripts.
@@ -28,10 +28,9 @@ public class VelocityView : MonoBehaviour
                 if (player.GetComponent<PhotonView>().IsMine)
                 {
                     _player = player.GetComponent<Rigidbody>();
+                    yield break;
                 }
             }
-
-            if (_player != null) break;
         }
     }
 

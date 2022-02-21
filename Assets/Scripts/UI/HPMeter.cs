@@ -13,7 +13,7 @@ public class HPMeter : MonoBehaviour
     void Start()
     {
         _slider = GetComponent<Slider>();
-        StartCoroutine("FindMachine");
+        StartCoroutine(FindMachine());
     }
     
     // TODO commonalize among UI scripts.
@@ -28,10 +28,9 @@ public class HPMeter : MonoBehaviour
                 if (player.GetComponent<PhotonView>().IsMine)
                 {
                     _player = player.GetComponent<MachineBehavior>();
+                    yield break;
                 }
             }
-
-            if (_player != null) break;
         }
     }
 

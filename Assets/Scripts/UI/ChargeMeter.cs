@@ -13,7 +13,7 @@ public class ChargeMeter : MonoBehaviour
     void Start()
     {
         _charge = GetComponent<Image>();
-        StartCoroutine("FindMachine");
+        StartCoroutine(FindMachine());
     }
 
     // TODO commonalize among UI scripts.
@@ -28,10 +28,9 @@ public class ChargeMeter : MonoBehaviour
                 if (player.GetComponent<PhotonView>().IsMine)
                 {
                     _machineBehavior = player.GetComponent<MachineBehavior>();
+                    yield break;
                 }
             }
-
-            if (_machineBehavior != null) break;
         }
     }
 
