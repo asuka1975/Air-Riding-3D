@@ -136,23 +136,24 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
                 {
                     this.EquippedItem = n.gameObject;
                 }
-            } 
-
-            try
-            {
-                this.EquippedItem.GetComponent<UseEquippedItem>().Use();
-            }
-            catch(UnassignedReferenceException)
-            {
-                Debug.Log("*** アイテムが装備されていません");
-            }
-            catch(MissingReferenceException)
-            {
-                Debug.Log("*** アイテムがすでに削除されています");
             }
 
+            if (Input.GetKeyUp(KeyCode.W) ^ Input.GetKeyUp(KeyCode.S))
+            {
+                try
+                {
+                    this.EquippedItem.GetComponent<IITemUsable>().Use();
+                }
+                catch(UnassignedReferenceException)
+                {
+                    Debug.Log("*** アイテムが装備されていません");
+                }
+                catch(MissingReferenceException)
+                {
+                    Debug.Log("*** アイテムがすでに削除されています");
+                }
             }
-
+        }
     }
 
     void MachineDestroyedEvent()
