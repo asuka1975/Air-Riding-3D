@@ -30,6 +30,8 @@ public class HPMeter : MonoBehaviour
                     _player = player.GetComponent<MachineBehavior>();
                 }
             }
+
+            if (_player != null) break;
         }
     }
 

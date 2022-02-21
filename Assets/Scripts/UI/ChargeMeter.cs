@@ -30,6 +30,8 @@ public class ChargeMeter : MonoBehaviour
                     _machineBehavior = player.GetComponent<MachineBehavior>();
                 }
             }
+
+            if (_machineBehavior != null) break;
         }
     }
 
