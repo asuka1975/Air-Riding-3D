@@ -14,7 +14,6 @@ public class ChargeMeter : MonoBehaviour
     {
         _charge = GetComponent<Image>();
         StartCoroutine("FindMachine");
-        _machineBehavior = GameObject.FindWithTag("Player").GetComponent<MachineBehavior>();
     }
 
     // TODO commonalize among UI scripts.

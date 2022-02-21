@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,12 +13,30 @@ public class HPMeter : MonoBehaviour
     void Start()
     {
         _slider = GetComponent<Slider>();
-        _player = GameObject.FindWithTag("Player").GetComponent<MachineBehavior>();
+        StartCoroutine("FindMachine");
+    }
+    
+    // TODO commonalize among UI scripts.
+    IEnumerator FindMachine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.2f);
+            var players = GameObject.FindGameObjectsWithTag("Player");
+            foreach (var player in players)
+            {
+                if (player.GetComponent<PhotonView>().IsMine)
+                {
+                    _player = player.GetComponent<MachineBehavior>();
+                }
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (_player == null) return;
         _slider.value = _player.HP / 100;
     }
 }
