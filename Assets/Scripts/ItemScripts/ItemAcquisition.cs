@@ -18,7 +18,7 @@ public class ItemAcquisition : MonoBehaviour
         itemDatas = new Dictionary<string, ItemData>()
         {
             {"CannonItem(Clone)", new ItemData(){
-                forward = 3, up = 0.5f, 
+                forward = 1, up = 1, 
                 rotation = new Vector3(0, 90, 0), 
                 scale =  new Vector3(0.035f, 0.035f, 0.035f)
             }},
