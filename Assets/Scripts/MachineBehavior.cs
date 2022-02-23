@@ -20,12 +20,19 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     public float chargeRate = 50f; //rate of increase per second
     public bool isMachineDestroyed = false;
     public float HP = 100f;
+    public float defaultSpeed = 0.5f;
     public float dash = 5; //ダッシュ時の倍率
 
     public float charge = 0f; //percent
 
     new Rigidbody rigidbody;
     new GameObject machine;
+
+    bool isCharging = false;
+    bool isRightTurning = false;
+    bool isLeftTurning = false;
+    float chargeLv = 0.0f;
+    public float maxChargeLv = 100.0f;
 
     public struct MachineData
     {
@@ -66,7 +73,12 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
         var position = rigidbody.position;
         var direction = transform.forward * forward;
 
-        rigidbody.AddForce(direction, ForceMode.Acceleration); //常に前進方向に力を加える
+        rigidbody.AddForce(direction * defaultSpeed, ForceMode.Acceleration); //常に前進方向に力を加える
+
+        if(isCharging)
+        {
+            rigidbody.AddForce(-direction * chargeLv / 10); //ブレーキ
+        }
     }
 
 
@@ -79,26 +91,28 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
 
         // Debug.Log(charge);
 
-        rigidbody.AddForce(direction); //常に前進方向に力を加える
-
         if(photonView.IsMine)
         {
             if (Input.GetKey(KeyCode.Space) ^ Input.GetKey(KeyCode.UpArrow) ^ Input.GetKey(KeyCode.DownArrow)) //スペースキーが押されたとき
-
             {
-                if (charge <= 100)
+                Debug.Log("チャージ中");
+                Debug.Log(chargeLv);
+                isCharging = true;
+
+                if (chargeLv <= maxChargeLv)
                 {
-                    charge += chargeRate * Time.deltaTime; //時間に応じてチャージ
+                    chargeLv += chargeRate * Time.deltaTime; //時間に応じてチャージ
                 }
-                rigidbody.AddForce(-direction * charge/100); //徐々にブレーキ
             }
             else
             {
+                isCharging = false;
                 //スペースキーが押されていない時，マシンが浮く
                 rigidbody.position = new Vector3(position.x, floating, position.z);
 
-                rigidbody.AddForce(direction*charge*dash); //チャージに応じてダッシュ
-                charge = 0; //reset
+                //rigidbody.AddForce(direction*charge*dash); //チャージに応じてダッシュ
+                rigidbody.AddForce(transform.forward * chargeLv * dash, ForceMode.Impulse);
+                chargeLv = 0.0f;
             }
 
             if (Input.GetKey(KeyCode.LeftArrow))
