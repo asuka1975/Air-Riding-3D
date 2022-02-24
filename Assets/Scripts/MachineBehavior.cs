@@ -15,6 +15,7 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     public float floating = 1.5f;
     public float chargeRate = 50f; //rate of increase per second
     public float HP = 100f;
+    public float maxHP;
     public float defaultSpeed;
     public float chargeLv = 0.0f;
     public float maxChargeLv = 100.0f;
@@ -55,6 +56,8 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
         machine = op.WaitForCompletion();
         machine.transform.localScale = machineDatas[id].scale;
 
+        // HPの最大値を覚えておく
+        maxHP = HP;
         maincamera = Camera.main;
         //メインカメラのTargetObjectに自機を指定する
         if(photonView.IsMine)
@@ -135,6 +138,14 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
                 MachineDestroyedEvent();
             }
 
+            // 最大HPでクリッピング
+            HP = Mathf.Clamp(HP, 0, maxHP);
+
+            //マシンのhpが0以下になった際の処理(ゲームオーバー、爆発など) 1度だけ実行される
+            if(HP <= 0.0f && !isMachineDestroyed)
+            {
+                 MachineDestroyedEvent();
+            }
 
             foreach (Transform n in this.gameObject.transform)
             {
