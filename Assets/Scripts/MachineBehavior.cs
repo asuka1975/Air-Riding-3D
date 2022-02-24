@@ -17,6 +17,7 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     public float HP = 100f;
     public float maxHP;
     public float defaultSpeed;
+    public float chargeLv = 0.0f;
     public float maxChargeLv = 100.0f;
     public float dash = 5; //ダッシュ時の倍率
 
@@ -29,7 +30,6 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     bool isCharging = false;
     bool isRightTurning = false;
     bool isLeftTurning = false;
-    float chargeLv = 0.0f;
 
     public struct MachineData
     {
