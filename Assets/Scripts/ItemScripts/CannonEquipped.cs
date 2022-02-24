@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-public class CannonEquipped : MonoBehaviour, IItemUsable
+public class CannonEquipped : MonoBehaviourPunCallbacks, IItemUsable
 {
     public int maxCannonUse = 5;
     public int currentUse = 0;
@@ -20,9 +21,7 @@ public class CannonEquipped : MonoBehaviour, IItemUsable
         if(currentUse < maxCannonUse) {
             if(Input.GetKeyUp(KeyCode.W) ^ Input.GetKeyUp(KeyCode.S)) {
                 Debug.Log("***CannonItemを使用***");
-                Addressables.InstantiateAsync("Assets/Prefabs/Bullet.prefab", 
-                    transform.position,
-                    transform.rotation);
+                photonView.RPC(nameof(CreateBullet), RpcTarget.All, transform.position, transform.rotation);
 
                 currentUse += 1;
                 Debug.Log(currentUse);
@@ -30,6 +29,12 @@ public class CannonEquipped : MonoBehaviour, IItemUsable
         } else {
             OnUsed?.Invoke(this, EventArgs.Empty);
         }
+    }
+
+    [PunRPC]
+    void CreateBullet(Vector3 position, Quaternion rotation, PhotonMessageInfo info)
+    {
+        Addressables.InstantiateAsync("Assets/Prefabs/Bullet.prefab", position, rotation);
     }
 
     public event EventHandler OnUsed;
