@@ -23,7 +23,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        PhotonNetwork.Instantiate("EmptyMachine", new Vector3(100, 10, 100), Quaternion.identity);
+        //生成するマシンのIDを取得
+        var id = GameObject.FindWithTag("SharedParams").GetComponent<SharedParams>().Get<MachineSelectData>().id;
+        string machine_name = "Machine" + id;
+        PhotonNetwork.Instantiate(machine_name , new Vector3(100, 10, 100), Quaternion.identity);
     }
 
 }
