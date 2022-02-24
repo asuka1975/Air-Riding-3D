@@ -22,10 +22,7 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     public float maxChargeLv = 100.0f;
     public float dash = 5; //ダッシュ時の倍率
 
-    public float charge = 0f; //percent
-
     new Rigidbody rigidbody;
-    new GameObject machine;
 
     bool isMachineDestroyed = false;
     bool isCharging = false;
@@ -37,9 +34,6 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     {
         rigidbody = this.GetComponent<Rigidbody>();
         rigidbody.position = new Vector3(rigidbody.position.x, floating, rigidbody.position.z);
-        // 引き継いだデータを取得
-        var id = GameObject.FindWithTag("SharedParams").GetComponent<SharedParams>().Get<MachineSelectData>().id;
-        // Debug.Log(id);
 
         // HPの最大値を覚えておく
         maxHP = HP;
