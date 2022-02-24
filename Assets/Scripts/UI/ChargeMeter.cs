@@ -38,6 +38,6 @@ public class ChargeMeter : MonoBehaviour
     void Update()
     {
         if (_machineBehavior == null) return;
-        _charge.fillAmount = _machineBehavior.charge / 100;
+        _charge.fillAmount = _machineBehavior.chargeLv / _machineBehavior.maxChargeLv;
     }
 }
