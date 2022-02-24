@@ -19,6 +19,7 @@ public class SG : MonoBehaviour
     public void OnClick()
     {
         PhotonNetwork.JoinRandomRoom();
+        GameObject.Find("Button_StartGame").GetComponent<Button>().interactable = false;
         StartCoroutine(nameof(WaitJoinPlayers));
     }
     
