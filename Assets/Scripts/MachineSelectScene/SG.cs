@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,10 +17,19 @@ public class SG : MonoBehaviour
     }
     public void OnClick()
     {
+        PhotonNetwork.JoinRandomRoom();
+        StartCoroutine(nameof(WaitJoinPlayers));
+    }
+    
+    private IEnumerator WaitJoinPlayers()
+    {
+        while (PhotonNetwork.PlayerList.Length < NetworkManager.maxPlayer)
+        {
+            yield return new WaitForSeconds(2.5f);
+        }
+        
         var machine = GameObject.Find("MachineSelectManager");
         var id = machine.GetComponent<MachineSelectManager>().id;
-        var str = "Slelected machine ID is " + id.ToString();
-        Debug.Log(str);
         MachineSelectData data = new MachineSelectData(){ id = id };
         StartCoroutine(SceneTransitioner.Transition("CityTrial", data));
     }

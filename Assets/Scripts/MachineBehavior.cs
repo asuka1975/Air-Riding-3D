@@ -41,6 +41,9 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
         //メインカメラのTargetObjectに自機を指定する
         if(photonView.IsMine)
         {
+            Debug.Log("*** ", maincamera);
+            Debug.Log("*** ", maincamera.GetComponent<CameraController_machine>());
+            Debug.Log("*** ", maincamera.GetComponent<CameraController_machine>().TargetObject);
             maincamera.GetComponent<CameraController_machine>().TargetObject = this.gameObject;
         }
     }
