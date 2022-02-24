@@ -214,17 +214,13 @@ MonoBehaviour:
   back: 0
   rotateSpeed: 50
   floating: 0.5
-  minVel: 0
-  maxVel: 10
-  minAngVel: 0
-  maxAngVel: 1
   chargeRate: 50
-  isMachineDestroyed: 0
   HP: 100
+  maxHP: 0
   defaultSpeed: 100
+  maxChargeLv: 100
   dash: 5
   charge: 0
-  maxChargeLv: 100
 --- !u!114 &5956257852727736914
 MonoBehaviour:
   m_ObjectHideFlags: 0
