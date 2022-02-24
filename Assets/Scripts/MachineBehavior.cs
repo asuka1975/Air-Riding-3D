@@ -7,6 +7,7 @@ using UnityEngine.AddressableAssets;
 public class MachineBehavior : MonoBehaviourPunCallbacks
 {
     Camera maincamera;
+    public int machineID;
     public GameObject EquippedItem;
     public float forward = 80;
     public float back;
