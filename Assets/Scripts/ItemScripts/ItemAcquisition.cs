@@ -51,7 +51,7 @@ public class ItemAcquisition : MonoBehaviour
                 other.transform.position + other.transform.forward * itemDatas[name].forward +
                 other.transform.up * itemDatas[name].up,
                 other.transform.rotation);
-            equipped_item.transform.parent = other.transform;
+            equipped_item.GetComponent<EquippedItemTransform>().parentID = other.GetComponent<PhotonView>().ViewID;
             equipped_item.transform.localScale = itemDatas[name].scale;
             equipped_item.transform.Rotate(itemDatas[name].rotation);
             var usable = equipped_item.GetComponent<IItemUsable>();

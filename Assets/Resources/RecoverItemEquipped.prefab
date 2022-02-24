@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3231819727024897732}
   - component: {fileID: -3938416520448493266}
   - component: {fileID: 5731567814622033074}
+  - component: {fileID: 4070197598598081365}
   m_Layer: 0
   m_Name: RecoverItemEquipped
   m_TagString: Untagged
@@ -117,3 +118,16 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &4070197598598081365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3231819727024897734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a565635e67798b64aafad8101df8e055, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentID: 0
