@@ -11,16 +11,12 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     public float forward = 80;
     public float back;
 
-    public float rotation = 10;
-    public float floating = 0.5f;
-    public float minVel = 0;
-    public float maxVel = 10;
-    public float minAngVel = 0;
-    public float maxAngVel = 1;
+    public float rotateSpeed = 100;
+    public float floating = 1.5f;
     public float chargeRate = 50f; //rate of increase per second
-    public bool isMachineDestroyed = false;
     public float HP = 100f;
-    public float defaultSpeed = 0.5f;
+    public float defaultSpeed;
+    public float maxChargeLv = 100.0f;
     public float dash = 5; //ダッシュ時の倍率
 
     public float charge = 0f; //percent
@@ -28,11 +24,11 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     new Rigidbody rigidbody;
     new GameObject machine;
 
+    bool isMachineDestroyed = false;
     bool isCharging = false;
     bool isRightTurning = false;
     bool isLeftTurning = false;
     float chargeLv = 0.0f;
-    public float maxChargeLv = 100.0f;
 
     public struct MachineData
     {
@@ -71,13 +67,25 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     {
         rigidbody = this.GetComponent<Rigidbody>();
         var position = rigidbody.position;
-        var direction = transform.forward * forward;
+        var direction = transform.forward;
 
-        rigidbody.AddForce(direction * defaultSpeed, ForceMode.Acceleration); //常に前進方向に力を加える
+        Debug.Log(transform.forward.normalized * defaultSpeed);
+        rigidbody.AddForce(transform.forward.normalized * defaultSpeed, ForceMode.Acceleration); //常に前進方向に力を加える
 
         if(isCharging)
         {
             rigidbody.AddForce(-direction * chargeLv / 10); //ブレーキ
+        }
+        if(isRightTurning)
+        {
+            rigidbody.AddTorque(new Vector3(0, -rotateSpeed, 0), ForceMode.Acceleration);
+        }
+        if(isLeftTurning)
+        {
+            rigidbody.AddTorque(new Vector3(0, rotateSpeed, 0), ForceMode.Acceleration);
+        }
+        if(!isLeftTurning && !isRightTurning)
+        {
         }
     }
 
@@ -115,27 +123,11 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
                 chargeLv = 0.0f;
             }
 
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                rigidbody.AddTorque(new Vector3(0, -rotation, 0)); //←キーが押されたとき，マシンは時計回りのトルクを受ける
-            }
-            if (Input.GetKeyUp(KeyCode.LeftArrow))
-            {
-                rigidbody.angularVelocity = new Vector3(); //←キーが押されていない時，マシンの角速度を0にする
-            }
+            if (Input.GetKey(KeyCode.LeftArrow)) { isRightTurning = true; }
+            else{ isRightTurning = false; }
 
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                rigidbody.AddTorque(new Vector3(0, rotation, 0)); //→キーが押されたとき，マシンは反時計回りのトルクを受ける
-            }
-            if (Input.GetKeyUp(KeyCode.RightArrow))
-            {
-                rigidbody.angularVelocity = new Vector3(); //→キーが押されていない時，マシンの角速度を0にする
-            }
-
-            //最大角速度でクリッピング
-            var angVel = Mathf.Clamp(rigidbody.angularVelocity.magnitude, minAngVel, maxAngVel);
-            rigidbody.angularVelocity = angVel * rigidbody.angularVelocity.normalized;
+            if (Input.GetKey(KeyCode.RightArrow)) { isLeftTurning = true; }
+            else{ isLeftTurning = false; }
 
             //マシンのhpが0以下になった際の処理(ゲームオーバー、爆発など) 1度だけ実行される
             if(HP <= 0.0f && !isMachineDestroyed)
