@@ -7,6 +7,7 @@ using UnityEngine.AddressableAssets;
 public class MachineBehavior : MonoBehaviourPunCallbacks
 {
     Camera maincamera;
+    public int machineID;
     public GameObject EquippedItem;
     public float forward = 80;
     public float back;
@@ -21,40 +22,18 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     public float maxChargeLv = 100.0f;
     public float dash = 5; //ダッシュ時の倍率
 
-    public float charge = 0f; //percent
-
     new Rigidbody rigidbody;
-    new GameObject machine;
 
     bool isMachineDestroyed = false;
     bool isCharging = false;
     bool isRightTurning = false;
     bool isLeftTurning = false;
 
-    public struct MachineData
-    {
-        public string path;
-        public Vector3 scale;
-    }
-
     // Start is called before the first frame update
     void Start()
     {
         rigidbody = this.GetComponent<Rigidbody>();
         rigidbody.position = new Vector3(rigidbody.position.x, floating, rigidbody.position.z);
-        // 引き継いだデータを取得
-        var id = GameObject.FindWithTag("SharedParams").GetComponent<SharedParams>().Get<MachineSelectData>().id;
-        // Debug.Log(id);
-        // マシンを生成
-        var machineDatas = new Dictionary<int, MachineData>()
-        {
-            {0, new MachineData(){ path = "Assets/Aircrafts/Prefabs/Aircraft 1.prefab", scale = new Vector3(0.02f, 0.02f, 0.02f) }},
-            {1, new MachineData(){ path = "Assets/Aircrafts/Prefabs/Aircraft 21.prefab", scale = new Vector3(0.02f, 0.02f, 0.02f) }},
-            {2, new MachineData(){ path = "Assets/Aircrafts/Prefabs/Aircraft 22.prefab", scale = new Vector3(0.02f, 0.02f, 0.02f) }}
-        };
-        var op = Addressables.InstantiateAsync(machineDatas[id].path, this.transform.position, this.transform.rotation, this.transform);
-        machine = op.WaitForCompletion();
-        machine.transform.localScale = machineDatas[id].scale;
 
         // HPの最大値を覚えておく
         maxHP = HP;
