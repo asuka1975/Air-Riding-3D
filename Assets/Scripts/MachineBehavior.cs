@@ -159,7 +159,7 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
             {
                 try
                 {
-                    this.EquippedItem.GetComponent<IITemUsable>().Use();
+                    this.EquippedItem.GetComponent<IItemUsable>().Use();
                 }
                 catch(UnassignedReferenceException)
                 {
