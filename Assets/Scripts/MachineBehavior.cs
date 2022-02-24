@@ -1,24 +1,36 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-public class MachineBehavior : MonoBehaviour
+public class MachineBehavior : MonoBehaviourPunCallbacks
 {
+    Camera maincamera;
     public GameObject EquippedItem;
     public float forward;
-    public float rotation;
-    public float floating = 0.5f;
-    public float minAngVel = 0;
-    public float maxAngVel = 1;
     public float chargeRate; //rate of increase per second
     public bool isMachineDestroyed = false;
     public float HP ;
+    public float back;
+
+    public float rotateSpeed = 100;
+    public float floating = 1.5f;
+    public float HP = 100f;
+    public float maxHP;
+    public float defaultSpeed;
+    public float maxChargeLv = 100.0f;
     public float dash = 5; //ダッシュ時の倍率
     public float charge = 0f; //percent
 
     new Rigidbody rigidbody;
     new GameObject machine;
+
+    bool isMachineDestroyed = false;
+    bool isCharging = false;
+    bool isRightTurning = false;
+    bool isLeftTurning = false;
+    float chargeLv = 0.0f;
 
     public struct MachineData
     {
@@ -72,7 +84,42 @@ public class MachineBehavior : MonoBehaviour
 
         // マシンのパラメータをセット
         SetMachineParams(machineDatas[id]);
+        // HPの最大値を覚えておく
+        maxHP = HP;
+        maincamera = Camera.main;
+        //メインカメラのTargetObjectに自機を指定する
+        if(photonView.IsMine)
+        {
+            maincamera.GetComponent<CameraController_machine>().TargetObject = this.gameObject;
+        }
     }
+
+    void FixedUpdate()
+    {
+        rigidbody = this.GetComponent<Rigidbody>();
+        var position = rigidbody.position;
+        var direction = transform.forward;
+
+        Debug.Log(transform.forward.normalized * defaultSpeed);
+        rigidbody.AddForce(transform.forward.normalized * defaultSpeed, ForceMode.Acceleration); //常に前進方向に力を加える
+
+        if(isCharging)
+        {
+            rigidbody.AddForce(-direction * chargeLv / 10); //ブレーキ
+        }
+        if(isRightTurning)
+        {
+            rigidbody.AddTorque(new Vector3(0, -rotateSpeed, 0), ForceMode.Acceleration);
+        }
+        if(isLeftTurning)
+        {
+            rigidbody.AddTorque(new Vector3(0, rotateSpeed, 0), ForceMode.Acceleration);
+        }
+        if(!isLeftTurning && !isRightTurning)
+        {
+        }
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -83,77 +130,74 @@ public class MachineBehavior : MonoBehaviour
 
         // Debug.Log(charge);
 
-        rigidbody.AddForce(direction); //常に前進方向に力を加える
-
-        if (Input.GetKey(KeyCode.Space)) //スペースキーが押されたとき
+        if(photonView.IsMine)
         {
-            if (charge <= 100)
+            if (Input.GetKey(KeyCode.Space) ^ Input.GetKey(KeyCode.UpArrow) ^ Input.GetKey(KeyCode.DownArrow)) //スペースキーが押されたとき
             {
-                charge += chargeRate * Time.deltaTime; //時間に応じてチャージ
+                Debug.Log("チャージ中");
+                Debug.Log(chargeLv);
+                isCharging = true;
+
+                if (chargeLv <= maxChargeLv)
+                {
+                    chargeLv += chargeRate * Time.deltaTime; //時間に応じてチャージ
+                }
             }
-            rigidbody.AddForce(-direction * charge/100); //徐々にブレーキ
-        }
-        else
-        {
-            //スペースキーが押されていない時，マシンが浮く
-            rigidbody.position = new Vector3(position.x, floating, position.z);
-
-            rigidbody.AddForce(direction*charge*dash); //チャージに応じてダッシュ
-            charge = 0; //reset
-        }
-
-        if (Input.GetKey(KeyCode.DownArrow)) //↓キーが押されたとき
-        {
-
-        }
-
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            rigidbody.AddTorque(new Vector3(0, -rotation, 0)); //←キーが押されたとき，マシンは時計回りのトルクを受ける
-        }
-        if (Input.GetKeyUp(KeyCode.LeftArrow))
-        {
-            rigidbody.angularVelocity = new Vector3(); //←キーが押されていない時，マシンの角速度を0にする
-        }
-
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            rigidbody.AddTorque(new Vector3(0, rotation, 0)); //→キーが押されたとき，マシンは反時計回りのトルクを受ける
-        }
-        if (Input.GetKeyUp(KeyCode.RightArrow))
-        {
-            rigidbody.angularVelocity = new Vector3(); //→キーが押されていない時，マシンの角速度を0にする
-        }
-
-        //最大角速度でクリッピング
-        var angVel = Mathf.Clamp(rigidbody.angularVelocity.magnitude, minAngVel, maxAngVel);
-        rigidbody.angularVelocity = angVel * rigidbody.angularVelocity.normalized;
-
-        //マシンのhpが0以下になった際の処理(ゲームオーバー、爆発など) 1度だけ実行される
-        if(HP <= 0.0f && !isMachineDestroyed)
-        {
-             MachineDestroyedEvent();
-        }
-
-        foreach (Transform n in this.gameObject.transform)
-        {
-            if (n.name.Contains("Equipped"))
+            else
             {
-                this.EquippedItem = n.gameObject;
-            }
-        } 
+                isCharging = false;
+                //スペースキーが押されていない時，マシンが浮く
+                rigidbody.position = new Vector3(position.x, floating, position.z);
 
-        try
-        {
-            this.EquippedItem.GetComponent<UseEquippedItem>().Use();
-        }
-        catch(UnassignedReferenceException)
-        {
-            Debug.Log("*** アイテムが装備されていません");
-        }
-        catch(MissingReferenceException)
-        {
-            Debug.Log("*** アイテムがすでに削除されています");
+                //rigidbody.AddForce(direction*charge*dash); //チャージに応じてダッシュ
+                rigidbody.AddForce(transform.forward * chargeLv * dash, ForceMode.Impulse);
+                chargeLv = 0.0f;
+            }
+
+            if (Input.GetKey(KeyCode.LeftArrow)) { isRightTurning = true; }
+            else{ isRightTurning = false; }
+
+            if (Input.GetKey(KeyCode.RightArrow)) { isLeftTurning = true; }
+            else{ isLeftTurning = false; }
+
+            //マシンのhpが0以下になった際の処理(ゲームオーバー、爆発など) 1度だけ実行される
+            if(HP <= 0.0f && !isMachineDestroyed)
+            {
+                MachineDestroyedEvent();
+            }
+
+            // 最大HPでクリッピング
+            HP = Mathf.Clamp(HP, 0, maxHP);
+
+            //マシンのhpが0以下になった際の処理(ゲームオーバー、爆発など) 1度だけ実行される
+            if(HP <= 0.0f && !isMachineDestroyed)
+            {
+                 MachineDestroyedEvent();
+            }
+
+            foreach (Transform n in this.gameObject.transform)
+            {
+                if (n.name.Contains("Equipped"))
+                {
+                    this.EquippedItem = n.gameObject;
+                }
+            }
+
+            if (Input.GetKeyUp(KeyCode.W) ^ Input.GetKeyUp(KeyCode.S))
+            {
+                try
+                {
+                    this.EquippedItem.GetComponent<IITemUsable>().Use();
+                }
+                catch(UnassignedReferenceException)
+                {
+                    Debug.Log("*** アイテムが装備されていません");
+                }
+                catch(MissingReferenceException)
+                {
+                    Debug.Log("*** アイテムがすでに削除されています");
+                }
+            }
         }
     }
 
@@ -171,7 +215,7 @@ public class MachineBehavior : MonoBehaviour
     {
         forward = m.forward;
         chargeRate = m.chargeRate;
-        rotation = m.rotation;
+        rotateSpeed = m.rotation;
         HP = m.hp;
     }
 }

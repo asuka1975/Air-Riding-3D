@@ -5,8 +5,8 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 public struct ItemData{
-    public int forward;
-    public int up;
+    public float forward;
+    public float up;
     public Vector3 rotation;
     public Vector3 scale;
 }
@@ -18,17 +18,17 @@ public class ItemAcquisition : MonoBehaviour
         itemDatas = new Dictionary<string, ItemData>()
         {
             {"CannonItem(Clone)", new ItemData(){
-                forward = 5, up = 1, 
+                forward = 1, up = 1, 
                 rotation = new Vector3(0, 90, 0), 
-                scale =  new Vector3(0.05f, 0.05f, 0.05f)
+                scale =  new Vector3(0.035f, 0.035f, 0.035f)
             }},
             {"BombItem(Clone)", new ItemData(){
-                forward = -5, up = 0, 
+                forward = -3, up = 0, 
                 rotation = new Vector3(0, 0, 0), 
                 scale =  new Vector3(1, 1, 1)
             }},
             {"RecoverItem(Clone)", new ItemData(){
-                forward = 0, up = 2, 
+                forward = 0, up = 0, 
                 rotation = new Vector3(0, 0, 0), 
                 scale =  new Vector3(1, 1, 1)
             }}
@@ -55,6 +55,15 @@ public class ItemAcquisition : MonoBehaviour
             GameObject equipped_item = op.WaitForCompletion();
             equipped_item.transform.localScale = itemDatas[name].scale;
             equipped_item.transform.Rotate(itemDatas[name].rotation);
+            var usable = equipped_item.GetComponent<IITemUsable>();
+            usable.OnUsed += (sender, e) =>
+            {
+                MonoBehaviour item = sender as MonoBehaviour;
+                if (item != null)
+                {
+                    Destroy(item.gameObject);
+                }
+            };
             Destroy(gameObject);
         }
     }
