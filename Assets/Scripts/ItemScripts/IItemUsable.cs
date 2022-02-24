@@ -1,6 +1,6 @@
 ﻿using System;
 
-public interface IITemUsable
+public interface IItemUsable
 {
     void Use();
 
