@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 5956257852727736914}
   - component: {fileID: 1898048726201463287}
   m_Layer: 0
-  m_Name: EmptyMachine
+  m_Name: Machine2
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea140a368a303a186af5583dfaea0baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  machineID: 0
+  machineID: 2
   EquippedItem: {fileID: 0}
   forward: 50
   back: 0
