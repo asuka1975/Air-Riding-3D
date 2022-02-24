@@ -60,7 +60,7 @@ public class ItemAcquisition : MonoBehaviour
                 MonoBehaviour item = sender as MonoBehaviour;
                 if (item != null)
                 {
-                    Destroy(item.gameObject);
+                    PhotonNetwork.Destroy(item.gameObject);
                 }
             };
             Destroy(gameObject);
