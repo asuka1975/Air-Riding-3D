@@ -16,7 +16,6 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
 
     public float rotateSpeed = 100;
     public float floating = 1.5f;
-    public float HP = 100f;
     public float maxHP;
     public float defaultSpeed;
     public float maxChargeLv = 100.0f;
@@ -26,7 +25,6 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     new Rigidbody rigidbody;
     new GameObject machine;
 
-    bool isMachineDestroyed = false;
     bool isCharging = false;
     bool isRightTurning = false;
     bool isLeftTurning = false;
