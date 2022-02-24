@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -46,13 +47,11 @@ public class ItemAcquisition : MonoBehaviour
                 }
             }
 
-            var op = Addressables.InstantiateAsync(
-                string.Format("Assets/Prefabs/{0}Equipped.prefab",name.Replace("(Clone)", "")), 
-                other.transform.position + other.transform.forward * itemDatas[name].forward + other.transform.up * itemDatas[name].up,
-                other.transform.rotation,
-                other.transform
-            );
-            GameObject equipped_item = op.WaitForCompletion();
+            var equipped_item = PhotonNetwork.Instantiate(string.Format("{0}Equipped", name.Replace("(Clone)", "")),
+                other.transform.position + other.transform.forward * itemDatas[name].forward +
+                other.transform.up * itemDatas[name].up,
+                other.transform.rotation);
+            equipped_item.transform.parent = other.transform;
             equipped_item.transform.localScale = itemDatas[name].scale;
             equipped_item.transform.Rotate(itemDatas[name].rotation);
             var usable = equipped_item.GetComponent<IItemUsable>();

@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-public class BombEquipped : MonoBehaviour, IItemUsable
+public class BombEquipped : MonoBehaviourPunCallbacks, IItemUsable
 {
     public int maxBombUse = 5;
     public int currentUse = 0;
@@ -35,11 +36,19 @@ public class BombEquipped : MonoBehaviour, IItemUsable
     
     IEnumerator ThroughBomb()
     {
+        var t = transform;
         for (int n = 0; n < 5; n++) {
-            Addressables.InstantiateAsync("Assets/Prefabs/Bomb.prefab", 
-                this.transform.position, this.transform.rotation
-            );
+            photonView.RPC(nameof(CreateBomb), RpcTarget.All, t.position, t.rotation);
+            
             yield return new WaitForSeconds(0.1f);
         }
+    }
+
+    [PunRPC]
+    void CreateBomb(Vector3 position, Quaternion rotation, PhotonMessageInfo info)
+    {
+        Addressables.InstantiateAsync("Assets/Prefabs/Bomb.prefab", 
+            position, rotation
+        );
     }
 }
