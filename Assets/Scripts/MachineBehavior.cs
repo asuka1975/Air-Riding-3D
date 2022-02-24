@@ -32,12 +32,6 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     bool isRightTurning = false;
     bool isLeftTurning = false;
 
-    public struct MachineData
-    {
-        public string path;
-        public Vector3 scale;
-    }
-
     // Start is called before the first frame update
     void Start()
     {
@@ -46,16 +40,6 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
         // 引き継いだデータを取得
         var id = GameObject.FindWithTag("SharedParams").GetComponent<SharedParams>().Get<MachineSelectData>().id;
         // Debug.Log(id);
-        // マシンを生成
-        var machineDatas = new Dictionary<int, MachineData>()
-        {
-            {0, new MachineData(){ path = "Assets/Aircrafts/Prefabs/Aircraft 1.prefab", scale = new Vector3(0.02f, 0.02f, 0.02f) }},
-            {1, new MachineData(){ path = "Assets/Aircrafts/Prefabs/Aircraft 21.prefab", scale = new Vector3(0.02f, 0.02f, 0.02f) }},
-            {2, new MachineData(){ path = "Assets/Aircrafts/Prefabs/Aircraft 22.prefab", scale = new Vector3(0.02f, 0.02f, 0.02f) }}
-        };
-        var op = Addressables.InstantiateAsync(machineDatas[id].path, this.transform.position, this.transform.rotation, this.transform);
-        machine = op.WaitForCompletion();
-        machine.transform.localScale = machineDatas[id].scale;
 
         // HPの最大値を覚えておく
         maxHP = HP;
