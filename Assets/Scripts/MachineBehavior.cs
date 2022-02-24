@@ -29,6 +29,8 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     bool isRightTurning = false;
     bool isLeftTurning = false;
 
+    private bool isGameStarted = false;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -78,6 +80,11 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
+        if (!isGameStarted && PhotonNetwork.PlayerList.Length == GameObject.FindGameObjectsWithTag("Player").Length)
+        {
+            isGameStarted = true;
+        } 
+        
         rigidbody = this.GetComponent<Rigidbody>();
         var position = rigidbody.position;
         var direction = transform.forward * forward;
@@ -113,6 +120,13 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
 
             if (Input.GetKey(KeyCode.RightArrow)) { isLeftTurning = true; }
             else{ isLeftTurning = false; }
+
+            if (isGameStarted && GameObject.FindGameObjectsWithTag("Player").Length == 1)
+            {
+                FinishedGameData data = new FinishedGameData(){ is_win = true };
+                StartCoroutine(SceneTransitioner.Transition("Result Scene", data));
+                PhotonNetwork.Destroy(this.gameObject);
+            }
 
             //マシンのhpが0以下になった際の処理(ゲームオーバー、爆発など) 1度だけ実行される
             if(HP <= 0.0f && !isMachineDestroyed)
