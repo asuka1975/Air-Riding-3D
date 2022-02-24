@@ -163,6 +163,7 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
         // ResultSceneへ（破壊されたので負け）
         FinishedGameData data = new FinishedGameData(){ is_win = false };
         StartCoroutine(SceneTransitioner.Transition("Result Scene", data));
+        PhotonNetwork.Destroy(this.gameObject);
     }
 
 }
