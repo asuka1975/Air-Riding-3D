@@ -212,7 +212,7 @@ MonoBehaviour:
   EquippedItem: {fileID: 0}
   forward: 50
   back: 0
-  rotation: 10
+  rotateSpeed: 50
   floating: 0.5
   minVel: 0
   maxVel: 10
@@ -221,8 +221,10 @@ MonoBehaviour:
   chargeRate: 50
   isMachineDestroyed: 0
   HP: 100
+  defaultSpeed: 100
   dash: 5
   charge: 0
+  maxChargeLv: 100
 --- !u!114 &5956257852727736914
 MonoBehaviour:
   m_ObjectHideFlags: 0
