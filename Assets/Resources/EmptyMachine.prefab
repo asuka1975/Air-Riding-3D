@@ -218,6 +218,7 @@ MonoBehaviour:
   HP: 100
   maxHP: 0
   defaultSpeed: 100
+  chargeLv: 0
   maxChargeLv: 100
   dash: 5
   charge: 0
