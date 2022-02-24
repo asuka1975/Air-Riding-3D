@@ -55,6 +55,15 @@ public class ItemAcquisition : MonoBehaviour
             GameObject equipped_item = op.WaitForCompletion();
             equipped_item.transform.localScale = itemDatas[name].scale;
             equipped_item.transform.Rotate(itemDatas[name].rotation);
+            var usable = equipped_item.GetComponent<IITemUsable>();
+            usable.OnUsed += (sender, e) =>
+            {
+                MonoBehaviour item = sender as MonoBehaviour;
+                if (item != null)
+                {
+                    Destroy(item.gameObject);
+                }
+            };
             Destroy(gameObject);
         }
     }
