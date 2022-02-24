@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,8 +24,10 @@ public class SG : MonoBehaviour
     
     private IEnumerator WaitJoinPlayers()
     {
-        while (PhotonNetwork.PlayerList.Length < NetworkManager.maxPlayer)
+        var waitMessage = GameObject.Find("WaitingMessage").GetComponent<TextMeshProUGUI>();
+        for (int i = 0; PhotonNetwork.PlayerList.Length < NetworkManager.maxPlayer; i++, i %= 4)
         {
+            waitMessage.text = "Wait other players" + new string('.', i);
             yield return new WaitForSeconds(2.5f);
         }
         
