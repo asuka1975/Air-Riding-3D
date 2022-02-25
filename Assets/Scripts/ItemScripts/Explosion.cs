@@ -6,15 +6,14 @@ using UnityEngine;
 public class Explosion : MonoBehaviour
 {
     public float ExplosionScale = 10.0f;
-    public int LifeSpan = 50;
-
     public float Damage = 10f;
+    private AudioSource audio_source;
 
-    private int life = 0;
-    
     // Start is called before the first frame update
     void Start()
     {
+        audio_source = GetComponent<AudioSource>();
+        audio_source.Play();
         Vector3 size;
         size = this.gameObject.transform.localScale;
         this.gameObject.transform.localScale =
@@ -24,10 +23,8 @@ public class Explosion : MonoBehaviour
 
     // Update is called once per frame
     void FixedUpdate()
-    {
-        life += 1;
-        
-        if (life > LifeSpan)
+    {        
+        if (!audio_source.isPlaying)
         {
            Destroy(this.gameObject); 
         }
