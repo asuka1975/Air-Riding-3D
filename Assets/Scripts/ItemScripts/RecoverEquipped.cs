@@ -15,9 +15,7 @@ public class RecoverEquipped : MonoBehaviour, IItemUsable
     public void Use()
     {
         Debug.Log("*** RecoverItemを使用 ***");
-        AudioSource audio_source = GetComponentInParent<AudioSource>();
-        Debug.Log(audio_source);
-        audio_source.PlayOneShot(SE_recover, 1.0f);
+        GetComponentInParent<AudioSource>().PlayOneShot(SE_recover, 1.0f);
         GameObject machineObj = transform.parent.gameObject;
         machineObj.GetComponent<MachineBehavior>().HP += 15f;
         
