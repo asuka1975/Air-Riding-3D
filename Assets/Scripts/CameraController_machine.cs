@@ -68,6 +68,7 @@ public class CameraController_machine : MonoBehaviour
         {
             
         }
+        catch (MissingReferenceException e) {}
         
     }
 
