@@ -8,7 +8,7 @@ public class StartGame : MonoBehaviour
     public AudioClip SE_select;
     public void OnClick()
     {
-        StartCoroutine("playAudio", SE_select);
+        StartCoroutine("transMachineSelectScene", SE_select);
     }
 
     IEnumerator transMachineSelectScene(AudioClip audio)
