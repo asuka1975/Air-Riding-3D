@@ -30,37 +30,46 @@ public class CameraController_machine : MonoBehaviour
 
     void Update() 
     {
-        //現在のTargetObjectの位置からカメラの目標位置を取得
-        behind_camera_position = TargetObject.transform.position
-                                 - (TargetObject.transform.forward * LengthFromTarget)
-                                 + (TargetObject.transform.up * HeightFromTarget);
-        right_camera_position = TargetObject.transform.position
-                                 + (TargetObject.transform.forward * SideCameraForwardDistance)
-                                 + (TargetObject.transform.right * SideCameraLateralDistance)
-                                 + (TargetObject.transform.up * SideCameraHeight);
-        left_camera_position = TargetObject.transform.position
-                                 + (TargetObject.transform.forward * SideCameraForwardDistance)
-                                 - (TargetObject.transform.right * SideCameraLateralDistance)
-                                 + (TargetObject.transform.up * SideCameraHeight);
+        try
+        {
+//現在のTargetObjectの位置からカメラの目標位置を取得
+            behind_camera_position = TargetObject.transform.position
+                                     - (TargetObject.transform.forward * LengthFromTarget)
+                                     + (TargetObject.transform.up * HeightFromTarget);
+            right_camera_position = TargetObject.transform.position
+                                    + (TargetObject.transform.forward * SideCameraForwardDistance)
+                                    + (TargetObject.transform.right * SideCameraLateralDistance)
+                                    + (TargetObject.transform.up * SideCameraHeight);
+            left_camera_position = TargetObject.transform.position
+                                   + (TargetObject.transform.forward * SideCameraForwardDistance)
+                                   - (TargetObject.transform.right * SideCameraLateralDistance)
+                                   + (TargetObject.transform.up * SideCameraHeight);
 
-        //カメラ位置ベクトルをターゲットオブジェクト座標系に変換したベクトルにより, カメラのTargetObjectに対する位置がわかる
-        Vector3 camera_position_vec = (this.transform.position - TargetObject.transform.position).normalized;
-        if(TargetObject.transform.InverseTransformVector(camera_position_vec).x > 0f) 
-        {
-            is_camera_located_right_side = true; 
+            //カメラ位置ベクトルをターゲットオブジェクト座標系に変換したベクトルにより, カメラのTargetObjectに対する位置がわかる
+            Vector3 camera_position_vec = (this.transform.position - TargetObject.transform.position).normalized;
+            if(TargetObject.transform.InverseTransformVector(camera_position_vec).x > 0f) 
+            {
+                is_camera_located_right_side = true; 
+            }
+            else 
+            {
+                is_camera_located_right_side = false; 
+            }
+            if(Math.Abs(TargetObject.transform.InverseTransformVector(camera_position_vec).x) < 0.2f)
+            {
+                is_camera_located_behind = true;
+            }
+            else
+            {
+                is_camera_located_behind = false;
+            }
         }
-        else 
+        catch (NullReferenceException e)
         {
-            is_camera_located_right_side = false; 
+            
         }
-        if(Math.Abs(TargetObject.transform.InverseTransformVector(camera_position_vec).x) < 0.2f)
-        {
-            is_camera_located_behind = true;
-        }
-        else
-        {
-            is_camera_located_behind = false;
-        }
+        catch (MissingReferenceException e) {}
+        
     }
 
     // Update is called once per frame
@@ -93,6 +102,10 @@ public class CameraController_machine : MonoBehaviour
         else{
             this.transform.position = Vector3.Lerp(this.transform.position, behind_camera_position, CameraSpeed * Time.deltaTime );
         }
-        this.transform.LookAt(TargetObject.transform);
+
+        if (TargetObject != null)
+        {
+            this.transform.LookAt(TargetObject.transform);
+        }
     }
 }
