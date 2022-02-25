@@ -4,6 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
+struct ControllerState
+{
+    public bool Charging;
+    public bool LeftTurning;
+    public bool RightTurning;
+}
+
 public class MachineBehavior : MonoBehaviourPunCallbacks
 {
     Camera maincamera;
@@ -25,9 +32,8 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     new Rigidbody rigidbody;
 
     bool isMachineDestroyed = false;
-    bool isCharging = false;
-    bool isRightTurning = false;
-    bool isLeftTurning = false;
+
+    private ControllerState State;
 
     private bool isGameStarted = false;
     
@@ -48,6 +54,11 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
             Debug.Log("*** ", maincamera.GetComponent<CameraController_machine>().TargetObject);
             maincamera.GetComponent<CameraController_machine>().TargetObject = this.gameObject;
         }
+
+        State = new ControllerState()
+        {
+            Charging = false, LeftTurning = false, RightTurning = false
+        };
     }
 
     void FixedUpdate()
@@ -56,23 +67,33 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
         var position = rigidbody.position;
         var direction = transform.forward;
 
-        Debug.Log(transform.forward.normalized * defaultSpeed);
         rigidbody.AddForce(transform.forward.normalized * defaultSpeed, ForceMode.Acceleration); //常に前進方向に力を加える
 
-        if(isCharging)
+        if (State.Charging) //スペースキー、↕キーが押されているとき
         {
-            rigidbody.AddForce(-direction * chargeLv / 10); //ブレーキ
+            if (chargeLv <= maxChargeLv)
+            {
+                chargeLv += chargeRate * Time.deltaTime; //時間に応じてチャージ
+            }
         }
-        if(isRightTurning)
+        else
+        {
+            //スペースキーが押されていない時，マシンが浮く
+            rigidbody.position = new Vector3(position.x, floating, position.z);
+
+            //rigidbody.AddForce(direction*charge*dash); //チャージに応じてダッシュ
+            rigidbody.AddForce(transform.forward * chargeLv * dash, ForceMode.Impulse);
+            chargeLv = 0.0f;
+        }
+        
+        if(State.LeftTurning)
         {
             rigidbody.AddTorque(new Vector3(0, -rotateSpeed, 0), ForceMode.Acceleration);
         }
-        if(isLeftTurning)
+        
+        if(State.RightTurning)
         {
             rigidbody.AddTorque(new Vector3(0, rotateSpeed, 0), ForceMode.Acceleration);
-        }
-        if(!isLeftTurning && !isRightTurning)
-        {
         }
     }
 
@@ -85,41 +106,12 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
             isGameStarted = true;
         } 
         
-        rigidbody = this.GetComponent<Rigidbody>();
-        var position = rigidbody.position;
-        var direction = transform.forward * forward;
-
-        // Debug.Log(charge);
-
         if(photonView.IsMine)
         {
-            if (Input.GetKey(KeyCode.Space) ^ Input.GetKey(KeyCode.UpArrow) ^ Input.GetKey(KeyCode.DownArrow)) //スペースキーが押されたとき
-            {
-                Debug.Log("チャージ中");
-                Debug.Log(chargeLv);
-                isCharging = true;
-
-                if (chargeLv <= maxChargeLv)
-                {
-                    chargeLv += chargeRate * Time.deltaTime; //時間に応じてチャージ
-                }
-            }
-            else
-            {
-                isCharging = false;
-                //スペースキーが押されていない時，マシンが浮く
-                rigidbody.position = new Vector3(position.x, floating, position.z);
-
-                //rigidbody.AddForce(direction*charge*dash); //チャージに応じてダッシュ
-                rigidbody.AddForce(transform.forward * chargeLv * dash, ForceMode.Impulse);
-                chargeLv = 0.0f;
-            }
-
-            if (Input.GetKey(KeyCode.LeftArrow)) { isRightTurning = true; }
-            else{ isRightTurning = false; }
-
-            if (Input.GetKey(KeyCode.RightArrow)) { isLeftTurning = true; }
-            else{ isLeftTurning = false; }
+            State.Charging = Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) ||
+                             Input.GetKey(KeyCode.DownArrow);
+            State.LeftTurning = Input.GetKey(KeyCode.LeftArrow);
+            State.RightTurning = Input.GetKey(KeyCode.RightArrow);
 
             if (isGameStarted && GameObject.FindGameObjectsWithTag("Player").Length == 1)
             {
@@ -151,11 +143,11 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
                 }
             }
 
-            if (Input.GetKeyUp(KeyCode.W) ^ Input.GetKeyUp(KeyCode.S))
+            if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S))
             {
                 try
                 {
-                    this.EquippedItem.GetComponent<IITemUsable>().Use();
+                    this.EquippedItem.GetComponent<IItemUsable>().Use();
                 }
                 catch(UnassignedReferenceException)
                 {

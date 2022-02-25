@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-public class CannonEquipped : MonoBehaviour, IITemUsable
+public class CannonEquipped : MonoBehaviour, IItemUsable
 {
     public int maxCannonUse = 5;
     public int currentUse = 0;
