@@ -11,7 +11,7 @@ public class StartGame : MonoBehaviour
         StartCoroutine("playAudio", SE_select);
     }
 
-    IEnumerator playAudio(AudioClip audio)
+    IEnumerator transMachineSelectScene(AudioClip audio)
     {
         GetComponent<AudioSource>().PlayOneShot(audio);
         yield return new WaitForSeconds(audio.length);
