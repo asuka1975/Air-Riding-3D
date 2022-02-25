@@ -35,6 +35,8 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
 
     private ControllerState State;
 
+    private bool isGameStarted = false;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +49,9 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
         //メインカメラのTargetObjectに自機を指定する
         if(photonView.IsMine)
         {
+            Debug.Log("*** ", maincamera);
+            Debug.Log("*** ", maincamera.GetComponent<CameraController_machine>());
+            Debug.Log("*** ", maincamera.GetComponent<CameraController_machine>().TargetObject);
             maincamera.GetComponent<CameraController_machine>().TargetObject = this.gameObject;
         }
 
@@ -96,12 +101,24 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
+        if (!isGameStarted && PhotonNetwork.PlayerList.Length == GameObject.FindGameObjectsWithTag("Player").Length)
+        {
+            isGameStarted = true;
+        } 
+        
         if(photonView.IsMine)
         {
             State.Charging = Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) ||
                              Input.GetKey(KeyCode.DownArrow);
             State.LeftTurning = Input.GetKey(KeyCode.LeftArrow);
             State.RightTurning = Input.GetKey(KeyCode.RightArrow);
+
+            if (isGameStarted && GameObject.FindGameObjectsWithTag("Player").Length == 1)
+            {
+                FinishedGameData data = new FinishedGameData(){ is_win = true };
+                StartCoroutine(SceneTransitioner.Transition("Result Scene", data));
+                PhotonNetwork.Destroy(this.gameObject);
+            }
 
             //マシンのhpが0以下になった際の処理(ゲームオーバー、爆発など) 1度だけ実行される
             if(HP <= 0.0f && !isMachineDestroyed)
@@ -152,6 +169,7 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
         // ResultSceneへ（破壊されたので負け）
         FinishedGameData data = new FinishedGameData(){ is_win = false };
         StartCoroutine(SceneTransitioner.Transition("Result Scene", data));
+        PhotonNetwork.Destroy(this.gameObject);
     }
 
 }
