@@ -9,6 +9,7 @@ class MachineSelectData {
 }
 public class SG : MonoBehaviour
 {
+    public AudioClip SE_select;
     void Start()
     {
         Button btn = GetComponent<Button>();
@@ -18,9 +19,14 @@ public class SG : MonoBehaviour
     {
         var machine = GameObject.Find("MachineSelectManager");
         var id = machine.GetComponent<MachineSelectManager>().id;
-        var str = "Slelected machine ID is " + id.ToString();
-        Debug.Log(str);
+        Debug.Log("Selected machine ID is " + id.ToString());
         MachineSelectData data = new MachineSelectData(){ id = id };
+        StartCoroutine(transCityTrialScene(SE_select, data));
+    }
+    IEnumerator transCityTrialScene(AudioClip audio, MachineSelectData data)
+    {
+        GetComponent<AudioSource>().PlayOneShot(audio);
+        yield return new WaitForSeconds(audio.length);
         StartCoroutine(SceneTransitioner.Transition("CityTrial", data));
     }
 }
