@@ -17,6 +17,8 @@ public class MachineCreator : MonoBehaviour
         {
             yield return new WaitForSeconds(0.1f);
         }
+
+        yield return new WaitForSeconds(0.2f);
         
         //生成するマシンのIDを取得
         var id = GameObject.FindWithTag("SharedParams").GetComponent<SharedParams>().Get<MachineSelectData>().id;
