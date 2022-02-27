@@ -74,6 +74,7 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
             {
                 chargeLv += chargeRate * Time.deltaTime; //時間に応じてチャージ
             }
+            rigidbody.AddForce(-transform.forward.normalized * defaultSpeed * chargeLv/maxChargeLv, ForceMode.Acceleration); //ブレーキ
         }
         else
         {
