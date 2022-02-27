@@ -143,7 +143,7 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
                 }
             }
 
-            if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S))
+            if ((Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S)) && this.EquippedItem != null)
             {
                 try
                 {

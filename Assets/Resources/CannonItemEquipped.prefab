@@ -91,7 +91,7 @@ MeshCollider:
   m_GameObject: {fileID: 1779459467919746275}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -253,7 +253,7 @@ MeshCollider:
   m_GameObject: {fileID: 1779459467919746293}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -349,7 +349,7 @@ MeshCollider:
   m_GameObject: {fileID: 1779459467919746295}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -445,7 +445,7 @@ MeshCollider:
   m_GameObject: {fileID: 1779459467919746301}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -541,7 +541,7 @@ MeshCollider:
   m_GameObject: {fileID: 1779459467919746303}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -557,9 +557,11 @@ GameObject:
   - component: {fileID: 3231819727024897738}
   - component: {fileID: 3231819727024897733}
   - component: {fileID: 3231819727024897732}
-  - component: {fileID: -8075693216975836487}
   - component: {fileID: 8619026136607277762}
+  - component: {fileID: -8075693216975836487}
   - component: {fileID: 7950770281396774745}
+  - component: {fileID: -3779121250058947270}
+  - component: {fileID: 8408730175309091079}
   m_Layer: 0
   m_Name: CannonItemEquipped
   m_TagString: Untagged
@@ -631,6 +633,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8619026136607277762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3231819727024897734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d283d0e33c35440b280e387367a05736, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-8075693216975836487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -645,18 +659,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxCannonUse: 5
   currentUse: 0
---- !u!114 &8619026136607277762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3231819727024897734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d283d0e33c35440b280e387367a05736, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7950770281396774745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -675,7 +677,37 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: -3779121250058947270}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &-3779121250058947270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3231819727024897734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 1
+  m_UseLocal: 1
+--- !u!114 &8408730175309091079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3231819727024897734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a565635e67798b64aafad8101df8e055, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentID: 0
