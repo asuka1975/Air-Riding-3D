@@ -9,8 +9,8 @@ class FinishedGameData {
 public class TimeManager : MonoBehaviour
 {
     public int timeLimit = 180;
-
     private float _startTime = 0.0f;
+    private bool is_scene_translated = false;
     
     // Start is called before the first frame update
     void Start()
@@ -22,13 +22,13 @@ public class TimeManager : MonoBehaviour
     void Update()
     {
         var now = Time.time;
-        if (now - _startTime > timeLimit)
+        if (now - _startTime > timeLimit && !is_scene_translated)
         {
             // ResultSceneへ（生き残ったので勝ち）
             Debug.Log("Game Finished!");
             FinishedGameData data = new FinishedGameData(){ is_win = true };
             StartCoroutine(SceneTransitioner.Transition("Result Scene", data));
-            Destroy(gameObject);
+            is_scene_translated = true;
         }
     }
 
