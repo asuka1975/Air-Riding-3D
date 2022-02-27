@@ -13,11 +13,26 @@ public class DynamicColliderAttacher : MonoBehaviourPunCallbacks
 
     IEnumerator WaitState()
     {
-        var players = PhotonNetwork.PlayerList;
-        while (players.Length<=NetworkManager.maxPlayer)
+        GameObject[] playersObj = GameObject.FindGameObjectsWithTag("Player");
+        while (playersObj.Length < NetworkManager.maxPlayer || !IsDynamicColliderAllAttached())
         {
-            Debug.Log("!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            Debug.Log("!!!!S");
+            foreach(var p in playersObj)
+            {
+                if(p.GetComponent<PhotonView>().IsMine || p.GetComponent<DynamicCollider>() != null) continue;
+                p.AddComponent<DynamicCollider>();
+            }
+
             yield return new WaitForSeconds(0.1f);
+            playersObj = GameObject.FindGameObjectsWithTag("Player");
         }
+    }
+
+    bool IsDynamicColliderAllAttached() {
+        GameObject[] playersObj = GameObject.FindGameObjectsWithTag("Player");
+        foreach(var p in playersObj) {
+            if(p.GetComponent<DynamicCollider>() == null) return false;
+        }
+        return true;
     }
 }
