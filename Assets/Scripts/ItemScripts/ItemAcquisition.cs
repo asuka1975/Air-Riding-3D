@@ -37,16 +37,16 @@ public class ItemAcquisition : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && other.GetComponent<PhotonView>().IsMine)
         {
             foreach (Transform n in other.gameObject.transform)
             {
                 if (n.name.Contains("Equipped"))
                 {
-                    Destroy(n.gameObject);
+                    PhotonNetwork.Destroy(n.gameObject);
                 }
             }
-
+            
             var equipped_item = PhotonNetwork.Instantiate(string.Format("{0}Equipped", name.Replace("(Clone)", "")),
                 other.transform.position + other.transform.forward * itemDatas[name].forward +
                 other.transform.up * itemDatas[name].up,
