@@ -223,7 +223,6 @@ MonoBehaviour:
   chargeLv: 0
   maxChargeLv: 100
   dash: 5
-  charge: 0
 --- !u!114 &5956257852727736914
 MonoBehaviour:
   m_ObjectHideFlags: 0

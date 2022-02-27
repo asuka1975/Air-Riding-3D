@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RecoverEquipped : MonoBehaviour, IITemUsable
+public class RecoverEquipped : MonoBehaviour, IItemUsable
 {
     // Start is called before the first frame update
     void Start()

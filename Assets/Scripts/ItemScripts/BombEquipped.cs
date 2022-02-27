@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-public class BombEquipped : MonoBehaviour, IITemUsable
+public class BombEquipped : MonoBehaviour, IItemUsable
 {
     public int maxBombUse = 5;
     public int currentUse = 0;
