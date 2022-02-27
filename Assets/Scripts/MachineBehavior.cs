@@ -63,6 +63,7 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
 
     void FixedUpdate()
     {
+        if(!photonView.IsMine) return ;
         rigidbody = this.GetComponent<Rigidbody>();
         var position = rigidbody.position;
         var direction = transform.forward;
