@@ -13,25 +13,27 @@ struct ControllerState
 
 public class MachineBehavior : MonoBehaviourPunCallbacks
 {
+    // 変数色々
     Camera maincamera;
     public int machineID;
     public GameObject EquippedItem;
+    new Rigidbody rigidbody;
 
+    // マシンの基本パラメータ
     public float HP = 100f;
     public float maxHP;
     public float defaultSpeed;
     public float rotateSpeed = 100;
     public float floating = 1.5f;
 
+    // チャージ関連
     public float chargeRate = 50f; //rate of increase per second
     public float chargeLv = 0.0f;
     public float maxChargeLv = 100.0f;
     public float dash = 5; //ダッシュ時の倍率
 
-    new Rigidbody rigidbody;
-
-    private ControllerState State;
-
+    // 状態判定用
+    private ControllerState KeyState;
     private bool isGameStarted = false;
     bool isMachineDestroyed = false;
     
@@ -53,7 +55,7 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
             maincamera.GetComponent<CameraController_machine>().TargetObject = this.gameObject;
         }
 
-        State = new ControllerState()
+        KeyState = new ControllerState()
         {
             Charging = false, LeftTurning = false, RightTurning = false
         };
@@ -66,7 +68,7 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
 
         rigidbody.AddForce(transform.forward.normalized * defaultSpeed, ForceMode.Acceleration); //常に前進方向に力を加える
 
-        if (State.Charging) //スペースキー、↕キーが押されているとき
+        if (KeyState.Charging) //スペースキー、↕キーが押されているとき
         {
             if (chargeLv <= maxChargeLv)
             {
@@ -82,12 +84,12 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
             chargeLv = 0.0f;
         }
         
-        if(State.LeftTurning)
+        if(KeyState.LeftTurning)
         {
             rigidbody.AddTorque(new Vector3(0, -rotateSpeed, 0), ForceMode.Acceleration);
         }
         
-        if(State.RightTurning)
+        if(KeyState.RightTurning)
         {
             rigidbody.AddTorque(new Vector3(0, rotateSpeed, 0), ForceMode.Acceleration);
         }
@@ -104,10 +106,10 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
         
         if(photonView.IsMine)
         {
-            State.Charging = Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) ||
+            KeyState.Charging = Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) ||
                              Input.GetKey(KeyCode.DownArrow);
-            State.LeftTurning = Input.GetKey(KeyCode.LeftArrow);
-            State.RightTurning = Input.GetKey(KeyCode.RightArrow);
+            KeyState.LeftTurning = Input.GetKey(KeyCode.LeftArrow);
+            KeyState.RightTurning = Input.GetKey(KeyCode.RightArrow);
 
             if (isGameStarted && GameObject.FindGameObjectsWithTag("Player").Length == 1)
             {
