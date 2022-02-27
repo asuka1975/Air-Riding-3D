@@ -24,13 +24,13 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     private float maxHP;
     public float defaultSpeed;
     public float rotateSpeed = 100;
-    private float floating = 1.5f;
+    private float floating = 0.5f;
 
     // チャージ関連
-    public float chargeRate = 50f; //rate of increase per second
+    public float chargeRate; //rate of increase per second
     public float chargeLv;
     public float maxChargeLv = 100.0f;
-    public float dash = 5; //ダッシュ時の倍率
+    public float dash; //ダッシュ時の倍率
 
     // 状態判定用
     private ControllerState KeyState;
