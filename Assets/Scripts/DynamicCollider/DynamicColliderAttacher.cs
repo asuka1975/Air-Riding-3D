@@ -21,6 +21,7 @@ public class DynamicColliderAttacher : MonoBehaviourPunCallbacks
             {
                 if(p.GetComponent<PhotonView>().IsMine || p.GetComponent<DynamicCollider>() != null) continue;
                 p.AddComponent<DynamicCollider>();
+                p.GetComponent<BoxCollider>().isTrigger = true;
             }
 
             yield return new WaitForSeconds(0.1f);
