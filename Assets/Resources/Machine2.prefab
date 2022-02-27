@@ -212,13 +212,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   machineID: 2
   EquippedItem: {fileID: 0}
-  HP: 100
-  defaultSpeed: 100
-  rotateSpeed: 50
-  chargeRate: 50
+  HP: 200
+  defaultSpeed: 50
+  rotate: 0.7
+  chargeRate: 25
   chargeLv: 0
   maxChargeLv: 100
-  dash: 5
+  dash: 10
 --- !u!114 &5956257852727736914
 MonoBehaviour:
   m_ObjectHideFlags: 0
