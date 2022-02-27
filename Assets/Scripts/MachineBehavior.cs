@@ -23,7 +23,7 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     public float HP = 100f;
     private float maxHP;
     public float defaultSpeed;
-    public float rotateSpeed = 100;
+    public float rotate;
     private float floating = 0.5f;
 
     // チャージ関連
@@ -87,12 +87,12 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
         
         if(KeyState.LeftTurning)
         {
-            rigidbody.AddTorque(new Vector3(0, -rotateSpeed, 0), ForceMode.Acceleration);
+            transform.Rotate (0, -rotate, 0, Space.World);
         }
         
         if(KeyState.RightTurning)
         {
-            rigidbody.AddTorque(new Vector3(0, rotateSpeed, 0), ForceMode.Acceleration);
+            transform.Rotate (0, rotate, 0, Space.World);
         }
     }
 

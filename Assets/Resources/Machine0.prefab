@@ -213,8 +213,8 @@ MonoBehaviour:
   machineID: 0
   EquippedItem: {fileID: 0}
   HP: 100
-  defaultSpeed: 50
-  rotateSpeed: 50
+  defaultSpeed: 75
+  rotate: 1
   chargeRate: 50
   chargeLv: 0
   maxChargeLv: 100
