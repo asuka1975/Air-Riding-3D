@@ -16,26 +16,24 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     Camera maincamera;
     public int machineID;
     public GameObject EquippedItem;
-    public float forward = 80;
-    public float back;
 
-    public float rotateSpeed = 100;
-    public float floating = 1.5f;
-    public float chargeRate = 50f; //rate of increase per second
     public float HP = 100f;
     public float maxHP;
     public float defaultSpeed;
+    public float rotateSpeed = 100;
+    public float floating = 1.5f;
+
+    public float chargeRate = 50f; //rate of increase per second
     public float chargeLv = 0.0f;
     public float maxChargeLv = 100.0f;
     public float dash = 5; //ダッシュ時の倍率
 
     new Rigidbody rigidbody;
 
-    bool isMachineDestroyed = false;
-
     private ControllerState State;
 
     private bool isGameStarted = false;
+    bool isMachineDestroyed = false;
     
     // Start is called before the first frame update
     void Start()
@@ -65,7 +63,6 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     {
         rigidbody = this.GetComponent<Rigidbody>();
         var position = rigidbody.position;
-        var direction = transform.forward;
 
         rigidbody.AddForce(transform.forward.normalized * defaultSpeed, ForceMode.Acceleration); //常に前進方向に力を加える
 
@@ -81,7 +78,6 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
             //スペースキーが押されていない時，マシンが浮く
             rigidbody.position = new Vector3(position.x, floating, position.z);
 
-            //rigidbody.AddForce(direction*charge*dash); //チャージに応じてダッシュ
             rigidbody.AddForce(transform.forward * chargeLv * dash, ForceMode.Impulse);
             chargeLv = 0.0f;
         }
