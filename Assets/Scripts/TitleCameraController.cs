@@ -6,6 +6,6 @@ public class TitleCameraController : MonoBehaviour
 {
     void FixedUpdate()
     {
-        this.transform.Rotate(new Vector3(0, 0.3f, 0), Space.World);
+        this.transform.Rotate(new Vector3(0, 0.2f, 0), Space.World);
     }
 }
