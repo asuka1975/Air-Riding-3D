@@ -8,6 +8,7 @@ public class HPMeter : MonoBehaviour
 {
     private Slider _slider;
     private MachineBehavior _player;
+    private float _maxHP;
     
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,7 @@ public class HPMeter : MonoBehaviour
                 if (player.GetComponent<PhotonView>().IsMine)
                 {
                     _player = player.GetComponent<MachineBehavior>();
+                    _maxHP = _player.HP;
                     yield break;
                 }
             }
@@ -38,6 +40,6 @@ public class HPMeter : MonoBehaviour
     void Update()
     {
         if (_player == null) return;
-        _slider.value = _player.HP / 100;
+        _slider.value = _player.HP / _maxHP;
     }
 }
