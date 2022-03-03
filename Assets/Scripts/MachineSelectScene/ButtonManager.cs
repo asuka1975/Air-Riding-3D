@@ -38,7 +38,7 @@ public class ButtonManager : MonoBehaviour
     private void FixedUpdate()
     {
         for (int i = 0; i < 3; i++) {
-            machines[i].transform.Rotate(new Vector3(0, 1.0f, 0), Space.World);
+            machines[i].transform.Rotate(new Vector3(0, 0.5f, 0), Space.World);
         }
     }
 }
