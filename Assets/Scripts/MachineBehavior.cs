@@ -198,12 +198,15 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
                 player.transform);
             var g = op.WaitForCompletion();
             var mesh = g.GetComponent<TextMeshPro>();
-            mesh.text = $"{-damage}";
-            StartCoroutine(DestroyDamageEffect(g));
+            if (mesh != null)
+            {
+                mesh.text = $"{-damage}";
+                StartCoroutine(DamageEffectLifetime(g));
+            }
         }
     }
 
-    IEnumerator DestroyDamageEffect(GameObject effect)
+    IEnumerator DamageEffectLifetime(GameObject effect)
     {
         yield return new WaitForSeconds(1f);
         
