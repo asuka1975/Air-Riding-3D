@@ -10,7 +10,7 @@ public class ItemManager : MonoBehaviour
     {
         int bombItemNum = 30;
         int cannonItemNum = 30;
-        int recoverItemNum = 30;
+        int recoverItemNum = 5;
 
         for (int i = 0; i < bombItemNum; i++) {
             Addressables.InstantiateAsync("Assets/Prefabs/BombItem.prefab", 
