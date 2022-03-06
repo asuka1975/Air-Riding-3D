@@ -8,9 +8,9 @@ public class ItemManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        int bombItemNum = 30;
-        int cannonItemNum = 30;
-        int recoverItemNum = 5;
+        int bombItemNum = 7;
+        int cannonItemNum = 7;
+        int recoverItemNum = 3;
 
         float range = 80; // アイテムの出現する範囲
         float center = 310*0.5f; // CenterPoleの座標 * Filed1のスケール
