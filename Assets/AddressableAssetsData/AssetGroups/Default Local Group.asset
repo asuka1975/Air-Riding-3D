@@ -83,6 +83,10 @@ MonoBehaviour:
       Small.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 21c28c2b2928b004e85b9c5407965955
+    m_Address: Assets/Prefabs/DamageEffect.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 76fdcae5f47a56c038b13938d9296310, type: 2}
   m_SchemaSet:

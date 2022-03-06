@@ -1,6 +1,7 @@
 using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -175,5 +176,37 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     public void CauseDamage(float damage)
     {
         HP -= damage;
+        photonView.RPC(nameof(ShowDamageEffect), RpcTarget.All, damage, photonView.ViewID);
+    }
+
+    [PunRPC]
+    void ShowDamageEffect(float damage, int viewId)
+    {
+        GameObject player = null;
+        foreach (var p in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            if (p.GetPhotonView().ViewID == viewId)
+            {
+                player = p;
+                break;
+            }
+        }
+
+        if (player != null)
+        {
+            var op = Addressables.InstantiateAsync("Assets/Prefabs/DamageEffect.prefab",
+                player.transform);
+            var g = op.WaitForCompletion();
+            var mesh = g.GetComponent<TextMeshPro>();
+            mesh.text = $"{-damage}";
+            StartCoroutine(DestroyDamageEffect(g));
+        }
+    }
+
+    IEnumerator DestroyDamageEffect(GameObject effect)
+    {
+        yield return new WaitForSeconds(1f);
+        
+        Destroy(effect);
     }
 }
