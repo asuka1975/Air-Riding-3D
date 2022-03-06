@@ -172,7 +172,7 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
         PhotonNetwork.Destroy(this.gameObject);
     }
 
-    void CauseDamage(float damage)
+    public void CauseDamage(float damage)
     {
         HP -= damage;
     }

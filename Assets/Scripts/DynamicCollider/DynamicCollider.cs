@@ -17,7 +17,7 @@ public class DynamicCollider : MonoBehaviour
             var reflect = Quaternion.AngleAxis(Random.value * 320 - 160, Vector3.up) * -other.transform.forward;
             otherRigidbody.AddForce(reflect * reflection, ForceMode.Impulse);
 
-            other.GetComponent<MachineBehavior>().HP -= 10f;
+            other.GetComponent<MachineBehavior>().CauseDamage(10.0f);
         }
     }
 }

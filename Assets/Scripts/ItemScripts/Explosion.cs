@@ -37,7 +37,7 @@ public class Explosion : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<MachineBehavior>().HP -= Damage;
+            other.gameObject.GetComponent<MachineBehavior>().CauseDamage(Damage);
         }
     }
 }
