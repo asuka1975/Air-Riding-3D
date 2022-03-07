@@ -657,7 +657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b42af06fc6f3bcb4db838669c2f009ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxCannonUse: 5
+  maxCannonUse: 10
   currentUse: 0
 --- !u!114 &7950770281396774745
 MonoBehaviour:

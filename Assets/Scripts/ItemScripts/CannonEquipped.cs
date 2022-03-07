@@ -7,7 +7,7 @@ using UnityEngine.AddressableAssets;
 
 public class CannonEquipped : MonoBehaviourPunCallbacks, IItemUsable
 {
-    public int maxCannonUse = 5;
+    public int maxCannonUse;
     public int currentUse = 0;
     
     // Start is called before the first frame update
