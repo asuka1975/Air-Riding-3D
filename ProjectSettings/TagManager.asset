@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Shootable
+  - SharedParams
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Minimap
   - Water
   - UI
   - 
