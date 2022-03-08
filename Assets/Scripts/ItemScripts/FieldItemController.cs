@@ -16,11 +16,7 @@ public class FieldItemController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        survivalTimeCount -= Time.deltaTime;
-        if (survivalTimeCount <= 0)
-        {
-            Destroy(this.gameObject);
-        }
+        
     }
 
     private void FixedUpdate()
