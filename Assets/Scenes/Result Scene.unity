@@ -1093,8 +1093,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f7c8b2335e64a0cb9ad979279f337e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGM_win: {fileID: 8300000, guid: 3fd006d465c3c4c159a54e72b875d253, type: 3}
-  BGM_lose: {fileID: 8300000, guid: ff41180f68f144ee0a345c5db207192c, type: 3}
+  BGM_win: {fileID: 8300000, guid: 8ca35ce82b70c49848fa8f8d4a5052ce, type: 3}
+  BGM_lose: {fileID: 8300000, guid: 83edae891d5c944309c6791c8a8bd9b6, type: 3}
 --- !u!1 &1851064076
 GameObject:
   m_ObjectHideFlags: 0
