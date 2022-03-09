@@ -78,4 +78,7 @@ Assets/TutorialInfo/
 Assets/Photon/
 
 # audio files
-Assets/Audio/
+Assets/Audio/Item/bomb.mp3
+Assets/Audio/Item/explosion.mp3
+Assets/Audio/Item/heal01.mp3
+Assets/Audio/Item/launcher1.mp3
