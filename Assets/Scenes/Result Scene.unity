@@ -1094,7 +1094,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BGM_win: {fileID: 8300000, guid: 8ca35ce82b70c49848fa8f8d4a5052ce, type: 3}
-  BGM_lose: {fileID: 8300000, guid: 83edae891d5c944309c6791c8a8bd9b6, type: 3}
+  BGM_lose: {fileID: 8300000, guid: 4e5abc9a90fd54321a27b5a2249f3e8b, type: 3}
 --- !u!1 &1851064076
 GameObject:
   m_ObjectHideFlags: 0
