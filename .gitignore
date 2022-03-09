@@ -78,9 +78,18 @@ Assets/TutorialInfo/
 Assets/Photon/
 
 # audio files
+Assets/Audio/System/button40.mp3
+Assets/Audio/System/button45.mp3
+Assets/Audio/System/button70.mp3
+
 Assets/Audio/BGM/maoTamashi_loop_BGM_neoRock18.mp3
 Assets/Audio/BGM/maoTamashi_loop_BGM_neoRock44.mp3
 Assets/Audio/BGM/maoTamashi_loop_BGM_neoRock51.mp3
 Assets/Audio/BGM/maoTamashi_loop_BGM_neoRock66.mp3
 Assets/Audio/BGM/maoTamashi_loop_BGM_neoRock68.mp3
 Assets/Audio/BGM/maoTamashi_loop_BGM_neoRock77.mp3
+
+Assets/Audio/Jingle/maoTamashi_fire03.mp3
+Assets/Audio/Jingle/maoTamashi_SE_effect03.mp3
+Assets/Audio/Jingle/maoTamashi_SE_effect06.mp3
+Assets/Audio/Jingle/maoTamashi_SE_effect12.mp3
