@@ -8,11 +8,11 @@ public class BombEquipped : MonoBehaviour, IItemUsable
 {
     public int maxBombUse = 5;
     public int currentUse = 0;
-    
+    public AudioClip SE_acquisition;
     // Start is called before the first frame update
     void Start()
     {
-        
+        GetComponentInParent<AudioSource>().PlayOneShot(SE_acquisition, 1.0f);
     }
 
     public void Use()
