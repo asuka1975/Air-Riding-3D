@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 class MachineSelectData {
     public int id;
 }
 public class SG : MonoBehaviour
 {
+    public AudioClip SE_battleStart;
+    public AudioMixer mixer;
     void Start()
     {
         Button btn = GetComponent<Button>();
@@ -18,9 +21,17 @@ public class SG : MonoBehaviour
     {
         var machine = GameObject.Find("MachineSelectManager");
         var id = machine.GetComponent<MachineSelectManager>().id;
-        var str = "Slelected machine ID is " + id.ToString();
-        Debug.Log(str);
+        Debug.Log("Selected machine ID is " + id.ToString());
         MachineSelectData data = new MachineSelectData(){ id = id };
+        StartCoroutine(transCityTrialScene(SE_battleStart, data));
+    }
+    IEnumerator transCityTrialScene(AudioClip audio, MachineSelectData data)
+    {
+        GameObject.Find("JingleManager").GetComponent<AudioSource>().PlayOneShot(audio);
+        yield return new WaitForSeconds(0.3f);
+        mixer.SetFloat("BGM", -20f);
+        yield return new WaitForSeconds(audio.length - 1.0f);
+        mixer.SetFloat("BGM", 0.0f);
         StartCoroutine(SceneTransitioner.Transition("CityTrial", data));
     }
 }
