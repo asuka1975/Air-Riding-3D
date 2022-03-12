@@ -37,10 +37,13 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     private ControllerState KeyState;
     private bool isGameStarted = false;
     bool isMachineDestroyed = false;
+
+    GameObject machineIcon;
     
     // Start is called before the first frame update
     void Start()
     {
+        machineIcon = this.transform.Find("MachineIcon").gameObject;
         rigidbody = this.GetComponent<Rigidbody>();
         rigidbody.position = new Vector3(rigidbody.position.x, floating, rigidbody.position.z);
 
@@ -60,6 +63,10 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
         {
             Charging = false, LeftTurning = false, RightTurning = false
         };
+        //マシンアイコンの色を変更
+        if(photonView.IsMine){
+            machineIcon.GetComponent<Renderer>().material.color = Color.blue;
+        }
     }
 
     void FixedUpdate()
