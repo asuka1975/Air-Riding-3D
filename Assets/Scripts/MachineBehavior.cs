@@ -38,6 +38,10 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     private bool isGameStarted = false;
     bool isMachineDestroyed = false;
 
+    //カメラズーム関連
+    float camera_length;
+    float camera_height;
+
     GameObject machineIcon;
     
     // Start is called before the first frame update
@@ -67,6 +71,9 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
         if(photonView.IsMine){
             machineIcon.GetComponent<Renderer>().material.color = Color.blue;
         }
+
+        camera_length = maincamera.GetComponent<CameraController_machine>().LengthFromTarget;
+        camera_height = maincamera.GetComponent<CameraController_machine>().HeightFromTarget;
     }
 
     void FixedUpdate()
@@ -84,6 +91,8 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
                 chargeLv += chargeRate * Time.deltaTime; //時間に応じてチャージ
             }
             rigidbody.AddForce(-transform.forward.normalized * defaultSpeed * chargeLv/maxChargeLv, ForceMode.Acceleration); //ブレーキ
+            maincamera.GetComponent<CameraController_machine>().LengthFromTarget = camera_length / 2;
+            maincamera.GetComponent<CameraController_machine>().HeightFromTarget = camera_height / 2;
         }
         else
         {
@@ -92,6 +101,8 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
 
             rigidbody.AddForce(transform.forward * chargeLv * dash, ForceMode.Impulse);
             chargeLv = 0.0f;
+            maincamera.GetComponent<CameraController_machine>().LengthFromTarget = camera_length;
+            maincamera.GetComponent<CameraController_machine>().HeightFromTarget = camera_height;
         }
         
         if(KeyState.LeftTurning)
