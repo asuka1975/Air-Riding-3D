@@ -12,7 +12,7 @@ public class StartGame : MonoBehaviour
     }
     IEnumerator transMachineSelectScene()
     {
-        GameObject.Find("SoundManager").GetComponent<AudioSource>().PlayOneShot(SE_gameStart);
+        GameObject.Find("SEManager").GetComponent<AudioSource>().PlayOneShot(SE_gameStart);
         yield return new WaitForSeconds(SE_gameStart.length);
         StartCoroutine(SceneTransitioner.Transition("MachineSelectScene", ""));
     }
