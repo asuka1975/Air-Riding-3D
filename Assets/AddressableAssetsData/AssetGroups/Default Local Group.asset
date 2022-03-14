@@ -87,6 +87,10 @@ MonoBehaviour:
     m_Address: Assets/Prefabs/DamageEffect.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 96730f8640590934eacb6f860058e7f9
+    m_Address: Assets/EffectExamples/Fire & Explosion Effects/Prefabs/PlasmaExplosionEffect.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 76fdcae5f47a56c038b13938d9296310, type: 2}
   m_SchemaSet:

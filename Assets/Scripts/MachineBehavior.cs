@@ -166,6 +166,15 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
                     Debug.Log("*** アイテムがすでに削除されています");
                 }
             }
+            // if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow)) {
+            //     audio_source.Play(); // charge
+            // }
+            if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.DownArrow)) {
+                Addressables.InstantiateAsync(
+                    "Assets/JMO Assets/WarFX/_Effects (Mobile)/Explosions/WFXMR_Explosion Small.prefab", 
+                    this.transform.position - this.transform.forward * 2, this.transform.rotation, this.transform
+                );
+            }
         }
     }
 
