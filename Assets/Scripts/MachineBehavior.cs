@@ -29,6 +29,11 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     public float maxChargeLv = 100.0f;
     public float dash = 5; //ダッシュ時の倍率
 
+    private AudioSource audio_source;
+    // public AudioClip SE_charge;
+    public AudioClip SE_dash;
+    private float SE_dash_volume;
+
     new Rigidbody rigidbody;
 
     bool isMachineDestroyed = false;
@@ -40,6 +45,8 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     {
         rigidbody = this.GetComponent<Rigidbody>();
         rigidbody.position = new Vector3(rigidbody.position.x, floating, rigidbody.position.z);
+        // audio_source = transform.Find("chargeAudioSource").GetComponent<AudioSource>();
+        // audio_source.clip = SE_charge;
 
         // HPの最大値を覚えておく
         maxHP = HP;
@@ -141,6 +148,16 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
                     Debug.Log("*** アイテムがすでに削除されています");
                 }
             }
+            
+            // SE
+            // if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow)) {
+            //     audio_source.Play(); // charge
+            // }
+            if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.DownArrow)) {
+                // audio_source.Stop();
+                SE_dash_volume = (chargeLv / maxChargeLv) * 0.7f + 0.3f;
+                GetComponent<AudioSource>().PlayOneShot(SE_dash, SE_dash_volume); // dash
+            }
         }
     }
 
@@ -153,5 +170,4 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
         FinishedGameData data = new FinishedGameData(){ is_win = false };
         StartCoroutine(SceneTransitioner.Transition("Result Scene", data));
     }
-
 }
