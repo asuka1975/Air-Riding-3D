@@ -27,7 +27,7 @@ public class SG : MonoBehaviour
     }
     IEnumerator transCityTrialScene(AudioClip audio, MachineSelectData data)
     {
-        GameObject.Find("JingleManager").GetComponent<AudioSource>().PlayOneShot(audio);
+        GameObject.Find("SEManager").GetComponent<AudioSource>().PlayOneShot(audio, 0.8f);
         yield return new WaitForSeconds(0.3f);
         mixer.SetFloat("BGM", -20f);
         yield return new WaitForSeconds(audio.length - 1.0f);

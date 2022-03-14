@@ -779,7 +779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42380999dbfd7d4bcbbaf20c3fadf4d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SE_gameStart: {fileID: 8300000, guid: 29bd8a37af05241fe98fe90a6a5f6ff8, type: 3}
+  SE_gameStart: {fileID: 8300000, guid: 4679cc0371cb54f36b182a2d3cc7f4b7, type: 3}
 --- !u!1 &1664086970
 GameObject:
   m_ObjectHideFlags: 0

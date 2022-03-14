@@ -12,7 +12,7 @@ public class BackToTitle : MonoBehaviour
     }
     IEnumerator transTitleScene(AudioClip audio)
     {
-        GameObject.Find("SEManager").GetComponent<AudioSource>().PlayOneShot(audio);
+        GameObject.Find("SEManager").GetComponent<AudioSource>().PlayOneShot(audio, 0.6f);
         yield return new WaitForSeconds(audio.length);
         StartCoroutine(SceneTransitioner.Transition("Title Scene", ""));
     }

@@ -269,7 +269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e17abd65dd7c75a429544dd8e66b8948, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SE_cancel: {fileID: 8300000, guid: 29bd8a37af05241fe98fe90a6a5f6ff8, type: 3}
+  SE_cancel: {fileID: 8300000, guid: e4fd9abdd3e244d89a8c06008115b96d, type: 3}
 --- !u!1001 &173946323
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -489,7 +489,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 2
   mixer: {fileID: 24100000, guid: 56398b955d3614e37b61e0fdd6344aa4, type: 2}
-  SE_click_button: {fileID: 8300000, guid: 3aab051023cfa48eeaaa8f9623cb8198, type: 3}
+  SE_click_button: {fileID: 8300000, guid: 687af63f4da214e03bcf30db58a88ce2, type: 3}
   SE_hover_button: {fileID: 8300000, guid: 3262af7a34cb345598d60c8e14af9aa0, type: 3}
 --- !u!114 &364822466
 MonoBehaviour:
@@ -966,7 +966,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1801,7 +1801,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   mixer: {fileID: 24100000, guid: 56398b955d3614e37b61e0fdd6344aa4, type: 2}
-  SE_click_button: {fileID: 8300000, guid: 3aab051023cfa48eeaaa8f9623cb8198, type: 3}
+  SE_click_button: {fileID: 8300000, guid: 687af63f4da214e03bcf30db58a88ce2, type: 3}
   SE_hover_button: {fileID: 8300000, guid: 3262af7a34cb345598d60c8e14af9aa0, type: 3}
 --- !u!114 &1358983677
 MonoBehaviour:
@@ -2057,7 +2057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac82d8642579b364b9d3073734fb2d08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SE_battleStart: {fileID: 8300000, guid: fe5584eaeb13241889bc43807d50abaa, type: 3}
+  SE_battleStart: {fileID: 8300000, guid: d1e240d0941aa4d01badd246d0f83f69, type: 3}
   mixer: {fileID: 24100000, guid: 56398b955d3614e37b61e0fdd6344aa4, type: 2}
 --- !u!114 &1417822602
 MonoBehaviour:
@@ -2315,7 +2315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   mixer: {fileID: 24100000, guid: 56398b955d3614e37b61e0fdd6344aa4, type: 2}
-  SE_click_button: {fileID: 8300000, guid: 3aab051023cfa48eeaaa8f9623cb8198, type: 3}
+  SE_click_button: {fileID: 8300000, guid: 687af63f4da214e03bcf30db58a88ce2, type: 3}
   SE_hover_button: {fileID: 8300000, guid: 3262af7a34cb345598d60c8e14af9aa0, type: 3}
 --- !u!114 &1465271873
 MonoBehaviour:

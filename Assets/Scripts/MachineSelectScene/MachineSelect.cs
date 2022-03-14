@@ -13,7 +13,7 @@ public class MachineSelect : MonoBehaviour
     public AudioClip SE_hover_button;
     public void OnClick()
     {
-        GameObject.Find("SEManager").GetComponent<AudioSource>().PlayOneShot(SE_click_button);
+        GameObject.Find("SEManager").GetComponent<AudioSource>().PlayOneShot(SE_click_button, 0.5f); // click SE
         var machine = GameObject.Find("MachineSelectManager");
         machine.GetComponent<MachineSelectManager>().id = id;
         var str = "Selected machine ID is " + machine.GetComponent<MachineSelectManager>().id;
@@ -22,15 +22,6 @@ public class MachineSelect : MonoBehaviour
     }
     public void PointerEnter()
     {
-        StartCoroutine(
-            PlaySE(GameObject.Find("SEManager").GetComponent<AudioSource>(), "SE", SE_hover_button, -10f)
-        );        
-    }
-    IEnumerator PlaySE(AudioSource source, String type, AudioClip clip, float volume)
-    {
-        mixer.SetFloat(type, volume);
-        source.PlayOneShot(clip);
-        yield return new WaitForSeconds(clip.length);
-        mixer.SetFloat(type, 0.0f);
+        GameObject.Find("SEManager").GetComponent<AudioSource>().PlayOneShot(SE_hover_button, 0.2f); // hover SE
     }
 }
