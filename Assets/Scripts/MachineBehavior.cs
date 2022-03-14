@@ -219,6 +219,11 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
                 mesh.text = $"{-damage}";
                 StartCoroutine(DamageEffectLifetime(g));
             }
+            // particle
+            Addressables.InstantiateAsync(
+                "Assets/JMO Assets/WarFX/_Effects/Explosions/WFX_Explosion StarSmoke.prefab", 
+                this.transform.position, this.transform.rotation, this.transform
+                );
         }
     }
 
