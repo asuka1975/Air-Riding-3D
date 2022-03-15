@@ -87,6 +87,39 @@ MonoBehaviour:
     m_Address: Assets/Prefabs/DamageEffect.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 96730f8640590934eacb6f860058e7f9
+    m_Address: Assets/EffectExamples/Fire & Explosion Effects/Prefabs/PlasmaExplosionEffect.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a57a6829db3568c4d9bdc37e9e63c017
+    m_Address: Assets/JMO Assets/WarFX/_Effects (Mobile)/Explosions/WFXMR_Explosion
+      Small.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ad2ab49d0a2a17148bd51c93d977bdbc
+    m_Address: Assets/EffectExamples/Weapon Effects/Prefabs/MuzzleFlash01.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3b1513bcb86426b4795879be6a128ed7
+    m_Address: Assets/JMO Assets/WarFX/_Effects/Bullet Impacts/WFX_BImpact SoftBody.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5332791ebce075d4a9e56f4581e7fb47
+    m_Address: Assets/JMO Assets/WarFX/_Effects/Explosions/WFX_Explosion Small.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a49596ebf788acd4ab1281bffea444b1
+    m_Address: Assets/JMO Assets/WarFX/_Effects/Explosions/WFX_Explosion StarSmoke.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b0a227fc2e558f241b1c747820ccc361
+    m_Address: Assets/JMO Assets/WarFX/_Effects/MuzzleFlashes/4Planes/WFX_MF 4P RIFLE2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0a3972e964dcd2b47b2a3bc58d35d554
+    m_Address: Assets/FXIFIED/Stylized VFX Free Pack/Prefabs/FX_Healing_AOE_AA.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 76fdcae5f47a56c038b13938d9296310, type: 2}
   m_SchemaSet:

@@ -166,6 +166,11 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
                     Debug.Log("*** アイテムがすでに削除されています");
                 }
             }
+
+            // ダッシュのパーティクルを生成
+            if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.DownArrow)) {
+                photonView.RPC(nameof(PlayDashParticle), RpcTarget.All);
+            }
         }
     }
 
@@ -210,6 +215,11 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
                 mesh.text = $"{-damage}";
                 StartCoroutine(DamageEffectLifetime(g));
             }
+            // particle
+            Addressables.InstantiateAsync(
+                "Assets/JMO Assets/WarFX/_Effects/Explosions/WFX_Explosion StarSmoke.prefab", 
+                this.transform.position, this.transform.rotation, this.transform
+                );
         }
     }
 
@@ -218,5 +228,14 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
         yield return new WaitForSeconds(1f);
         
         Destroy(effect);
+    }
+
+    [PunRPC]
+    void PlayDashParticle()
+    {
+        var op = Addressables.InstantiateAsync(
+            "Assets/JMO Assets/WarFX/_Effects (Mobile)/Explosions/WFXMR_Explosion Small.prefab", 
+            this.transform.position - this.transform.forward * 2, this.transform.rotation, this.transform
+            );
     }
 }
