@@ -37,6 +37,7 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     private ControllerState KeyState;
     private bool isGameStarted = false;
     bool isMachineDestroyed = false;
+    private bool isSceneTranslated = false;
 
     GameObject machineIcon;
     
@@ -178,11 +179,12 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     {
         this.isMachineDestroyed = true;
         Debug.Log("マシン" + this.gameObject.name + "は破壊されました.");
-        // Destroy(this.gameObject); //一応追加
         // ResultSceneへ（破壊されたので負け）
-        FinishedGameData data = new FinishedGameData(){ is_win = false };
-        StartCoroutine(SceneTransitioner.Transition("Result Scene", data));
-        PhotonNetwork.Destroy(this.gameObject);
+        if (!isSceneTranslated) {
+            isSceneTranslated = true;
+            FinishedGameData data = new FinishedGameData(){ is_win = false };
+            StartCoroutine(SceneTransitioner.Transition("Result Scene", data));
+        }
     }
 
     public void CauseDamage(float damage)
@@ -226,7 +228,6 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     IEnumerator DamageEffectLifetime(GameObject effect)
     {
         yield return new WaitForSeconds(1f);
-        
         Destroy(effect);
     }
 
