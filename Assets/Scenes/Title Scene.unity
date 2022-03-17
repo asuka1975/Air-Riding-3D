@@ -309,6 +309,31 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4363020210815188241, guid: 47dcc90c35ca3a64bb67d28dd977038c,
+        type: 3}
+      propertyPath: Mute
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4363020210815188241, guid: 47dcc90c35ca3a64bb67d28dd977038c,
+        type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4363020210815188241, guid: 47dcc90c35ca3a64bb67d28dd977038c,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4363020210815188241, guid: 47dcc90c35ca3a64bb67d28dd977038c,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4363020210815188241, guid: 47dcc90c35ca3a64bb67d28dd977038c,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47dcc90c35ca3a64bb67d28dd977038c, type: 3}
 --- !u!1 &101297270

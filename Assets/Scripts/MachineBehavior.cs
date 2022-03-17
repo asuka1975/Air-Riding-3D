@@ -19,6 +19,7 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     public int machineID;
     public GameObject EquippedItem;
     new Rigidbody rigidbody;
+    GameObject machineIcon;
 
     // マシンの基本パラメータ
     public float HP = 100f;
@@ -39,7 +40,11 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     bool isMachineDestroyed = false;
     private bool isSceneTranslated = false;
 
-    GameObject machineIcon;
+    // SE用
+    // private AudioSource audio_source;
+    // public AudioClip SE_charge;
+    public AudioClip SE_dash;
+    private float volume_dash;
     
     // Start is called before the first frame update
     void Start()
@@ -68,6 +73,9 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
         if(photonView.IsMine){
             machineIcon.GetComponent<Renderer>().material.color = Color.blue;
         }
+        // チャージ音の設定
+        //audio_source = transform.Find("chargeAudioSource").GetComponent<AudioSource>();
+        //audio_source.clip = SE_charge;
     }
 
     void FixedUpdate()
@@ -167,10 +175,16 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
                     Debug.Log("*** アイテムがすでに削除されています");
                 }
             }
+            
+            // チャージ開始
+            // if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow)) {
+            //     continue; // SE
+            // }
 
-            // ダッシュのパーティクルを生成
+            // ダッシュ
             if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.DownArrow)) {
-                photonView.RPC(nameof(PlayDashParticle), RpcTarget.All);
+                GetComponent<AudioSource>().PlayOneShot(SE_dash, (chargeLv / maxChargeLv) * 0.7f + 0.3f); // SE
+                photonView.RPC(nameof(PlayDashParticle), RpcTarget.All); // パーティクル
             }
         }
     }

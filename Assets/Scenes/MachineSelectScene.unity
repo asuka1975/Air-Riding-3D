@@ -3263,6 +3263,36 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4363020210815188241, guid: 47dcc90c35ca3a64bb67d28dd977038c,
+        type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4363020210815188241, guid: 47dcc90c35ca3a64bb67d28dd977038c,
+        type: 3}
+      propertyPath: Mute
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4363020210815188241, guid: 47dcc90c35ca3a64bb67d28dd977038c,
+        type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4363020210815188241, guid: 47dcc90c35ca3a64bb67d28dd977038c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4363020210815188241, guid: 47dcc90c35ca3a64bb67d28dd977038c,
+        type: 3}
+      propertyPath: BypassEffects
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4363020210815188241, guid: 47dcc90c35ca3a64bb67d28dd977038c,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47dcc90c35ca3a64bb67d28dd977038c, type: 3}
 --- !u!4 &1565221934 stripped
