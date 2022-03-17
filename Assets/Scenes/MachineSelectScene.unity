@@ -313,6 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e17abd65dd7c75a429544dd8e66b8948, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SE_cancel: {fileID: 8300000, guid: e4fd9abdd3e244d89a8c06008115b96d, type: 3}
 --- !u!114 &129545524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -713,6 +714,7 @@ GameObject:
   - component: {fileID: 364822467}
   - component: {fileID: 364822466}
   - component: {fileID: 364822465}
+  - component: {fileID: 364822469}
   m_Layer: 5
   m_Name: Button_MachineC
   m_TagString: Untagged
@@ -753,6 +755,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 2
+  SE_select: {fileID: 8300000, guid: 687af63f4da214e03bcf30db58a88ce2, type: 3}
+  SE_hover: {fileID: 8300000, guid: 3262af7a34cb345598d60c8e14af9aa0, type: 3}
 --- !u!114 &364822466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -847,6 +851,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 364822463}
   m_CullTransparentMesh: 1
+--- !u!114 &364822469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364822463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1358983676}
+          m_TargetAssemblyTypeName: MachineSelect, Assembly-CSharp
+          m_MethodName: PointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &366001141
 GameObject:
   m_ObjectHideFlags: 0
@@ -2432,6 +2465,7 @@ GameObject:
   - component: {fileID: 1358983678}
   - component: {fileID: 1358983677}
   - component: {fileID: 1358983676}
+  - component: {fileID: 1358983680}
   m_Layer: 5
   m_Name: Button_MachineA
   m_TagString: Untagged
@@ -2472,6 +2506,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
+  SE_select: {fileID: 8300000, guid: 687af63f4da214e03bcf30db58a88ce2, type: 3}
+  SE_hover: {fileID: 8300000, guid: 3262af7a34cb345598d60c8e14af9aa0, type: 3}
 --- !u!114 &1358983677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2566,6 +2602,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1358983674}
   m_CullTransparentMesh: 1
+--- !u!114 &1358983680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358983674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1358983676}
+          m_TargetAssemblyTypeName: MachineSelect, Assembly-CSharp
+          m_MethodName: PointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1417822599
 GameObject:
   m_ObjectHideFlags: 0
@@ -2618,6 +2683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac82d8642579b364b9d3073734fb2d08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SE_startButtle: {fileID: 8300000, guid: 4679cc0371cb54f36b182a2d3cc7f4b7, type: 3}
 --- !u!114 &1417822602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2737,6 +2803,7 @@ GameObject:
   - component: {fileID: 1465271870}
   - component: {fileID: 1465271869}
   - component: {fileID: 1465271872}
+  - component: {fileID: 1465271873}
   m_Layer: 5
   m_Name: Button_MachineB
   m_TagString: Untagged
@@ -2871,6 +2938,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 1
+  SE_select: {fileID: 8300000, guid: 687af63f4da214e03bcf30db58a88ce2, type: 3}
+  SE_hover: {fileID: 8300000, guid: 3262af7a34cb345598d60c8e14af9aa0, type: 3}
+--- !u!114 &1465271873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465271867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1358983676}
+          m_TargetAssemblyTypeName: MachineSelect, Assembly-CSharp
+          m_MethodName: PointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &1486023208
 PrefabInstance:
   m_ObjectHideFlags: 0
