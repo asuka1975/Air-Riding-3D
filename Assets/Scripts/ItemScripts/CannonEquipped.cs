@@ -34,7 +34,7 @@ public class CannonEquipped : MonoBehaviourPunCallbacks, IItemUsable
     [PunRPC]
     void CreateBullet(Vector3 position, Quaternion rotation, PhotonMessageInfo info)
     {
-        Addressables.InstantiateAsync("Assets/Prefabs/Bullet.prefab", position, rotation);
+        Instantiate(Resources.Load("Bullet"), position, rotation);
     }
 
     public event EventHandler OnUsed;

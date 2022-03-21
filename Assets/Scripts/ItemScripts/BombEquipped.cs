@@ -47,8 +47,6 @@ public class BombEquipped : MonoBehaviourPunCallbacks, IItemUsable
     [PunRPC]
     void CreateBomb(Vector3 position, Quaternion rotation, PhotonMessageInfo info)
     {
-        Addressables.InstantiateAsync("Assets/Prefabs/Bomb.prefab", 
-            position, rotation
-        );
+        Instantiate(Resources.Load("Bomb"), position, rotation);
     }
 }

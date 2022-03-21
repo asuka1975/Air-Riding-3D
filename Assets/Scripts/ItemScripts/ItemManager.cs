@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using Random = UnityEngine.Random;
 
 public class ItemManager : MonoBehaviour
 {
@@ -15,26 +17,25 @@ public class ItemManager : MonoBehaviour
         float range = 80; // アイテムの出現する範囲
         float center = 310*0.5f; // CenterPoleの座標 * Filed1のスケール
 
-        for (int i = 0; i < bombItemNum; i++) {
-            Addressables.InstantiateAsync("Assets/Prefabs/BombItem.prefab", 
-                new Vector3(Random.Range(center-range, center+range), 0.5f, Random.Range(center-range, center+range)), 
-                this.transform.rotation);
+        for (int i = 0; i < bombItemNum; i++)
+        {
+            GameObject go = Instantiate(Resources.Load("BombItem"),
+                new Vector3(Random.Range(center - range, center + range), 0.5f,
+                    Random.Range(center - range, center + range)),
+                transform.rotation) as GameObject;
         }
-        for (int i = 0; i < cannonItemNum; i++) {
-            Addressables.InstantiateAsync("Assets/Prefabs/CannonItem.prefab", 
-                new Vector3(Random.Range(center-range, center+range), 0.5f, Random.Range(center-range, center+range)), 
-                this.transform.rotation);
+        for (int i = 0; i < cannonItemNum; i++)
+        {
+            GameObject go = Instantiate(Resources.Load("CannonItem"),
+                new Vector3(Random.Range(center - range, center + range), 0.5f,
+                    Random.Range(center - range, center + range)),
+                transform.rotation) as GameObject;
         }
         for (int i = 0; i < recoverItemNum; i++) {
-            Addressables.InstantiateAsync("Assets/Prefabs/RecoverItem.prefab", 
-                new Vector3(Random.Range(center-range, center+range), 0.5f, Random.Range(center-range, center+range)), 
-                this.transform.rotation);
+            GameObject go = Instantiate(Resources.Load("RecoverItem"),
+                new Vector3(Random.Range(center - range, center + range), 0.5f,
+                    Random.Range(center - range, center + range)),
+                transform.rotation) as GameObject;
         }           
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

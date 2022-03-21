@@ -45,10 +45,6 @@ MonoBehaviour:
     m_Address: Assets/Prefabs/Bullet.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 1fc3729265849a5409c00b46b1c6afdf
-    m_Address: Assets/Prefabs/Bomb.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: ded75c4d5ad70fd4391d248d78498cc6
     m_Address: Assets/Prefabs/ExplosionFieldLarge.prefab
     m_ReadOnly: 0
