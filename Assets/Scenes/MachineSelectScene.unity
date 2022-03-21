@@ -164,7 +164,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &129545518
 GameObject:
@@ -180,6 +180,8 @@ GameObject:
   - component: {fileID: 129545520}
   - component: {fileID: 129545523}
   - component: {fileID: 129545524}
+  - component: {fileID: 129545526}
+  - component: {fileID: 129545525}
   m_Layer: 5
   m_Name: Button_BackToTitle
   m_TagString: Untagged
@@ -329,6 +331,48 @@ MonoBehaviour:
   m_EffectColor: {r: 1, g: 1, b: 1, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!114 &129545525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129545518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 129545526}
+          m_TargetAssemblyTypeName: HoverSE, Assembly-CSharp
+          m_MethodName: PointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &129545526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129545518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc6162b2df06b43d6a1390ef85dbc69f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SE_hover: {fileID: 8300000, guid: 3262af7a34cb345598d60c8e14af9aa0, type: 3}
 --- !u!1001 &173946323
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -636,7 +680,7 @@ PrefabInstance:
     - target: {fileID: 196601244974085132, guid: fadb61bcb1542264b88cb68c3ec865bf,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 196601244974085132, guid: fadb61bcb1542264b88cb68c3ec865bf,
         type: 3}
@@ -715,6 +759,7 @@ GameObject:
   - component: {fileID: 364822466}
   - component: {fileID: 364822465}
   - component: {fileID: 364822469}
+  - component: {fileID: 364822470}
   m_Layer: 5
   m_Name: Button_MachineC
   m_TagString: Untagged
@@ -756,7 +801,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 2
   SE_select: {fileID: 8300000, guid: 687af63f4da214e03bcf30db58a88ce2, type: 3}
-  SE_hover: {fileID: 8300000, guid: 3262af7a34cb345598d60c8e14af9aa0, type: 3}
 --- !u!114 &364822466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -868,8 +912,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1358983676}
-          m_TargetAssemblyTypeName: MachineSelect, Assembly-CSharp
+        - m_Target: {fileID: 364822470}
+          m_TargetAssemblyTypeName: HoverSE, Assembly-CSharp
           m_MethodName: PointerEnter
           m_Mode: 1
           m_Arguments:
@@ -880,6 +924,19 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &364822470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364822463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc6162b2df06b43d6a1390ef85dbc69f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SE_hover: {fileID: 8300000, guid: 3262af7a34cb345598d60c8e14af9aa0, type: 3}
 --- !u!1 &366001141
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,8 +1036,8 @@ RectTransform:
   - {fileID: 1465271868}
   - {fileID: 364822464}
   - {fileID: 318104785}
-  m_Father: {fileID: 1037923330}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1186,7 +1243,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &453057925
 GameObject:
@@ -1326,7 +1383,7 @@ Transform:
   - {fileID: 575364013}
   - {fileID: 909191110}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &575364012
 GameObject:
@@ -2153,7 +2210,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1037923327
 GameObject:
@@ -2235,8 +2292,7 @@ Transform:
   m_LocalRotation: {x: 0.3420201, y: 0, z: 0, w: 0.9396927}
   m_LocalPosition: {x: 150, y: 94, z: 20}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 366001145}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 40, y: 0, z: 0}
@@ -2466,6 +2522,7 @@ GameObject:
   - component: {fileID: 1358983677}
   - component: {fileID: 1358983676}
   - component: {fileID: 1358983680}
+  - component: {fileID: 1358983681}
   m_Layer: 5
   m_Name: Button_MachineA
   m_TagString: Untagged
@@ -2507,7 +2564,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   SE_select: {fileID: 8300000, guid: 687af63f4da214e03bcf30db58a88ce2, type: 3}
-  SE_hover: {fileID: 8300000, guid: 3262af7a34cb345598d60c8e14af9aa0, type: 3}
 --- !u!114 &1358983677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2619,8 +2675,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1358983676}
-          m_TargetAssemblyTypeName: MachineSelect, Assembly-CSharp
+        - m_Target: {fileID: 1358983681}
+          m_TargetAssemblyTypeName: HoverSE, Assembly-CSharp
           m_MethodName: PointerEnter
           m_Mode: 1
           m_Arguments:
@@ -2631,6 +2687,19 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1358983681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358983674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc6162b2df06b43d6a1390ef85dbc69f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SE_hover: {fileID: 8300000, guid: 3262af7a34cb345598d60c8e14af9aa0, type: 3}
 --- !u!1 &1417822599
 GameObject:
   m_ObjectHideFlags: 0
@@ -2644,6 +2713,8 @@ GameObject:
   - component: {fileID: 1417822603}
   - component: {fileID: 1417822602}
   - component: {fileID: 1417822601}
+  - component: {fileID: 1417822606}
+  - component: {fileID: 1417822605}
   m_Layer: 5
   m_Name: Button_StartGame
   m_TagString: Untagged
@@ -2790,6 +2861,48 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1417822599}
   m_CullTransparentMesh: 1
+--- !u!114 &1417822605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417822599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc6162b2df06b43d6a1390ef85dbc69f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SE_hover: {fileID: 8300000, guid: 3262af7a34cb345598d60c8e14af9aa0, type: 3}
+--- !u!114 &1417822606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417822599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1417822605}
+          m_TargetAssemblyTypeName: HoverSE, Assembly-CSharp
+          m_MethodName: PointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1465271867
 GameObject:
   m_ObjectHideFlags: 0
@@ -2804,6 +2917,7 @@ GameObject:
   - component: {fileID: 1465271869}
   - component: {fileID: 1465271872}
   - component: {fileID: 1465271873}
+  - component: {fileID: 1465271874}
   m_Layer: 5
   m_Name: Button_MachineB
   m_TagString: Untagged
@@ -2939,7 +3053,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   SE_select: {fileID: 8300000, guid: 687af63f4da214e03bcf30db58a88ce2, type: 3}
-  SE_hover: {fileID: 8300000, guid: 3262af7a34cb345598d60c8e14af9aa0, type: 3}
 --- !u!114 &1465271873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2957,8 +3070,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1358983676}
-          m_TargetAssemblyTypeName: MachineSelect, Assembly-CSharp
+        - m_Target: {fileID: 1465271874}
+          m_TargetAssemblyTypeName: HoverSE, Assembly-CSharp
           m_MethodName: PointerEnter
           m_Mode: 1
           m_Arguments:
@@ -2969,6 +3082,19 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1465271874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465271867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc6162b2df06b43d6a1390ef85dbc69f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SE_hover: {fileID: 8300000, guid: 3262af7a34cb345598d60c8e14af9aa0, type: 3}
 --- !u!1001 &1486023208
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3563,7 +3689,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1729484740 stripped
 Transform:

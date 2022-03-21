@@ -29,18 +29,6 @@ MonoBehaviour:
     m_Address: Assets/Prefabs/RecoverItem.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 38c28916486d5f744affc6dd45ec553a
-    m_Address: Assets/Prefabs/CannonItemEquipped.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: f30946eb021531c4387e362f182ae4b3
-    m_Address: Assets/Prefabs/BombItemEquipped.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 243bfcb1f3c5b0d419b2771bf0bb08d6
-    m_Address: Assets/Prefabs/RecoverItemEquipped.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 590c21a5db885d841bafc02ca86b392b
     m_Address: Assets/Prefabs/Bullet.prefab
     m_ReadOnly: 0

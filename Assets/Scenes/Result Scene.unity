@@ -212,6 +212,8 @@ GameObject:
   - component: {fileID: 81098189}
   - component: {fileID: 81098188}
   - component: {fileID: 81098187}
+  - component: {fileID: 81098192}
+  - component: {fileID: 81098191}
   m_Layer: 5
   m_Name: Quit Button
   m_TagString: Untagged
@@ -345,6 +347,48 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 81098185}
   m_CullTransparentMesh: 1
+--- !u!114 &81098191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81098185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc6162b2df06b43d6a1390ef85dbc69f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SE_hover: {fileID: 8300000, guid: 3262af7a34cb345598d60c8e14af9aa0, type: 3}
+--- !u!114 &81098192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81098185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 81098191}
+          m_TargetAssemblyTypeName: HoverSE, Assembly-CSharp
+          m_MethodName: PointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &120714792
 GameObject:
   m_ObjectHideFlags: 0
@@ -516,6 +560,8 @@ GameObject:
   - component: {fileID: 874561091}
   - component: {fileID: 874561090}
   - component: {fileID: 874561089}
+  - component: {fileID: 874561094}
+  - component: {fileID: 874561093}
   m_Layer: 5
   m_Name: Restart Button
   m_TagString: Untagged
@@ -555,6 +601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42380999dbfd7d4bcbbaf20c3fadf4d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SE_startGame: {fileID: 8300000, guid: 4679cc0371cb54f36b182a2d3cc7f4b7, type: 3}
 --- !u!114 &874561090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -649,6 +696,48 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 874561087}
   m_CullTransparentMesh: 1
+--- !u!114 &874561093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 874561087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 874561094}
+          m_TargetAssemblyTypeName: HoverSE, Assembly-CSharp
+          m_MethodName: PointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &874561094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 874561087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc6162b2df06b43d6a1390ef85dbc69f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SE_hover: {fileID: 8300000, guid: 3262af7a34cb345598d60c8e14af9aa0, type: 3}
 --- !u!1 &930915337
 GameObject:
   m_ObjectHideFlags: 0
