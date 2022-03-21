@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using Photon.Pun;
 
 public class BulletManager : MonoBehaviour
 {
     Rigidbody rb;
     Vector3 force_vector;
+    public int ownerId = -1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,26 +28,18 @@ public class BulletManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // TODO: 自分にもヒットするので直す
-        if (other.CompareTag("Player"))
-        {
-            //TODO
-            //他の(自機以外)プレイヤーにHITしたら爆発
-            //オンライン対応時に実装
-        }
-        else
-        {
-            Addressables.InstantiateAsync(
-                "Assets/JMO Assets/WarFX/_Effects (Mobile)/Explosions/WFXMR_ExplosiveSmokeGround Big.prefab",
-                this.transform.position, this.transform.rotation
-                );
-            Addressables.InstantiateAsync(
-                "Assets/Prefabs/ExplosionFieldLarge.prefab",
-                this.transform.position, this.transform.rotation
-                );
-            Destroy(this.gameObject);
-            
-        }
+        // 自分にあたったときは何もしない
+        if (other.CompareTag("Player") &&
+            (ownerId == -1 || other.gameObject.GetComponent<PhotonView>().ViewID == ownerId)) return;
 
+        Addressables.InstantiateAsync(
+            "Assets/JMO Assets/WarFX/_Effects (Mobile)/Explosions/WFXMR_ExplosiveSmokeGround Big.prefab",
+            this.transform.position, this.transform.rotation
+            );
+        Addressables.InstantiateAsync(
+            "Assets/Prefabs/ExplosionFieldLarge.prefab",
+            this.transform.position, this.transform.rotation
+            );
+        Destroy(this.gameObject);
     }
 }
