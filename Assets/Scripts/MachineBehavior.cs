@@ -41,8 +41,10 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     private bool isSceneTranslated = false;
 
     // SE用
-    // private AudioSource audio_source;
-    // public AudioClip SE_charge;
+    private AudioSource as_travel;
+    private float volume_travel;
+    private float pitch_travel;
+    private AudioSource as_charge;
     public AudioClip SE_dash;
     private float volume_dash;
     
@@ -73,9 +75,10 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
         if(photonView.IsMine){
             machineIcon.GetComponent<Renderer>().material.color = Color.blue;
         }
-        // チャージ音の設定
-        //audio_source = transform.Find("chargeAudioSource").GetComponent<AudioSource>();
-        //audio_source.clip = SE_charge;
+        // AudioSourceの設定
+        var audio = transform.Find("Audio").GetComponent<Transform>();
+        as_travel = audio.Find("travel").GetComponent<AudioSource>(); // 走行音
+        as_charge = audio.Find("charge").GetComponent<AudioSource>(); // チャージ音
     }
 
     void FixedUpdate()
@@ -98,7 +101,6 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
         {
             //スペースキーが押されていない時，マシンが浮く
             rigidbody.position = new Vector3(position.x, floating, position.z);
-
             rigidbody.AddForce(transform.forward * chargeLv * dash, ForceMode.Impulse);
             chargeLv = 0.0f;
         }
@@ -112,6 +114,14 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
         {
             transform.Rotate (0, rotate, 0, Space.World);
         }
+        
+        // 走行音の音量調整
+        if (KeyState.Charging || KeyState.LeftTurning || KeyState.RightTurning) {
+            volume_travel = Mathf.Min(0.3f, volume_travel + 0.01f);
+        } else {
+            volume_travel = Mathf.Max(0.0f, volume_travel - 0.01f);
+        }
+        as_travel.volume = 0.07f + volume_travel;
     }
 
 
@@ -176,13 +186,18 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
                 }
             }
             
+            // 走行音のピッチ調整
+            pitch_travel = Mathf.Min((rigidbody.velocity.magnitude / defaultSpeed - 0.27f) * 2.0f + 1.0f, 1.2f);
+            as_travel.pitch = pitch_travel;
+
             // チャージ開始
             // if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow)) {
-            //     continue; // SE
+            //     as_charge.Play(); // SE
             // }
 
             // ダッシュ
             if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.DownArrow)) {
+                // as_charge.Stop();
                 GetComponent<AudioSource>().PlayOneShot(SE_dash, (chargeLv / maxChargeLv) * 0.7f + 0.3f); // SE
                 photonView.RPC(nameof(PlayDashParticle), RpcTarget.All); // パーティクル
             }
