@@ -13,7 +13,6 @@ public class DynamicCollider : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && other.GetComponent<PhotonView>().IsMine)
         {
-            Debug.Log("Hit!!!!!!!!!");
             var otherRigidbody = other.gameObject.GetComponent<Rigidbody>();
             var reflect = Quaternion.AngleAxis(Random.value * 320 - 160, Vector3.up) * -other.transform.forward;
             otherRigidbody.AddForce(reflect * reflection, ForceMode.Impulse);

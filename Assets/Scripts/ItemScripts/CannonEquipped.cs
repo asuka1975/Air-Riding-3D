@@ -21,11 +21,9 @@ public class CannonEquipped : MonoBehaviourPunCallbacks, IItemUsable
     {
         if(currentUse < maxCannonUse) {
             if(Input.GetKeyUp(KeyCode.W) ^ Input.GetKeyUp(KeyCode.S)) {
-                Debug.Log("***CannonItemを使用***");
                 photonView.RPC(nameof(CreateBullet), RpcTarget.All, transform.position, transform.rotation);
 
                 currentUse += 1;
-                Debug.Log(currentUse);
             }
         } else {
             OnUsed?.Invoke(this, EventArgs.Empty);

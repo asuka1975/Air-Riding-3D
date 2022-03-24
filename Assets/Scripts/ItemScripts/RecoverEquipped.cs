@@ -30,7 +30,6 @@ public class RecoverEquipped : MonoBehaviourPunCallbacks, IItemUsable
 
     public void Use()
     {
-        Debug.Log("*** RecoverItemを使用 ***");
         GetComponentInParent<AudioSource>().PlayOneShot(SE_recover, 1.0f); // SE
         GameObject machineObj = transform.parent.gameObject;
         machineObj.GetComponent<MachineBehavior>().HP += 15f;

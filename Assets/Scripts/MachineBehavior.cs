@@ -47,6 +47,12 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     private AudioSource as_charge;
     public AudioClip SE_dash;
     private float volume_dash;
+
+    //カメラズーム関連
+    float camera_length;
+    float camera_height;
+
+    GameObject machineIcon;
     
     // Start is called before the first frame update
     void Start()
@@ -61,9 +67,6 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
         //メインカメラのTargetObjectに自機を指定する
         if(photonView.IsMine)
         {
-            Debug.Log("*** ", maincamera);
-            Debug.Log("*** ", maincamera.GetComponent<CameraController_machine>());
-            Debug.Log("*** ", maincamera.GetComponent<CameraController_machine>().TargetObject);
             maincamera.GetComponent<CameraController_machine>().TargetObject = this.gameObject;
         }
 
@@ -79,6 +82,9 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
         var audio = transform.Find("Audio").GetComponent<Transform>();
         as_travel = audio.Find("travel").GetComponent<AudioSource>(); // 走行音
         as_charge = audio.Find("charge").GetComponent<AudioSource>(); // チャージ音
+
+        camera_length = maincamera.GetComponent<CameraController_machine>().LengthFromTarget;
+        camera_height = maincamera.GetComponent<CameraController_machine>().HeightFromTarget;
     }
 
     void FixedUpdate()
@@ -96,6 +102,8 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
                 chargeLv += chargeRate * Time.deltaTime; //時間に応じてチャージ
             }
             rigidbody.AddForce(-transform.forward.normalized * defaultSpeed * chargeLv/maxChargeLv, ForceMode.Acceleration); //ブレーキ
+            maincamera.GetComponent<CameraController_machine>().LengthFromTarget = camera_length / 2;
+            maincamera.GetComponent<CameraController_machine>().HeightFromTarget = camera_height / 2;
         }
         else
         {
@@ -103,6 +111,8 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
             rigidbody.position = new Vector3(position.x, floating, position.z);
             rigidbody.AddForce(transform.forward * chargeLv * dash, ForceMode.Impulse);
             chargeLv = 0.0f;
+            maincamera.GetComponent<CameraController_machine>().LengthFromTarget = camera_length;
+            maincamera.GetComponent<CameraController_machine>().HeightFromTarget = camera_height;
         }
         
         if(KeyState.LeftTurning)
@@ -178,11 +188,9 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
                 }
                 catch(UnassignedReferenceException)
                 {
-                    Debug.Log("*** アイテムが装備されていません");
                 }
                 catch(MissingReferenceException)
                 {
-                    Debug.Log("*** アイテムがすでに削除されています");
                 }
             }
             
@@ -207,7 +215,6 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     void MachineDestroyedEvent()
     {
         this.isMachineDestroyed = true;
-        Debug.Log("マシン" + this.gameObject.name + "は破壊されました.");
         // ResultSceneへ（破壊されたので負け）
         if (!isSceneTranslated) {
             isSceneTranslated = true;

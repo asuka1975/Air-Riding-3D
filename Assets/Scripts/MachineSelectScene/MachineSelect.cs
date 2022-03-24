@@ -14,8 +14,6 @@ public class MachineSelect : MonoBehaviour
         GameObject.Find("SE").GetComponent<AudioSource>().PlayOneShot(SE_select, 0.2f); // SE (select)
         var machine = GameObject.Find("MachineSelectManager");
         machine.GetComponent<MachineSelectManager>().id = id;
-        var str = "Selected machine ID is " + machine.GetComponent<MachineSelectManager>().id;
-        Debug.Log(str);
         ButtonManager.SetInteractive("Button_StartGame", true);
     }
 }

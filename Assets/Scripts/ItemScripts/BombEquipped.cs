@@ -21,12 +21,10 @@ public class BombEquipped : MonoBehaviourPunCallbacks, IItemUsable
     {
         if(currentUse < maxBombUse) {
             if(Input.GetKeyUp(KeyCode.W) ^ Input.GetKeyUp(KeyCode.S)) {
-                Debug.Log("*** BombItemを使用 ***");
                 float start_time = Time.time;
                 StartCoroutine("ThroughBomb");
 
                 currentUse += 1;
-                Debug.Log(currentUse);
             }
         } else {
             OnUsed?.Invoke(this, EventArgs.Empty);

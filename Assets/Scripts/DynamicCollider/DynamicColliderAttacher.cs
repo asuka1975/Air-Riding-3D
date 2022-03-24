@@ -17,7 +17,6 @@ public class DynamicColliderAttacher : MonoBehaviourPunCallbacks
         GameObject[] playersObj = GameObject.FindGameObjectsWithTag("Player");
         while (playersObj.Length < NetworkManager.maxPlayer || !IsDynamicColliderAllAttached())
         {
-            Debug.Log("!!!!S");
             foreach(var p in playersObj)
             {
                 if(p.GetComponent<PhotonView>().IsMine || p.GetComponent<DynamicCollider>() != null) continue;
