@@ -5,6 +5,7 @@ using Photon.Pun;
 
 public class DynamicColliderAttacher : MonoBehaviourPunCallbacks
 {
+    public AudioClip SE_collision;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,7 @@ public class DynamicColliderAttacher : MonoBehaviourPunCallbacks
             {
                 if(p.GetComponent<PhotonView>().IsMine || p.GetComponent<DynamicCollider>() != null) continue;
                 p.AddComponent<DynamicCollider>();
+                p.GetComponent<DynamicCollider>().SE_collision = SE_collision;
                 p.GetComponent<BoxCollider>().isTrigger = true;
             }
 
