@@ -11,7 +11,7 @@ public class MachineSelect : MonoBehaviour
     public AudioClip SE_select;
     public void OnClick()
     {
-        GameObject.Find("SE").GetComponent<AudioSource>().PlayOneShot(SE_select, 0.5f); // SE (select)
+        GameObject.Find("SE").GetComponent<AudioSource>().PlayOneShot(SE_select, 0.2f); // SE (select)
         var machine = GameObject.Find("MachineSelectManager");
         machine.GetComponent<MachineSelectManager>().id = id;
         var str = "Selected machine ID is " + machine.GetComponent<MachineSelectManager>().id;

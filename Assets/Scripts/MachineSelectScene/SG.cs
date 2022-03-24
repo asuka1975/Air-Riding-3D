@@ -27,7 +27,7 @@ public class SG : MonoBehaviour
     
     private IEnumerator WaitJoinPlayers()
     {
-        GameObject.Find("SE").GetComponent<AudioSource>().PlayOneShot(SE_startButtle, 0.8f);
+        GameObject.Find("SE").GetComponent<AudioSource>().PlayOneShot(SE_startButtle, 0.6f);
         yield return new WaitForSeconds(SE_startButtle.length);
 
         var waitMessage = GameObject.Find("WaitingMessage").GetComponent<TextMeshProUGUI>();

@@ -14,7 +14,7 @@ public class BackToTitle : MonoBehaviour
     }
     IEnumerator transTitleScene()
     {
-        GameObject.Find("SE").GetComponent<AudioSource>().PlayOneShot(SE_cancel, 0.6f);
+        GameObject.Find("SE").GetComponent<AudioSource>().PlayOneShot(SE_cancel, 0.3f);
         yield return new WaitForSeconds(SE_cancel.length);
         StartCoroutine(SceneTransitioner.Transition("Title Scene", ""));
     }

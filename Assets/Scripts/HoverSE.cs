@@ -9,6 +9,6 @@ public class HoverSE : MonoBehaviour
     public AudioClip SE_hover;
     public void PointerEnter()
     {
-        GameObject.Find("SE").GetComponent<AudioSource>().PlayOneShot(SE_hover, 0.2f); // SE (hover)
+        GameObject.Find("SE").GetComponent<AudioSource>().PlayOneShot(SE_hover, 0.1f); // SE (hover)
     }
 }
