@@ -9,11 +9,12 @@ public class CannonEquipped : MonoBehaviourPunCallbacks, IItemUsable
 {
     public int maxCannonUse;
     public int currentUse = 0;
-    
+    public AudioClip SE_equip;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        GetComponent<AudioSource>().PlayOneShot(SE_equip, 1.0f); // SE
     }
 
     public void Use()

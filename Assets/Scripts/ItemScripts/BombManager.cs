@@ -9,6 +9,7 @@ public class BombManager : MonoBehaviour
     Rigidbody rb;
     Vector3 force_vector;
     public float survivalTime = 0.5f;
+    public AudioClip SE_emit;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,7 @@ public class BombManager : MonoBehaviour
         force_vector = side_rand * transform.right - force_rand * transform.forward;
         rb.AddForce(force_vector, ForceMode.Impulse);
         transform.Rotate(0, 0, -90);
+        GetComponent<AudioSource>().PlayOneShot(SE_emit, 0.5f); // SE
     }
 
     // Update is called once per frame
