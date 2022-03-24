@@ -28,7 +28,6 @@ public class RecoverEquipped : MonoBehaviourPunCallbacks, IItemUsable
 
     public void Use()
     {
-        Debug.Log("*** RecoverItemを使用 ***");
         GameObject machineObj = transform.parent.gameObject;
         machineObj.GetComponent<MachineBehavior>().HP += 15f;
         photonView.RPC(nameof(PlayRecoverParticle), RpcTarget.All);

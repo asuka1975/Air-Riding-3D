@@ -57,9 +57,6 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
         //メインカメラのTargetObjectに自機を指定する
         if(photonView.IsMine)
         {
-            Debug.Log("*** ", maincamera);
-            Debug.Log("*** ", maincamera.GetComponent<CameraController_machine>());
-            Debug.Log("*** ", maincamera.GetComponent<CameraController_machine>().TargetObject);
             maincamera.GetComponent<CameraController_machine>().TargetObject = this.gameObject;
         }
 
@@ -170,11 +167,9 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
                 }
                 catch(UnassignedReferenceException)
                 {
-                    Debug.Log("*** アイテムが装備されていません");
                 }
                 catch(MissingReferenceException)
                 {
-                    Debug.Log("*** アイテムがすでに削除されています");
                 }
             }
 
@@ -188,8 +183,6 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     void MachineDestroyedEvent()
     {
         this.isMachineDestroyed = true;
-        Debug.Log("マシン" + this.gameObject.name + "は破壊されました.");
-        // Destroy(this.gameObject); //一応追加
         // ResultSceneへ（破壊されたので負け）
         FinishedGameData data = new FinishedGameData(){ is_win = false };
         StartCoroutine(SceneTransitioner.Transition("Result Scene", data));
