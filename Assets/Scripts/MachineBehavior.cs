@@ -52,8 +52,6 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     float camera_length;
     float camera_height;
 
-    GameObject machineIcon;
-    
     // Start is called before the first frame update
     void Start()
     {
