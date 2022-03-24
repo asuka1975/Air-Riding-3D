@@ -28,6 +28,7 @@ public class TimeManager : MonoBehaviour
             // ResultSceneへ（生き残ったので勝ち）
             isSceneTranslated = true;
             Debug.Log("Game Finished!");
+            GameObject.Find("BGM").GetComponent<AudioSource>().Stop();
             FinishedGameData data = new FinishedGameData(){ is_win = true };
             StartCoroutine(SceneTransitioner.Transition("Result Scene", data));
         }
