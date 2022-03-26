@@ -10,6 +10,12 @@ public class ItemManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //HACK: シーン読み込み直後に実行するとアイテムが生成されないため、Coroutineにして0.5秒待ってから実行させる
+        StartCoroutine("GenerateItems");
+    }
+    IEnumerator GenerateItems()
+    {
+        yield return new WaitForSeconds(0.5f);
         int bombItemNum = 7;
         int cannonItemNum = 7;
         int recoverItemNum = 3;
