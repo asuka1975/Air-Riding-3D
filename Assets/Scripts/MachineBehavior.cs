@@ -222,7 +222,7 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
             mesh.text = $"{-damage}";
             StartCoroutine(DamageEffectLifetime(g));
             // particle
-            Instantiate(Resources.Load("WFXMR_Explosion StarSmoke"),
+            Instantiate(Resources.Load("WFX_Explosion StarSmoke"),
                 transform.position, transform.rotation, transform);
         }
     }
