@@ -242,20 +242,13 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
 
         if (player != null)
         {
-            var op = Addressables.InstantiateAsync("Assets/Prefabs/DamageEffect.prefab",
-                player.transform);
-            var g = op.WaitForCompletion();
+            var g = Instantiate(Resources.Load("DamageEffect"), player.transform) as GameObject;
             var mesh = g.GetComponent<TextMeshPro>();
-            if (mesh != null)
-            {
-                mesh.text = $"{-damage}";
-                StartCoroutine(DamageEffectLifetime(g));
-            }
+            mesh.text = $"{-damage}";
+            StartCoroutine(DamageEffectLifetime(g));
             // particle
-            Addressables.InstantiateAsync(
-                "Assets/JMO Assets/WarFX/_Effects/Explosions/WFX_Explosion StarSmoke.prefab", 
-                this.transform.position, this.transform.rotation, this.transform
-                );
+            Instantiate(Resources.Load("WFX_Explosion StarSmoke"),
+                transform.position, transform.rotation, transform);
         }
     }
 
@@ -268,9 +261,7 @@ public class MachineBehavior : MonoBehaviourPunCallbacks
     [PunRPC]
     void PlayDashParticle()
     {
-        var op = Addressables.InstantiateAsync(
-            "Assets/JMO Assets/WarFX/_Effects (Mobile)/Explosions/WFXMR_Explosion Small.prefab", 
-            this.transform.position - this.transform.forward * 2, this.transform.rotation, this.transform
-            );
+        Instantiate(Resources.Load("WFXMR_Explosion Small"), transform.position - transform.forward * 2,
+            transform.rotation, transform);
     }
 }

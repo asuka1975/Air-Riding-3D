@@ -33,10 +33,6 @@ MonoBehaviour:
     m_Address: Assets/Prefabs/Bullet.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 1fc3729265849a5409c00b46b1c6afdf
-    m_Address: Assets/Prefabs/Bomb.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: ded75c4d5ad70fd4391d248d78498cc6
     m_Address: Assets/Prefabs/ExplosionFieldLarge.prefab
     m_ReadOnly: 0
@@ -102,10 +98,6 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: b0a227fc2e558f241b1c747820ccc361
     m_Address: Assets/JMO Assets/WarFX/_Effects/MuzzleFlashes/4Planes/WFX_MF 4P RIFLE2.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 0a3972e964dcd2b47b2a3bc58d35d554
-    m_Address: Assets/FXIFIED/Stylized VFX Free Pack/Prefabs/FX_Healing_AOE_AA.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0
