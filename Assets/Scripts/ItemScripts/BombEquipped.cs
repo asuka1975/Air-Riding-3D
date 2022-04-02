@@ -9,23 +9,22 @@ public class BombEquipped : MonoBehaviourPunCallbacks, IItemUsable
 {
     public int maxBombUse = 5;
     public int currentUse = 0;
-    
+    public AudioClip SE_equip;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        GetComponent<AudioSource>().PlayOneShot(SE_equip, 1.0f); // SE
     }
 
     public void Use()
     {
         if(currentUse < maxBombUse) {
             if(Input.GetKeyUp(KeyCode.W) ^ Input.GetKeyUp(KeyCode.S)) {
-                Debug.Log("*** BombItemを使用 ***");
                 float start_time = Time.time;
                 StartCoroutine("ThroughBomb");
 
                 currentUse += 1;
-                Debug.Log(currentUse);
             }
         } else {
             OnUsed?.Invoke(this, EventArgs.Empty);

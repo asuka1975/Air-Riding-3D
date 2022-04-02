@@ -8,6 +8,8 @@ public class BulletManager : MonoBehaviour
 {
     Rigidbody rb;
     Vector3 force_vector;
+    public AudioClip SE_emit;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +18,7 @@ public class BulletManager : MonoBehaviour
         force_vector = transform.forward * 100f + transform.up * 2f;
         rb.AddForce(force_vector, ForceMode.Impulse);
         transform.Rotate(90, 0, 0);
+        GetComponent<AudioSource>().PlayOneShot(SE_emit, 0.5f); // SE
     }
 
     // Update is called once per frame

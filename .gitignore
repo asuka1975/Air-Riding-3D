@@ -89,3 +89,4 @@ Assets/Resources/WFXMR_ExplosiveSmokeGround Big.prefab
 Assets/Resources/WFX_Explosion StarSmoke.prefab
 Assets/Resources/WFXMR_Explosion Small.prefab
 Assets/Resources/FX_Healing_AOE_AA.prefab
+Assets/**/*.mp3
