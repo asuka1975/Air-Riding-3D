@@ -29,18 +29,6 @@ MonoBehaviour:
     m_Address: Assets/Prefabs/RecoverItem.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 590c21a5db885d841bafc02ca86b392b
-    m_Address: Assets/Prefabs/Bullet.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: ded75c4d5ad70fd4391d248d78498cc6
-    m_Address: Assets/Prefabs/ExplosionFieldLarge.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 1c8065099ab3145a78837fd7d0123526
-    m_Address: Assets/Prefabs/ExplosionFieldSmall.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: ba720ace4b76245af9cf2d7e2b5509c5
     m_Address: Assets/Aircrafts/Prefabs/Aircraft 21.prefab
     m_ReadOnly: 0
