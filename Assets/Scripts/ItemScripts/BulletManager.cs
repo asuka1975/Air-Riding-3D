@@ -8,6 +8,8 @@ public class BulletManager : MonoBehaviour
 {
     Rigidbody rb;
     Vector3 force_vector;
+    public AudioClip SE_emit;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +18,7 @@ public class BulletManager : MonoBehaviour
         force_vector = transform.forward * 100f + transform.up * 2f;
         rb.AddForce(force_vector, ForceMode.Impulse);
         transform.Rotate(90, 0, 0);
+        GetComponent<AudioSource>().PlayOneShot(SE_emit, 0.5f); // SE
     }
 
     // Update is called once per frame
@@ -34,14 +37,8 @@ public class BulletManager : MonoBehaviour
         }
         else
         {
-            Addressables.InstantiateAsync(
-                "Assets/JMO Assets/WarFX/_Effects (Mobile)/Explosions/WFXMR_ExplosiveSmokeGround Big.prefab",
-                this.transform.position, this.transform.rotation
-                );
-            Addressables.InstantiateAsync(
-                "Assets/Prefabs/ExplosionFieldLarge.prefab",
-                this.transform.position, this.transform.rotation
-                );
+            Instantiate(Resources.Load("WFXMR_ExplosiveSmokeGround Big"), transform.position, transform.rotation);
+            Instantiate(Resources.Load("ExplosionFieldSmall"), transform.position, transform.rotation);
             Destroy(this.gameObject);
             
         }

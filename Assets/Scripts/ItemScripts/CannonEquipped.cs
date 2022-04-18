@@ -9,22 +9,21 @@ public class CannonEquipped : MonoBehaviourPunCallbacks, IItemUsable
 {
     public int maxCannonUse;
     public int currentUse = 0;
-    
+    public AudioClip SE_equip;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        GetComponent<AudioSource>().PlayOneShot(SE_equip, 1.0f); // SE
     }
 
     public void Use()
     {
         if(currentUse < maxCannonUse) {
             if(Input.GetKeyUp(KeyCode.W) ^ Input.GetKeyUp(KeyCode.S)) {
-                Debug.Log("***CannonItemを使用***");
                 photonView.RPC(nameof(CreateBullet), RpcTarget.All, transform.position, transform.rotation);
 
                 currentUse += 1;
-                Debug.Log(currentUse);
             }
         } else {
             OnUsed?.Invoke(this, EventArgs.Empty);
@@ -34,7 +33,7 @@ public class CannonEquipped : MonoBehaviourPunCallbacks, IItemUsable
     [PunRPC]
     void CreateBullet(Vector3 position, Quaternion rotation, PhotonMessageInfo info)
     {
-        Addressables.InstantiateAsync("Assets/Prefabs/Bullet.prefab", position, rotation);
+        Instantiate(Resources.Load("Bullet"), position, rotation);
     }
 
     public event EventHandler OnUsed;
